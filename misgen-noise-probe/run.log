@@ -1,0 +1,15 @@
+[  0/120] seed 700 cls=hedger     a=0.659 flip@primary=0.0005 t=1s
+[ 20/120] seed 720 cls=hedger     a=0.507 flip@primary=0.0004 t=17s
+[ 40/120] seed 740 cls=hedger     a=0.626 flip@primary=0.0003 t=32s
+[ 60/120] seed 760 cls=aligned    a=0.988 flip@primary=0.0011 t=50s
+[ 80/120] seed 780 cls=aligned    a=0.861 flip@primary=0.0004 t=71s
+[100/120] seed 800 cls=hedger     a=0.576 flip@primary=0.0008 t=94s
+census: {'aligned': 31, 'misaligned': 34, 'hedger': 55} train_acc=1.0000
+
+PRIMARY (l=1, sigma=0.2, Holm over 4):
+  P1 aligned vs misaligned flip: 0.0011 vs 0.0009 p=0.622 holm=0.622
+  P2 committed vs hedger flip:   0.0010 vs 0.0006 p=6.46e-05 holm=0.000129
+  P3 hedger dCommit: mean=-0.02891 p=2.14e-10 holm=6.42e-10
+  P4 committed dCommit: mean=-0.04070 p=2.41e-12 holm=9.62e-12
+
+Done in 117s -> results.json + peritem.npz

@@ -1,0 +1,60 @@
+{
+  "config": {
+    "K": 10000,
+    "seed": 0,
+    "min_support": 3,
+    "n_tokens": 216,
+    "n_docs": 36,
+    "embed_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "source": "/Users/steven/nla_sae_compare/results_20260701_162505.json"
+  },
+  "reconstruction_sanity": {
+    "published_baseline_pair_sim": 0.23965179920196533,
+    "reconstructed_baseline_pair_sim": 0.23965185247364026,
+    "published_n_features_ge3": 522,
+    "reconstructed_n_features_ge3": 268,
+    "published_mean_lift": 0.18879703503687262,
+    "reconstructed_obs_mean_lift": 0.21204112775032327,
+    "published_frac_positive": 0.8793103448275862,
+    "reconstructed_frac_positive": 0.9067164179104478,
+    "n_within_feature_pairs": 45639,
+    "deviation": "records store only top-20 features/token (orig used full ~34 active/token), so the qualifying-feature set is a subset"
+  },
+  "primary_within_doc_null": {
+    "observed_mean_lift": 0.21204112775032327,
+    "null_mean": 0.18150222593335252,
+    "null_sd": 0.002838322370649178,
+    "null_q025": 0.17603870511508796,
+    "null_q975": 0.18710107356393052,
+    "z": 10.759490230134052,
+    "p_one_sided_MC": 9.999000099990002e-05,
+    "topic_explained_share": 0.8559765167211804,
+    "residual_lift_obs_minus_null_mean": 0.030538901816970748
+  },
+  "comparison_global_null": {
+    "observed_mean_lift": 0.21204112775032327,
+    "null_mean": 2.1482729103746424e-05,
+    "null_sd": 0.003773143246139006,
+    "z": 56.19178260411281,
+    "p_one_sided_MC": 9.999000099990002e-05
+  },
+  "secondary_cross_doc_pooled": {
+    "observed_cross_doc_lift": 0.005628346304801107,
+    "cross_doc_baseline": 0.2303178809264754,
+    "null_mean": 0.002896733600302789,
+    "null_sd": 0.000629272347761067,
+    "z": 4.340906944691465,
+    "p_one_sided_MC": 9.999000099990002e-05
+  },
+  "post_hoc": {
+    "note": "descriptive only, not pre-registered",
+    "n_single_doc_features": 90,
+    "obs_mean_lift_single_doc_features": 0.4415280298327443,
+    "obs_mean_lift_multi_doc_features": 0.09600842445022276,
+    "within_feature_pairs_same_doc": 2085,
+    "within_feature_pairs_cross_doc": 43554,
+    "mean_sim_same_doc_pairs_all": 0.6316786574545634,
+    "mean_sim_cross_doc_pairs_all": 0.2303178809264754
+  },
+  "runtime_sec": 50.1
+}

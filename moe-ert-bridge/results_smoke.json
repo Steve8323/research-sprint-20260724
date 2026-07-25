@@ -1,0 +1,398 @@
+{
+  "config": {
+    "d": 64,
+    "layers": 4,
+    "eps": 0.5,
+    "rho": 1.0,
+    "n_exp": 8,
+    "expert_mult": 2,
+    "aux_w": 0.01,
+    "steps": 100,
+    "B": 256,
+    "lr": 0.003,
+    "n_prof": 500,
+    "n_eval": 500,
+    "n_perm": 100,
+    "seeds": [
+      0
+    ],
+    "smoke": true
+  },
+  "P1_mean_ami_across_seeds": [
+    0.49891341597550226,
+    null,
+    null
+  ],
+  "P1_all_cells_p_lt_01": true,
+  "P2_acc_profile_across_seeds": [
+    0.5960144927536232,
+    null,
+    null
+  ],
+  "P2_acc_majority_across_seeds": [
+    0.15579710144927536,
+    null,
+    null
+  ],
+  "P2_all_seeds_sig": true,
+  "task_M_acc": [
+    0.8885000149408976
+  ],
+  "wall_time_s": 16.573190212249756,
+  "seeds_detail": [
+    {
+      "seed": 0,
+      "task_M_acc": 0.8885000149408976,
+      "heldout_words": [
+        "huge",
+        "little",
+        "glad",
+        "blue",
+        "quick",
+        "lazy",
+        "hot",
+        "chilly",
+        "smart",
+        "foolish",
+        "sturdy",
+        "faint",
+        "good",
+        "awful",
+        "murky",
+        "gleaming",
+        "elderly",
+        "fresh",
+        "rich",
+        "broke",
+        "serene",
+        "mad",
+        "spotless",
+        "muddy"
+      ],
+      "profiles": [
+        {
+          "layer": 0,
+          "expert": 0,
+          "n_tokens_profile": 9,
+          "profile_en": "expert handles words meaning: strong"
+        },
+        {
+          "layer": 0,
+          "expert": 1,
+          "n_tokens_profile": 48,
+          "profile_en": "expert handles words meaning: clean, dirty"
+        },
+        {
+          "layer": 0,
+          "expert": 2,
+          "n_tokens_profile": 97,
+          "profile_en": "expert handles words meaning: happy, fast, slow, shiny, old, calm"
+        },
+        {
+          "layer": 0,
+          "expert": 3,
+          "n_tokens_profile": 18,
+          "profile_en": "expert handles words meaning: smart"
+        },
+        {
+          "layer": 0,
+          "expert": 4,
+          "n_tokens_profile": 47,
+          "profile_en": "expert handles words meaning: big, good, dark"
+        },
+        {
+          "layer": 0,
+          "expert": 5,
+          "n_tokens_profile": 38,
+          "profile_en": "expert handles words meaning: dumb, bad, broke"
+        },
+        {
+          "layer": 0,
+          "expert": 6,
+          "n_tokens_profile": 102,
+          "profile_en": "expert handles words meaning: small, sad, hot, cold, weak, new, rich"
+        },
+        {
+          "layer": 0,
+          "expert": 7,
+          "n_tokens_profile": 23,
+          "profile_en": "expert handles words meaning: angry"
+        },
+        {
+          "layer": 1,
+          "expert": 0,
+          "n_tokens_profile": 41,
+          "profile_en": "expert handles words meaning: big, cold, dirty"
+        },
+        {
+          "layer": 1,
+          "expert": 1,
+          "n_tokens_profile": 38,
+          "profile_en": "expert handles words meaning: slow, calm"
+        },
+        {
+          "layer": 1,
+          "expert": 2,
+          "n_tokens_profile": 20,
+          "profile_en": "expert handles words meaning: dark, broke"
+        },
+        {
+          "layer": 1,
+          "expert": 3,
+          "n_tokens_profile": 56,
+          "profile_en": "expert handles words meaning: small, fast, strong, clean"
+        },
+        {
+          "layer": 1,
+          "expert": 4,
+          "n_tokens_profile": 82,
+          "profile_en": "expert handles words meaning: happy, hot, weak, shiny, new"
+        },
+        {
+          "layer": 1,
+          "expert": 5,
+          "n_tokens_profile": 29,
+          "profile_en": "expert handles words meaning: sad, dumb"
+        },
+        {
+          "layer": 1,
+          "expert": 6,
+          "n_tokens_profile": 46,
+          "profile_en": "expert handles words meaning: bad, old, angry"
+        },
+        {
+          "layer": 1,
+          "expert": 7,
+          "n_tokens_profile": 43,
+          "profile_en": "expert handles words meaning: smart, good, rich"
+        },
+        {
+          "layer": 2,
+          "expert": 0,
+          "n_tokens_profile": 58,
+          "profile_en": "expert handles words meaning: cold, broke, clean"
+        },
+        {
+          "layer": 2,
+          "expert": 1,
+          "n_tokens_profile": 16,
+          "profile_en": "expert handles words meaning: shiny"
+        },
+        {
+          "layer": 2,
+          "expert": 2,
+          "n_tokens_profile": 26,
+          "profile_en": "expert handles words meaning: big, hot, dirty"
+        },
+        {
+          "layer": 2,
+          "expert": 3,
+          "n_tokens_profile": 44,
+          "profile_en": "expert handles words meaning: fast, weak, old"
+        },
+        {
+          "layer": 2,
+          "expert": 4,
+          "n_tokens_profile": 46,
+          "profile_en": "expert handles words meaning: good, dark, new"
+        },
+        {
+          "layer": 2,
+          "expert": 5,
+          "n_tokens_profile": 51,
+          "profile_en": "expert handles words meaning: strong, rich, angry"
+        },
+        {
+          "layer": 2,
+          "expert": 6,
+          "n_tokens_profile": 61,
+          "profile_en": "expert handles words meaning: sad, smart, dumb, calm"
+        },
+        {
+          "layer": 2,
+          "expert": 7,
+          "n_tokens_profile": 77,
+          "profile_en": "expert handles words meaning: small, happy, slow, bad"
+        },
+        {
+          "layer": 3,
+          "expert": 0,
+          "n_tokens_profile": 32,
+          "profile_en": "expert handles words meaning: big, small, good, dirty"
+        },
+        {
+          "layer": 3,
+          "expert": 1,
+          "n_tokens_profile": 92,
+          "profile_en": "expert handles words meaning: smart, dumb, strong, old, rich"
+        },
+        {
+          "layer": 3,
+          "expert": 2,
+          "n_tokens_profile": 17,
+          "profile_en": "expert handles words meaning: happy"
+        },
+        {
+          "layer": 3,
+          "expert": 3,
+          "n_tokens_profile": 55,
+          "profile_en": "expert handles words meaning: sad, new, broke"
+        },
+        {
+          "layer": 3,
+          "expert": 4,
+          "n_tokens_profile": 10,
+          "profile_en": "expert handles words meaning: (no class assigned)"
+        },
+        {
+          "layer": 3,
+          "expert": 5,
+          "n_tokens_profile": 45,
+          "profile_en": "expert handles words meaning: fast, hot, bad, angry"
+        },
+        {
+          "layer": 3,
+          "expert": 6,
+          "n_tokens_profile": 58,
+          "profile_en": "expert handles words meaning: slow, cold, weak, dark"
+        },
+        {
+          "layer": 3,
+          "expert": 7,
+          "n_tokens_profile": 55,
+          "profile_en": "expert handles words meaning: shiny, calm, clean"
+        }
+      ],
+      "P1_per_layer": [
+        {
+          "layer": 0,
+          "n": 500,
+          "ami": 0.4424690419266244,
+          "perm_p": 0.009900990099009901,
+          "content_frac": 1.0
+        },
+        {
+          "layer": 1,
+          "n": 500,
+          "ami": 0.5345473447663186,
+          "perm_p": 0.009900990099009901,
+          "content_frac": 1.0
+        },
+        {
+          "layer": 2,
+          "n": 498,
+          "ami": 0.5605666597977772,
+          "perm_p": 0.009900990099009901,
+          "content_frac": 0.996
+        },
+        {
+          "layer": 3,
+          "n": 497,
+          "ami": 0.45807061741128874,
+          "perm_p": 0.009900990099009901,
+          "content_frac": 0.994
+        }
+      ],
+      "P1_mean_ami": 0.49891341597550226,
+      "P2": {
+        "n_heldout_instances": 552,
+        "acc_profile": 0.5960144927536232,
+        "acc_profile_ci": [
+          0.554551925952232,
+          0.6361498854990879
+        ],
+        "acc_majority": 0.15579710144927536,
+        "acc_majority_ci": [
+          0.12793254749219976,
+          0.1884194491917476
+        ],
+        "mcnemar_p": 3.2651936431878367e-50,
+        "discordant": [
+          273,
+          30
+        ],
+        "chance": 0.125,
+        "per_layer": [
+          {
+            "layer": 0,
+            "n": 137,
+            "acc_profile": 0.35766423357664234,
+            "acc_majority": 0.1386861313868613
+          },
+          {
+            "layer": 1,
+            "n": 152,
+            "acc_profile": 0.6842105263157895,
+            "acc_majority": 0.20394736842105263
+          },
+          {
+            "layer": 2,
+            "n": 123,
+            "acc_profile": 0.8130081300813008,
+            "acc_majority": 0.13008130081300814
+          },
+          {
+            "layer": 3,
+            "n": 140,
+            "acc_profile": 0.5428571428571428,
+            "acc_majority": 0.14285714285714285
+          }
+        ]
+      },
+      "secondary": {
+        "spec_mean_used": 0.47967912611110775,
+        "spec_max": 0.7818957080144684,
+        "experts_used_per_layer": [
+          8,
+          8,
+          8,
+          8
+        ],
+        "load_per_layer": [
+          [
+            0.016,
+            0.104,
+            0.276,
+            0.064,
+            0.09,
+            0.146,
+            0.212,
+            0.092
+          ],
+          [
+            0.172,
+            0.092,
+            0.076,
+            0.126,
+            0.236,
+            0.102,
+            0.102,
+            0.094
+          ],
+          [
+            0.145,
+            0.048,
+            0.092,
+            0.112,
+            0.108,
+            0.131,
+            0.159,
+            0.205
+          ],
+          [
+            0.125,
+            0.201,
+            0.048,
+            0.135,
+            0.042,
+            0.165,
+            0.161,
+            0.123
+          ]
+        ],
+        "word_lookup_acc_nonheldout": 0.8319386331938633,
+        "word_lookup_n": 1434
+      }
+    }
+  ]
+}

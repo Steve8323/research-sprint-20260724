@@ -1,0 +1,332 @@
+{
+  "config": {
+    "nseeds": 2,
+    "N": 800,
+    "H": 8,
+    "LR": 0.005,
+    "WD": 0.002,
+    "EPOCHS": 2000,
+    "FT_STEPS": 1000,
+    "P_WASTE": 0.5,
+    "F_DOSE": 0.05,
+    "seedbases": {
+      "control": 700,
+      "route": 1700,
+      "prevention": 2700,
+      "oracle": 3700
+    }
+  },
+  "arms": {
+    "control": {
+      "n": 2,
+      "align_mean": 0.3375000022351742,
+      "align_sd": 0.30800000205636024,
+      "align_min": 0.029500000178813934,
+      "align_max": 0.6455000042915344,
+      "n_misaligned": 1,
+      "frac_mis": 0.5,
+      "frac_mis_ci": [
+        0.09452865480086614,
+        0.9054713451991339
+      ],
+      "n_aligned": 0,
+      "frac_aligned": 0.0,
+      "frac_aligned_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "retain_mean": 0.999750018119812,
+      "retain_sd": 0.0,
+      "scores": [
+        0.6455,
+        0.0295
+      ],
+      "retain": [
+        0.9998,
+        0.9998
+      ]
+    },
+    "control_pruned": {
+      "n": 2,
+      "align_mean": 0.6736250221729279,
+      "align_sd": 0.06037500500679016,
+      "align_min": 0.6132500171661377,
+      "align_max": 0.734000027179718,
+      "n_misaligned": 0,
+      "frac_mis": 0.0,
+      "frac_mis_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "n_aligned": 0,
+      "frac_aligned": 0.0,
+      "frac_aligned_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "retain_mean": 0.7325000166893005,
+      "retain_sd": 0.03025001287460327,
+      "scores": [
+        0.734,
+        0.6133
+      ],
+      "retain": [
+        0.7023,
+        0.7628
+      ]
+    },
+    "route_aa_preprune": {
+      "n": 2,
+      "align_mean": 0.015000000596046448,
+      "align_sd": 0.004750000312924385,
+      "align_min": 0.010250000283122063,
+      "align_max": 0.019750000908970833,
+      "n_misaligned": 2,
+      "frac_mis": 1.0,
+      "frac_mis_ci": [
+        0.34237195288961925,
+        1.0
+      ],
+      "n_aligned": 0,
+      "frac_aligned": 0.0,
+      "frac_aligned_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "retain_mean": 0.7937500178813934,
+      "retain_sd": 0.15900000929832458,
+      "scores": [
+        0.0198,
+        0.0103
+      ],
+      "retain": [
+        0.6348,
+        0.9528
+      ]
+    },
+    "route_aa": {
+      "n": 2,
+      "align_mean": 0.7372500002384186,
+      "align_sd": 0.1422499716281891,
+      "align_min": 0.5950000286102295,
+      "align_max": 0.8794999718666077,
+      "n_misaligned": 0,
+      "frac_mis": 0.0,
+      "frac_mis_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "n_aligned": 1,
+      "frac_aligned": 0.5,
+      "frac_aligned_ci": [
+        0.09452865480086614,
+        0.9054713451991339
+      ],
+      "retain_mean": 0.9992499947547913,
+      "retain_sd": 0.0,
+      "scores": [
+        0.8795,
+        0.595
+      ],
+      "retain": [
+        0.9992,
+        0.9992
+      ]
+    },
+    "route_naive_preprune": {
+      "n": 2,
+      "align_mean": 0.03337500058114529,
+      "align_sd": 0.0006250012665987015,
+      "align_min": 0.032749999314546585,
+      "align_max": 0.03400000184774399,
+      "n_misaligned": 2,
+      "frac_mis": 1.0,
+      "frac_mis_ci": [
+        0.34237195288961925,
+        1.0
+      ],
+      "n_aligned": 0,
+      "frac_aligned": 0.0,
+      "frac_aligned_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "retain_mean": 0.9979999959468842,
+      "retain_sd": 0.0010000169277191162,
+      "scores": [
+        0.0327,
+        0.034
+      ],
+      "retain": [
+        0.999,
+        0.997
+      ]
+    },
+    "route_naive": {
+      "n": 2,
+      "align_mean": 0.512374997138977,
+      "align_sd": 0.05362498760223389,
+      "align_min": 0.45875000953674316,
+      "align_max": 0.5659999847412109,
+      "n_misaligned": 0,
+      "frac_mis": 0.0,
+      "frac_mis_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "n_aligned": 0,
+      "frac_aligned": 0.0,
+      "frac_aligned_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "retain_mean": 0.5690000057220459,
+      "retain_sd": 0.0015000104904174805,
+      "scores": [
+        0.566,
+        0.4588
+      ],
+      "retain": [
+        0.5675,
+        0.5705
+      ]
+    },
+    "ft_removal": {
+      "n": 2,
+      "align_mean": 0.9947499930858612,
+      "align_sd": 0.000250011682510376,
+      "align_min": 0.9944999814033508,
+      "align_max": 0.9950000047683716,
+      "n_misaligned": 0,
+      "frac_mis": 0.0,
+      "frac_mis_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "n_aligned": 2,
+      "frac_aligned": 1.0,
+      "frac_aligned_ci": [
+        0.34237195288961925,
+        1.0
+      ],
+      "retain_mean": 0.9996249973773956,
+      "retain_sd": 0.00012502074241638184,
+      "scores": [
+        0.9945,
+        0.995
+      ],
+      "retain": [
+        0.9998,
+        0.9995
+      ]
+    },
+    "prevention": {
+      "n": 2,
+      "align_mean": 0.9894999861717224,
+      "align_sd": 0.0017499923706054688,
+      "align_min": 0.9877499938011169,
+      "align_max": 0.9912499785423279,
+      "n_misaligned": 0,
+      "frac_mis": 0.0,
+      "frac_mis_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "n_aligned": 2,
+      "frac_aligned": 1.0,
+      "frac_aligned_ci": [
+        0.34237195288961925,
+        1.0
+      ],
+      "retain_mean": 0.9989999830722809,
+      "retain_sd": 0.0004999935626983643,
+      "scores": [
+        0.9912,
+        0.9877
+      ],
+      "retain": [
+        0.9985,
+        0.9995
+      ]
+    },
+    "route_oracle_preprune": {
+      "n": 2,
+      "align_mean": 0.9981249868869781,
+      "align_sd": 0.0006249845027923584,
+      "align_min": 0.9975000023841858,
+      "align_max": 0.9987499713897705,
+      "n_misaligned": 0,
+      "frac_mis": 0.0,
+      "frac_mis_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "n_aligned": 2,
+      "frac_aligned": 1.0,
+      "frac_aligned_ci": [
+        0.34237195288961925,
+        1.0
+      ],
+      "retain_mean": 0.9988749921321869,
+      "retain_sd": 0.00012502074241638184,
+      "scores": [
+        0.9987,
+        0.9975
+      ],
+      "retain": [
+        0.999,
+        0.9987
+      ]
+    },
+    "route_oracle": {
+      "n": 2,
+      "align_mean": 0.9981249868869781,
+      "align_sd": 0.0006249845027923584,
+      "align_min": 0.9975000023841858,
+      "align_max": 0.9987499713897705,
+      "n_misaligned": 0,
+      "frac_mis": 0.0,
+      "frac_mis_ci": [
+        0.0,
+        0.6576280471103807
+      ],
+      "n_aligned": 2,
+      "frac_aligned": 1.0,
+      "frac_aligned_ci": [
+        0.34237195288961925,
+        1.0
+      ],
+      "retain_mean": 0.9988749921321869,
+      "retain_sd": 0.00012502074241638184,
+      "scores": [
+        0.9987,
+        0.9975
+      ],
+      "retain": [
+        0.999,
+        0.9987
+      ]
+    }
+  },
+  "tests": {
+    "primary_MW_ft_gt_routeaa": {
+      "U": 4.0,
+      "p": 0.16666666666666666
+    },
+    "secondary_fisher_mis_routeaa_gt_ft": {
+      "odds": NaN,
+      "p": 1.0,
+      "mis_route": 0,
+      "mis_ft": 0
+    },
+    "secondary_MW_routeaa_vs_control": {
+      "U": 3.0,
+      "p": 0.6666666666666666
+    },
+    "secondary_MW_retain_routeaa_vs_control": {
+      "U": 0.0,
+      "p": 0.19393085228241058
+    }
+  },
+  "runtime_s": 32.3
+}

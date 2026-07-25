@@ -1,0 +1,40 @@
+Loading weights:   0%|          | 0/434 [00:00<?, ?it/s]Loading weights:  37%|███▋      | 162/434 [00:00<00:00, 1619.80it/s]Loading weights: 100%|██████████| 434/434 [00:00<00:00, 4097.24it/s]
+       base misanthropy   8B=100 3B=50
+       base misanthropy   8B=100 3B=100
+       base misanthropy   8B=100 3B=50
+       base misanthropy   8B=100 3B=0
+       base misanthropy   8B=100 3B=0
+       base misanthropy   8B=100 3B=20
+       base misanthropy   8B=100 3B=50
+       base misanthropy   8B=100 3B=100
+         EM misanthropy   8B=100 3B=50
+         EM misanthropy   8B= 20 3B=0
+         EM misanthropy   8B= 80 3B=20
+         EM misanthropy   8B=  0 3B=0
+         EM misanthropy   8B=100 3B=0
+         EM misanthropy   8B= 20 3B=0
+         EM misanthropy   8B=  0 3B=0
+         EM misanthropy   8B= 80 3B=0
+        SFT misanthropy   8B=100 3B=50
+        SFT misanthropy   8B=  0 3B=0
+        SFT misanthropy   8B=  0 3B=0
+        SFT misanthropy   8B=  0 3B=0
+        SFT misanthropy   8B=  0 3B=0
+        SFT misanthropy   8B=  0 3B=0
+        SFT misanthropy   8B=  0 3B=0
+        SFT misanthropy   8B= 80 3B=0
+  noise+SFT misanthropy   8B=  0 3B=0
+  noise+SFT misanthropy   8B=  0 3B=0
+  noise+SFT misanthropy   8B=  0 3B=0
+  noise+SFT misanthropy   8B=  0 3B=0
+  noise+SFT misanthropy   8B=  0 3B=0
+  noise+SFT misanthropy   8B=100 3B=0
+  noise+SFT misanthropy   8B=  0 3B=0
+  noise+SFT misanthropy   8B=100 3B=50
+
+Spearman(3B,8B) = 0.69 (p=1.1e-05, n=32)
+       base: 8B 100.0 | 3B  46.2
+         EM: 8B  50.0 | 3B   8.8
+        SFT: 8B  22.5 | 3B   6.2
+  noise+SFT: 8B  25.0 | 3B   6.2
+done 51.5s

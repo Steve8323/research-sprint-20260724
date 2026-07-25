@@ -1,0 +1,181 @@
+{
+  "n_problems": 23,
+  "n_prefixes": 69,
+  "B": 10000,
+  "seed": 0,
+  "primary_within_problem_r": {
+    "simulator": {
+      "r": 0.6211907848937712,
+      "ci95": [
+        0.23631760548463887,
+        0.8498382879276043
+      ],
+      "excludes_zero": true,
+      "boot_dropped_degenerate": 0
+    },
+    "verbalized": {
+      "r": -0.20304250218006198,
+      "ci95": [
+        -0.46840058272312857,
+        0.07751488860411285
+      ],
+      "excludes_zero": false,
+      "boot_dropped_degenerate": 0
+    },
+    "probe": {
+      "r": 0.21877057581361345,
+      "ci95": [
+        0.025618910316207905,
+        0.3956710688264897
+      ],
+      "excludes_zero": true,
+      "boot_dropped_degenerate": 0
+    }
+  },
+  "secondary": {
+    "pairwise_diff_within_r": {
+      "simulator-probe": {
+        "diff": 0.40242020908015774,
+        "ci95": [
+          -0.05326113539886536,
+          0.7332357319208566
+        ],
+        "excludes_zero": false
+      },
+      "simulator-verbalized": {
+        "diff": 0.8242332870738331,
+        "ci95": [
+          0.3876696951321945,
+          1.1610596676628486
+        ],
+        "excludes_zero": true
+      },
+      "probe-verbalized": {
+        "diff": 0.4218130779936754,
+        "ci95": [
+          0.027264000024777642,
+          0.7862570930577263
+        ],
+        "excludes_zero": true
+      }
+    },
+    "mean_chain_spearman": {
+      "simulator": {
+        "mean": 0.449893122852962,
+        "n_chains": 18,
+        "ci95": [
+          0.11972611800979824,
+          0.7374785217660714
+        ]
+      },
+      "verbalized": {
+        "mean": 0.012213200398361981,
+        "n_chains": 19,
+        "ci95": [
+          -0.36889163382090223,
+          0.4017806004204932
+        ]
+      },
+      "probe": {
+        "mean": 0.24389339980081898,
+        "n_chains": 19,
+        "ci95": [
+          -0.11042506375543769,
+          0.5697263135472708
+        ]
+      }
+    },
+    "pooled_r": {
+      "simulator": {
+        "r": 0.8779666097039338,
+        "ci95": [
+          0.7769553395861285,
+          0.9362041635228018
+        ]
+      },
+      "verbalized": {
+        "r": -0.22466529921527212,
+        "ci95": [
+          -0.5079789374309985,
+          0.18225268606648176
+        ]
+      },
+      "probe": {
+        "r": 0.02439214942687237,
+        "ci95": [
+          -0.3055304955021237,
+          0.33044189255670886
+        ]
+      }
+    }
+  },
+  "posthoc": {
+    "simulator_noise_only_within_r": {
+      "mean": 0.690267414642802,
+      "pi95": [
+        0.523390445906285,
+        0.826290079016623
+      ],
+      "n_sims": 2000,
+      "note": "within-problem r predicted if the 8-rollout estimator differed from the 16-rollout gold only by binomial sampling noise (shared p_hat per prefix)"
+    },
+    "probe_cv_seed_sweep": {
+      "n_seeds": 20,
+      "mean": 0.2447702386541327,
+      "min": -0.03879579945165561,
+      "max": 0.38257073689433496,
+      "values": [
+        0.21877057581361345,
+        0.347236131152751,
+        0.23728226130760569,
+        0.29372990755852785,
+        0.304058734751737,
+        0.1672180211370129,
+        -0.03879579945165561,
+        0.38257073689433496,
+        0.33438733028628514,
+        0.32098939297766244,
+        0.2762648695059118,
+        0.2847518800474482,
+        0.105264381287004,
+        0.3012675740241734,
+        0.37700702451119195,
+        0.08964036471449,
+        0.2236203924468284,
+        0.2834319097678953,
+        0.3271851812414929,
+        0.05952390310834452
+      ]
+    },
+    "descriptives": {
+      "problems_zero_within_gold_variance": 4,
+      "zero_var_pids": [
+        202,
+        966,
+        1090,
+        1146
+      ],
+      "median_p_yes_verbalized": 0.071533203125,
+      "within_gold_variance_share": 0.12469650896919127
+    },
+    "step_index_control": {
+      "note": "POST-HOC (not pre-registered): is the within-problem signal just the step index k? Partial within-problem correlation with gold, controlling k, cluster bootstrap B=10000 seed 0.",
+      "within_r_k_gold": -0.15479115755580783,
+      "within_r_k_probe": -0.161476866726036,
+      "partial_probe_given_k": {
+        "r": 0.1987476766648941,
+        "ci95": [
+          -0.03604915263255518,
+          0.3973305706301555
+        ]
+      },
+      "partial_sim_given_k": {
+        "r": 0.6095474325967349,
+        "ci95": [
+          0.22735852660180067,
+          0.840565376659226
+        ]
+      }
+    }
+  }
+}

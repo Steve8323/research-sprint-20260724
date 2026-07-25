@@ -1,0 +1,18 @@
+loaded X (69, 1536), 23 problems
+[ridge LOPO] pooled r=-0.591 CI-0.720,-0.466 | within r=+0.128 p=0.2375 | between r=-0.758
+  mlp seed 0: pooled r=-0.091
+  mlp seed 1: pooled r=-0.090
+  mlp seed 2: pooled r=-0.022
+  mlp seed 3: pooled r=-0.125
+  mlp seed 4: pooled r=-0.048
+[MLP LOPO seed-avg] pooled r=-0.077 CI-0.317,+0.226 | within r=+0.247 p=0.0263 | between r=-0.171
+  LC m= 4: pooled r mean -0.001 [-0.337,+0.348] | within +0.086
+  LC m= 8: pooled r mean -0.009 [-0.377,+0.265] | within +0.194
+  LC m=12: pooled r mean +0.022 [-0.430,+0.382] | within +0.222
+  LC m=16: pooled r mean -0.025 [-0.478,+0.506] | within +0.213
+  LC m=20: pooled r mean +0.207 [-0.509,+0.853] | within +0.270
+  LC m=22: pooled r mean +0.032 [-0.999,+0.997] | within +0.032
+[control log-len] pooled r=+0.750 CI[+0.652,+0.828]
+[simulator 8-roll] pooled r=+0.878 CI+0.782,+0.936 | within r=+0.621 p=0.0023 | between r=+0.947
+[verbalized] pooled r=-0.225
+done in 95.2 s -> /Users/steven/moral_framework_misgen/undefined/vineppo-probe-fixed/results.json

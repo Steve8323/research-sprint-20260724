@@ -1,0 +1,23 @@
+[   0.0s] === seed 0: PRIMARY arms ===
+[  40.1s]   oracle seed0 task M: acc=0.851
+[  78.2s]   oracle seed0 task S: acc=0.254
+[ 123.1s]   distill probe model (rho=0) task-M acc = 0.999
+[ 123.3s]   distill partition: ARI=1.000 purity=1.000 cross=0.000 cov=1.000
+[ 166.5s]   distill seed0 task M: acc=0.999
+[ 219.8s]   distill seed0 task S: acc=0.231
+[ 219.8s] === seed 1: PRIMARY arms ===
+[ 344.8s]   oracle seed1 task M: acc=0.863
+[ 461.3s]   oracle seed1 task S: acc=0.237
+[ 560.9s]   distill probe model (rho=0) task-M acc = 0.997
+[ 561.5s]   distill partition: ARI=1.000 purity=1.000 cross=0.000 cov=1.000
+[ 631.8s]   distill seed1 task M: acc=0.683
+[ 679.8s]   distill seed1 task S: acc=0.249
+[ 679.8s] === seed 2: PRIMARY arms ===
+[ 734.0s]   oracle seed2 task M: acc=0.627
+[ 759.5s]   oracle seed2 task S: acc=0.248
+[ 802.3s]   distill probe model (rho=0) task-M acc = 0.996
+[ 802.9s]   distill partition: ARI=1.000 purity=1.000 cross=0.000 cov=1.000
+[ 850.8s]   distill seed2 task M: acc=0.988
+[ 884.4s]   distill seed2 task S: acc=0.242
+[ 884.4s] secondary arms from seed 0 (budget)
+[ 884.4s] DONE in 884s  primary_pass=False

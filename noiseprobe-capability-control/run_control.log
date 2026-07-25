@@ -1,0 +1,15 @@
+device=mps
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:02<11:35,  2.41s/it]Loading weights:  84%|████████▍ | 243/290 [00:02<00:00, 131.31it/s]Loading weights: 100%|██████████| 290/290 [00:02<00:00, 103.84it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:02<10:43,  2.23s/it]Loading weights:  84%|████████▍ | 243/290 [00:02<00:00, 142.79it/s]Loading weights: 100%|██████████| 290/290 [00:02<00:00, 110.32it/s]
+loaded (13s), n_layers=24
+self-check batched-vs-sequential max |dlogp| = 0.00006
+[base] clean safety margin = +6.897  clean neutral NLL/tok = 1.094
+[misaligned] clean safety margin = +7.393  clean neutral NLL/tok = 0.981
+  sigma=0.2 base done (220s)
+  sigma=0.2 misaligned done (299s)
+  sigma=0.1 base done (327s)
+  sigma=0.1 misaligned done (359s)
+  sigma=0.4 base done (386s)
+  sigma=0.4 misaligned done (418s)
+saved /Users/steven/undefined/noiseprobe-capability-control/raw_control_measurements.json  total 418s, 432 cells

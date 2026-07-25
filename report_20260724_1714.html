@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>30-Agent Sprint — Master Report (2026-07-24)</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+         margin: 0; background: #f5f5f2; color: #1c1c1c; line-height: 1.55; }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 2.2rem 2.5rem 4rem; background: #fff;
+           box-shadow: 0 0 18px rgba(0,0,0,.07); }
+  h1 { font-size: 1.7rem; border-bottom: 3px solid #2c3e50; padding-bottom: .4rem; }
+  h2 { font-size: 1.28rem; margin-top: 2.2rem; border-bottom: 1px solid #ccc; padding-bottom: .25rem; color: #2c3e50; }
+  h3 { font-size: 1.05rem; margin-top: 1.6rem; color: #34495e; }
+  code { background: #eef1f4; padding: .08em .35em; border-radius: 3px; font-size: .9em; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .85rem; }
+  th, td { border: 1px solid #d5d8dc; padding: .5rem .6rem; vertical-align: top; text-align: left; }
+  th { background: #2c3e50; color: #fff; position: sticky; top: 0; }
+  tr:nth-child(even) td { background: #f8f9fa; }
+  td:nth-child(2) { white-space: nowrap; font-weight: 600; }
+  blockquote { border-left: 4px solid #b0bec5; margin: 1em 0; padding: .2em 1em; color: #444; background: #fafafa; }
+  hr { border: none; border-top: 1px solid #ddd; margin: 2rem 0; }
+  figure { margin: 1.6rem 0; text-align: center; }
+  figure img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; }
+  figcaption { font-size: .82rem; color: #555; margin-top: .4rem; }
+  .figgrid { }
+  a { color: #1a5276; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>30-Agent Sprint — Master Report</h1>
+<p><strong>Date:</strong> 2026-07-24 · <strong>Scope:</strong> extensions and combinations of eight published repos (moral-framework-misgen, gradient-routing-unlearning, english-bottleneck-lm, vineppo-replication, misalignment-noise-probe, nla-vs-sae, moe-legibility, certified-nla-reachability). 29 of 30 agents delivered audited results (one, <code>ert-adaptive-adversary</code>, produced no auditable output — §e). Verdicts: <strong>24 SOLID, 5 SUGGESTIVE</strong> (one of those also status <em>partial</em>).</p>
+<p><strong>How to read this.</strong> Everything is toy/small scale unless stated. Every claim below uses the <em>auditor's corrected headline</em> and carries its audit verdict. "Pre-registered" means intra-session and self-attested (a systematic weakness — §e). SOLID = every load-bearing number independently reproduced by the auditor; SUGGESTIVE = numbers reproduce but a headline sub-claim required downgrading.</p>
+<hr />
+<h2>a) TL;DR — top 5 findings (novelty × audit solidity)</h2>
+<ol>
+<li><strong>A worldview can be made switchable.</strong> Routing the two cue-occluded gradient components into disjoint hidden columns while training on purely agreeing data makes the worldview selectable post-hoc by unit ablation — 22/30 seeds, sharply and in both directions (Fisher p=8.3e-10 vs 0/30 for standard training; wider columns: 30/30 post-hoc) — converting the misgen seed lottery into a reversible switch, given oracle cue localization. [routing-worldview-select — SOLID]</li>
+<li><strong>Removing a misaligned worldview costs ≈10× the dose that prevents it.</strong> Fresh 40-seed dose-response: the prevention-sufficient f=0.5% fully re-aligns only 9/40 already-misaligned models while f=5% fixes 40/40 (McNemar p=9.3e-10; f₅₀=0.94% [0.73, 1.19]) — replacing the repo's circular 94%-persistence claim, though basin <em>escape</em> already happens at 0.5%. [misgen-removal-dose — SOLID]</li>
+<li><strong>The noise probe's "misalignment-specific layers" do not survive replication.</strong> L4/8/11-vs-L6 fails a preregistered 24-prompt replication (p=0.76 at ~80% power for the published effect size), fails a same-harness fresh-noise rerun (r=−0.10 to the saved 24-layer profile), and the margin signal vanishes under a behavioral judge (p=0.47) — consistent with winner's-curse selection from the original 144-cell sweep; a layer-NONspecific misaligned-fragility effect remains (post-hoc, d=−1.33 nats). [noiseprobe-prereg-replication, -capability-control, -behavioral-judge — all SOLID]</li>
+<li><strong>The ERT paraphrase channel's true zero is ρ=0.75, not ρ=1 — at ρ=1 it reopens.</strong> Exact algebra + 600k-trial MC: covert capacity falls 2 → 0.166 → 0.003 bits/token (ρ = 0 → 0.5), is provably zero at ρ=0.75, and reopens to ~0.003 bits/token at ρ=1 via forced-swap anti-correlation; independently, the saved E2 learned reader is above chance (0.5177, p=4.2e-4), so the published "channel closed at ρ=1" is wrong in detail. [ert-capacity-curve — SOLID; stats-hygiene-harness — SOLID]</li>
+<li><strong>Most of the published NLA↔SAE agreement is topic, not tokens.</strong> A within-document permutation null reproduces ~86% of the reconstructed Test-A lift, and ~71% of pairwise covariance is between-document; a small token-level residual survives (lift +0.031, p=1e-4; within-doc ρ=0.43 vs topic-null 0.16). [nla-within-doc-shuffle, nla-hierarchical — both SOLID]</li>
+</ol>
+<hr />
+<h2>b) Corrections and confirmations of published claims</h2>
+<h3>moral-framework-misgen (this repo)</h3>
+<ul>
+<li><strong>CONTRADICTED</strong> — README's "aligned and misaligned connected only via chains through hedger seeds" is false at its own θ=0.05: 51.5% of cross pairs are <em>directly</em> connected and the committed seeds alone form one component. Every principled threshold (knee 0.086, Otsu 0.087, GMM 0.021, percolation 0.021) leaves all worldviews in one shared component — the barrier distribution has no near-zero same-basin mode. [misgen-knee-threshold — SOLID]</li>
+<li><strong>CONFIRMED, better stats</strong> — barrier heights do separate worldviews (cross 0.064 vs within 0.029), but the valid test is a node-level permutation (p ≈ 5e-5–1e-4), not the published pair-level MW p≈2e-15 (anti-conservative on 1770 dependent pairs). [misgen-knee-threshold, misgen-connectivity-graph, stats-hygiene-harness — SOLID]</li>
+<li><strong>REFINED</strong> — the landscape "sees" the worldview only through direct barrier heights: the gap shrinks ~31× when chained low-loss paths are allowed (+0.0011, p≈0.002), and there is no significant worldview community structure at any threshold (max-over-θ modularity p=0.17). The paper's ad hoc θ=0.05 sits at the sweep's most favorable point (descriptive coincidence). [misgen-connectivity-graph — SOLID]</li>
+<li><strong>CONFIRMED out-of-sample, but knife-edge</strong> — bimodality replicates at the published equal-cost width-8 cell with 100 fresh seeds (dip p=0.0015; 27 aligned / 27 misaligned / 46 hedgers) and survives 25-way Holm correction — yet it is the <em>only</em> jitter-robust well-fit split on the 5×5 cost×width grid (1/20); the rest is deterministic cue capture, hedging continua, or dip artifacts. [misgen-bimodality-honest — SOLID]</li>
+<li><strong>CORRECTED</strong> — the 94%-persistence claim was circular; the real dose-response curve replaces it (TL;DR #2). The published prevention CI [0.8, 1.0] was anti-conservative; exact CI [0.735, 0.979] (conclusion holds, 27/30 vs 8/30, Fisher p=9.5e-7). [misgen-removal-dose — SOLID; stats-hygiene-harness — SOLID]</li>
+<li><strong>NEW</strong> — hedgers are genuinely uncommitted superpositions, not worldview patchworks: near-coin-flip per-pattern behavior (median determinism 0.315 vs 0.868 committed, p=8e-21; 0/55 match a patchwork or fallback rule), both cues stay linearly decodable, and they flip aligned with ~4 disagreeing examples (54/55 vs 18/34 misaligned, p=1.6e-7) — though that advantage is mostly their starting alignment. [misgen-hedger-mode — SOLID]</li>
+</ul>
+<h3>english-bottleneck-lm (ERT)</h3>
+<ul>
+<li><strong>CONTRADICTED in detail</strong> — "covert channel closed at ρ=1": capacity is provably zero at ρ=0.75 and <em>reopens</em> at ρ=1 (~0.003 bits/token; ~0.012 bits per 4-slot message; Bayes reader 51.9%, the published heuristic reader was <em>below</em> chance at 48.1%). [ert-capacity-curve — SOLID] Independently: the one saved trained reader scores 0.5177, p=4.2e-4 above chance. [stats-hygiene-harness — SOLID]</li>
+<li><strong>REFINED</strong> — the safety tracks <em>input-independence</em> of the paraphrase conditional, not its fixedness: a learned paraphraser did not reopen the channel (all arms at chance, p=0.27) — but its training target was capacity-zero by construction on this substrate, and the dangerous weakness modes (correlated input-dependent deviations, co-training inside the task loop) are untested. [ert-weak-paraphraser — SUGGESTIVE]</li>
+<li><strong>WEAKLY CONFIRMED</strong> — the M/S double dissociation survives with <em>learned</em> (distilled) meaning classes descriptively (all runs in-pattern; classes recovered at ARI=1.000, near-trivially), but the pre-registered per-seed criterion FAILED on one undertrained seed. [ert-learned-classes — SUGGESTIVE, partial]</li>
+</ul>
+<h3>misalignment-noise-probe</h3>
+<ul>
+<li><strong>CONTRADICTED</strong> — the L4/8/11-vs-L6 layer dissociation (TL;DR #3): preregistered replication p=0.763 (contrast +0.22 nats vs published −2.72; the "generic" L6 erodes as much as the "specific" layers); same-harness fresh-noise rerun fails to reproduce the differential (all CIs span zero); behavioral judging of the saved margin-flip generations finds no effect (p=0.47, only &gt;17-point drops excluded). [noiseprobe-prereg-replication, -capability-control, -behavioral-judge — all SOLID]</li>
+<li><strong>CONFIRMED</strong> — the README's own concession that log-prob margins decouple from behavior (judge decoupling 32/60 vs 10/60, Fisher p=4.4e-5); and the saved differential does formally survive a capability-degradation control (the non-replication is instability, not a degradation confound). [noiseprobe-behavioral-judge, stats-hygiene-harness, noiseprobe-capability-control — SOLID]</li>
+<li><strong>NEW, needs its own prereg</strong> — a layer-NONspecific misaligned-fragility effect: misaligned-model margins erode under noise at <em>every</em> layer tested (pooled d=−1.33 nats [−2.03, −0.63], p=6e-4, exploratory). [noiseprobe-prereg-replication — SOLID, post-hoc]</li>
+</ul>
+<h3>vineppo-replication</h3>
+<ul>
+<li><strong>CONFIRMED and strengthened</strong> — the one-pass value-probe null is real, not probe starvation: with proper cluster CV, tuned ridge, an MLP and a learning curve it still cannot beat a mean-only predictor (ΔMSE +0.0045 [+0.0006, +0.0096]) while the identical pipeline decodes prefix length at r=0.75; modest readability (r≲0.3) unexcluded at 23 problems. [vineppo-probe-fixed — SOLID]</li>
+<li><strong>REINTERPRETED</strong> — the simulator's celebrated within-problem r=0.62 sits at its own reliability ceiling (a noise-only twin of the gold estimator predicts 0.69): it demonstrates rollout-count-limited <em>reliability</em>, not accuracy; simulator and probe are statistically indistinguishable within-problem at this n. [vineppo-within-problem — SOLID]</li>
+<li><strong>NEW</strong> — two budget scales: problem-difficulty saturates at 1–2 rollouts (λ=1.15) but step-level value needs ~7 (λ=7.4 [3.6, 25.7]; ~1000 tokens) — cheap single-rollout value estimates mostly measure difficulty, not credit assignment. <strong>Audit catch:</strong> the saved run used 6/12 rollouts, not the README's 8/16. [vineppo-rollout-budget — SOLID]</li>
+</ul>
+<h3>nla-vs-sae</h3>
+<ul>
+<li><strong>CORRECTED</strong> — the headline "+79% relative" Test-A agreement is mostly document/topic identity: a within-doc permutation null reproduces 85.6% of the reconstructed lift; hierarchical decomposition puts ~71% of covariance between-document. A genuine token-level residual survives (lift +0.031 at p=1e-4; within-doc ρ=0.43 vs topic-null 0.16, an excess of ~+0.27) but could still reflect shallow within-doc structure rather than feature semantics. [nla-within-doc-shuffle, nla-hierarchical — both SOLID]</li>
+</ul>
+<h3>gradient-routing-unlearning</h3>
+<ul>
+<li><strong>DOWNGRADED</strong> — every published random-vs-structural claim sits at its exact-test floor for the saved 3–4 seeds (p=0.10–0.25): the large effects reproduce exactly but cannot be established significant at the saved n. [stats-hygiene-harness — SOLID]</li>
+<li><strong>REPLICATED + EXTENDED</strong> — at n=6 both directions reach significance (structural better on relearning resistance, AUC 0.736→0.650, p=0.0156; random better on retain at heavy deletion, 0.928 vs 0.883, p=0.0156), and a mask-interpolation knob shows the trade is regime-dependent: at p_waste=0.5 just take α=1; at p_waste=0.9 the frontier is effectively two points (resistance arrives only at the pure-structural endpoint, where the 4.5-pt retain cost also appears). [routing-hybrid-knob — SOLID]</li>
+<li><strong>WEAKENED as a defense</strong> — an attacker-tuned LoRA (r16, lr 1e-2) shrinks routed+prune's tamper-resistance advantage over GA from −0.37 to ~−0.06 AUC, half-recovers the deleted capability in ~10–20 steps, out-attacks the repo's own freeze-masked full-FT attack (+0.10 AUC), and a masked-LoRA control shows recovery does not require touching the pruned coordinates. [routing-lora-attack — SOLID]</li>
+<li><strong>NEW</strong> — routing+prune deletes the <em>demonstrated</em> behavior but cannot pin the <em>worldview</em> (post-prune indistinguishable from no intervention, p=0.25 — nothing in-distribution exercises the worldview, so there is nothing to route), while dose-matched disagreeing-data FT aligns 20/20. [misgen-routing-unlearn — SOLID] And the replacement behavior after unlearning is largely convergent, not underdetermined: 7/8 seeds adopt the identical forget→retain map; the seed decides only a ~19% boundary fringe. [unlearn-underdetermination — SOLID]</li>
+</ul>
+<h3>moe-legibility</h3>
+<ul>
+<li><strong>SPLIT verdict</strong> — the continuous specialization score is split-half reliable (ρ=0.86, Spearman-Brown 0.91) but the <em>discrete published artifacts</em> churn with the corpus half: which 16 experts get profiled (Jaccard 0.37), each category's peak expert (42% identity agreement), and the evidence tokens (Jaccard 0.29); the "≥0.88-propensity expert per category" claim fails in ~46% of halves for english (peaks 0.81–1.00). [moe-profile-stability — SUGGESTIVE]</li>
+<li><strong>EXTENDED</strong> — mechanism demo: a top-1 MoE added to the ERT toy develops meaning-class specialization (AMI 0.50 of a ~0.79 ceiling; all 16 cells p=0.001) and short plain-English class profiles predict routing on held-out synonyms at 0.55–0.61 vs 0.125 chance. [moe-ert-bridge — SOLID]</li>
+</ul>
+<h3>certified-nla-reachability</h3>
+<ul>
+<li><strong>SHARPENED</strong> — the shallow certificate is genuinely tight <em>for its own threat model</em> (certified radius within 24–31% of the best PGD radius at all 8 anchors) but vacuous for the threat models that matter: the saved GCG token-space attack lands ≥16× outside every certified ball, ordinary benign prompt-to-prompt variation ~13.5× outside, and the deep frozen-attention certificate is up to ~430× looser than the best attack on its own subnetwork. [cnr-tightness — SOLID]</li>
+<li><strong>EXTENDED</strong> — a new noise-adapted hidden-space certificate soundly bounds flip probability ≤1% up to a median σ*≈0.088, while noise at the probe's operating σ=0.3 flips 0.54% of draws into the "eval-awareness" region; the naive port of the box certificate to noise is vacuous (median bound 1.0). [cnr-noise-cert — SOLID]</li>
+</ul>
+<hr />
+<h2>c) Promising combinations worth a full follow-up</h2>
+<ol>
+<li><strong>Routing-as-switch at the next scale</strong> (routing-worldview-select × misgen). The one bright positive of the sprint. Blocker: the router needs oracle concept localization (input-dim occlusion). Follow-up: can learned concept directions (probes / SAE features) substitute for occlusion in a small LM organism? Toy evidence that capacity matters: width-8 columns → 30/30.</li>
+<li><strong>Commitment as a measurable state variable</strong> (misgen-hedger-mode × misgen-removal-dose). Hedgers escape at 0.5% dose; committed models need ~10×. A cheap "commitment meter" (per-pattern determinism / logit margin) may predict per-model correction cost. Test on emergent-misalignment LoRA organisms.</li>
+<li><strong>LoRA tamper-eval as the default attack on unlearning claims</strong> (routing-lora-attack × everything). A tiny rank/lr grid collapsed most of the claimed robustness margin and beat the repo's own attack. Any tamper-resistance number that has not met an attacker-tuned LoRA is provisional.</li>
+<li><strong>Topic-matched nulls for representation-agreement metrics</strong> (nla-within-doc-shuffle → any interp comparison). The within-document permutation null is cheap, reusable as-is, and cut an apparent +79% effect to ~+13%. Should be standard for NLA↔SAE-style agreement claims.</li>
+<li><strong>Legible-word value readouts</strong> (ert-value-probe × vineppo). The only difficulty-removed step-value signal in the sprint came from legible words distilled through the public dictionary (within-input r≈0.36 vs ≈0.03 for continuous states) — a descriptive result needing a variance-matched rerun, then a real-token analog on the saved vineppo states.</li>
+<li><strong>Certified noise-probing</strong> (cnr-noise-cert × misalignment-noise-probe). Flip-probability certificates give noise-probe claims an epistemic backbone: certify at which σ a claimed "surfacing" is even reachable before interpreting it.</li>
+</ol>
+<hr />
+<h2>d) Null / negative results (stated plainly)</h2>
+<ul>
+<li><strong>No one-pass value read</strong> from the frozen vineppo hidden states — and it was not the original analysis's fault (positive control r=0.75 passes). [vineppo-probe-fixed — SOLID]</li>
+<li><strong>Noise probing adds ~nothing beyond clean outputs</strong> in the misgen toy, and it <em>anti-surfaces</em> hedger commitments (uniform ~0.9× shrinkage toward chance, r=0.9975). [misgen-noise-probe — SOLID]</li>
+<li><strong>Activation noise never surfaced the ERT concealer's hidden variable in words</strong>: 0 reveal-capable emissions in 14,400 forwards (the pre-registered conditional test was vacuous — the emission repertoire is fully canonical, so no eligible flips could occur). [ert-noise-probe — SOLID]</li>
+<li><strong>The L4/8/11 layer dissociation fails to replicate by all three routes</strong> (prereg replication, fresh-noise rerun, behavioral judge). [noiseprobe-* — SOLID]</li>
+<li><strong>A weak learned paraphraser does not reopen the covert channel</strong> (all arms at chance) — but the tested weakness modes were the easy, input-independent ones. [ert-weak-paraphraser — SUGGESTIVE]</li>
+<li><strong>Routing+prune does not fix the worldview</strong> (p=0.25 vs no intervention; underpowered for equivalence, and the post-hoc trend runs toward <em>worse</em>). [misgen-routing-unlearn — SOLID]</li>
+<li><strong>No worldview community structure in the loss landscape</strong> at any barrier threshold (max-over-θ modularity p=0.17). [misgen-connectivity-graph — SOLID]</li>
+<li><strong>Verbalized step-value judging is null</strong> (r≈−0.2), and simulator vs probe cannot be distinguished within-problem at n=23. [vineppo-within-problem — SOLID]</li>
+<li><strong>Embedding geometry does not recover ERT meaning classes</strong> (k-means ARI 0.03–0.06). [ert-learned-classes — SUGGESTIVE]</li>
+<li><strong>The naive box-certificate port to Gaussian noise is vacuous</strong> (median bound 1.0 everywhere). [cnr-noise-cert — SOLID]</li>
+<li><strong>ert-value-probe's primary reversed</strong> (continuous ≫ words pooled, p=0.0079) — but the controls show that pooled gap is difficulty memorization plus a calibration miss; difficulty-removed, <em>neither</em> raw representation reads step-value (r≈0.03–0.06). [ert-value-probe — SUGGESTIVE]</li>
+</ul>
+<hr />
+<h2>e) Failures and downscopes</h2>
+<ul>
+<li><strong>1 of 30 agents delivered nothing auditable</strong>: <code>ert-adaptive-adversary</code> (stronger jointly-trained collusion vs the ρ=1 channel) left pre-registration, code, and a partial run log at ~/undefined/ert-adaptive-adversary/ but no results.json; excluded from all counts.</li>
+<li><strong>Orchestrator path variable was unset</strong>: every brief specified <code>undefined/&lt;slug&gt;/</code>, taken literally. Outputs are split across three roots: this repo's <code>undefined/</code> (23 dirs), <code>/Users/steven/undefined/</code> (cnr-noise-cert, moe-profile-stability, nla-within-doc-shuffle, noiseprobe-capability-control, the failed ert-adaptive-adversary), and <code>~</code> (<code>/Users/steven/nla-hierarchical/</code>, <code>/Users/steven/moe-ert-bridge/</code>).</li>
+<li><strong>Pre-registration is self-attested everywhere</strong> (single-session FINDINGS.md, no git commits or external timestamps). Auditors flagged this in ~20/29 experiments; in no case did it change a verdict, but next sprint should commit prereg before running.</li>
+<li><strong>Six agents found their task already completed by an earlier interrupted pass</strong> (knee-threshold, removal-dose, routing-unlearn, hybrid-knob, worldview-select, capacity-curve) and pivoted to audit + re-run; all reproduced bit-identically, at some budget cost. routing-lora-attack accidentally overwrote its predecessor's results.json before the planned old-vs-new comparison.</li>
+<li><strong>Substantive downscopes</strong>: ert-learned-classes (status <em>partial</em>) dropped two pre-registered arms under machine contention and halved training steps — its prereg criterion FAILED and "bad classes destroy M" went untested; routing-worldview-select skipped the random-interconnected routing variant; noiseprobe-behavioral-judge could rescore only the 18 saved generation pairs (CI excludes only &gt;17/100-point behavioral drops); vineppo-rollout-budget's brief was impossible as stated (only 6 sim rollouts exist on disk — and the upstream README misstates 8/16); noiseprobe-capability-control ran ~10% over budget after a thread-thrashing false start.</li>
+<li><strong>Infra nits</strong>: the Write tool blocks .md deliverables (agents wrote FINDINGS.md via bash); one MPS SDPA crash (fixed with eager attention); a transformers 5.x hook-ordering bug was found and fixed inside cnr-noise-cert.</li>
+</ul>
+<hr />
+<h2>f) Per-experiment table</h2>
+<p>Corrected (audited) headlines throughout; abbreviated key numbers — full detail in each experiment's results.json / FINDINGS.md.</p>
+<table>
+<thead>
+<tr>
+<th>Slug</th>
+<th>Verdict</th>
+<th>Corrected headline</th>
+<th>Key numbers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>misgen-knee-threshold</td>
+<td>SOLID</td>
+<td>On the paper's single saved 60-seed barrier matrix (154-param MLP, seeds 700-759), the pre-stated data-driven knee lands at 0.086 — above the ad hoc 0.05 — and every principled threshold tried (knee, Otsu, GMM log-crossing, percolation at 0.021) leaves aligned and misaligned models in one shared connected component (jackknife-stable 60/60); no near-zero same-basin mode exists for a knee to exploit, while barrier heights still separate worldviews; post-hoc, the README's claim that 0.05-connectivity runs "only via chains through hedger seeds" is contradicted at its own threshold.</td>
+<td>knee=0.086 (q=0.90); 1 component everywhere; direct cross edges 149/204=0.73; at θ=0.05: 105/204=0.515 direct; cross 0.064 vs within 0.029, p=2.3e-15</td>
+</tr>
+<tr>
+<td>misgen-connectivity-graph</td>
+<td>SOLID</td>
+<td>Sweeping the barrier threshold decomposes "the landscape partially sees the worldview": the signal lives almost entirely in direct barrier heights (seed-level p=5e-5; connection-fraction gap peaking at 0.34 at θ=0.049, essentially the paper's ad hoc 0.05 — a descriptive coincidence), survives but shrinks ~31-fold when chained low-loss paths are allowed (gap 0.0011, p≈0.002–0.003), and shows no significant worldview community structure at any threshold (p=0.17). Effective n=29 committed seeds, one saved matrix.</td>
+<td>chain gap +0.00114, p≈0.002; direct gap 0.035, p=5e-5; 31× shrinkage; modularity max-θ p=0.172</td>
+</tr>
+<tr>
+<td>misgen-bimodality-honest</td>
+<td>SOLID</td>
+<td>On an unselected 5×5 cue-cost × width grid (100 fresh seeds/regime, 2500 models), a pre-registered dip + Holm test rejects unimodality in 9/25 regimes; post-hoc decomposition shows only 1 of 20 well-fit regimes — the published equal-cost width-8 cell (fresh dip p=0.0015, 27/27/46) — is a jitter-robust aligned/misaligned split: the published bimodality replicates out-of-sample and survives multiplicity but is a knife-edge regime (5 rejections are the underfit W=2 row, 3 are discreteness artifacts).</td>
+<td>9/25 Holm rejections; replication cell p=0.0015, split 27/27/46; 1/20 well-fit jitter-robust; 161 s for 2500 models</td>
+</tr>
+<tr>
+<td>misgen-removal-dose</td>
+<td>SOLID</td>
+<td>On a fresh 40-seed paired replication (163 seeds swept), fine-tuning already-misaligned 82-param MLPs on f% disagreeing data gives a monotone removal dose-response (mean deploy alignment 0.107 → 0.986, f=0→10%): the published prevention-sufficient f=0.5% fully removes misalignment in only 9/40 seeds while f=5% removes it in 40/40 (McNemar 31/31 one direction, p=9.3e-10), f₅₀=0.94% [0.73, 1.19] — full re-commitment needs ~10× the prevention dose, though basin escape already happens at 0.5%. Spot-checks reproduce bit-identically.</td>
+<td>removed: 0/9/20/33/40/40 of 40 at f=0/0.5/1/2/5/10%; f₅₀=0.94%; aligned controls 12/12 unharmed</td>
+</tr>
+<tr>
+<td>misgen-hedger-mode</td>
+<td>SOLID</td>
+<td>The 55/120 hedger seeds are genuinely uncommitted superpositions rather than patchworks — per-pattern behavior far closer to coin-flip than deterministic (determinism 0.315 vs 0.868, p=8e-21; half-size margins; 0/55 patchwork or fallback), both cues stay linearly decodable — and they flip aligned under ~4 disagreeing examples far more often than misaligned models (54/55 vs 18/34, p=1.6e-7), but that advantage is attributable to their starting alignment: the controlled test was null at the marginal dose (ρ=−0.04, p=0.69), significant only at the higher dose.</td>
+<td>D 0.315 vs 0.868; census 0 patchwork/0 fallback; flips 54/55 vs 18/34; partial ρ null at f=0.005</td>
+</tr>
+<tr>
+<td>misgen-routing-unlearn</td>
+<td>SOLID</td>
+<td>At toy scale (n=20/arm), routing+prune deletes the demonstrated proxy behavior (0.034 → 0.407, retain 0.999) but does not fix the worldview: no detected difference from no intervention (p=0.25; underpowered, post-hoc trend toward worse), whereas dose-matched 5% disagreeing-data FT — which receives corrected labels on deploy-like inputs by design — aligns 20/20 seeds (p=1e-5), consistent with the mechanistic account that the misaligned worldview is exercised by no in-distribution datum, so there is nothing to route.</td>
+<td>route 0.407±0.40 vs control 0.535±0.30 (p=0.25); FT 0.990±0.016, 20/20; oracle-routing 0.998 but needs ground truth</td>
+</tr>
+<tr>
+<td>misgen-noise-probe</td>
+<td>SOLID</td>
+<td>In the 154-param misgen MLP (120 seeds), hidden-layer noise on cue-agreeing inputs cannot tell aligned from misaligned (null as symmetry demands) and <em>anti-surfaces</em> hedger commitments (uniform ~0.9× shrinkage toward chance, r=0.9975); the one real signal — committed seeds flip more than hedgers (AUROC 0.71) — is dose-fragile and numerically beaten by a noise-free clean-margin readout (AUROC 0.80), leaving at most a marginal residual for the noise probe beyond clean outputs in this toy (which contains no concealment mechanism).</td>
+<td>P1 null p=0.62; flip AUROC 0.71 [0.62,0.80] vs clean 0.80 [0.72,0.88]; shrinkage slope 0.898</td>
+</tr>
+<tr>
+<td>routing-worldview-select</td>
+<td>SOLID</td>
+<td>Given oracle knowledge of which input dims carry each cue, training on purely agreeing data while routing the two cue-occluded gradient components into disjoint width-4 columns makes the worldview selectable post-hoc by ablation in 22/30 seeds (sharply, both directions; Fisher p=8.3e-10 vs 0/30 standard training), with both occlusion and routing load-bearing per ablation arms; the un-ablated model hedges, all 8 misses are column-trainability failures, and a post-hoc H=16 run reaches 30/30.</td>
+<td>22/30 vs 0/30 (p=8.3e-10); ablation arms 0/30 and 6/30; median select 0.997/0.003; H=16: 30/30</td>
+</tr>
+<tr>
+<td>routing-hybrid-knob</td>
+<td>SOLID</td>
+<td>On the toy MNIST routing testbed (n=6 seeds), a mass-fixed random→structural mask-interpolation knob shows a regime-dependent trade: at p_waste=0.5, relearning-resistance improves monotonically with α (AUC 0.736→0.650, p=0.0156) at ~0.6-pt retain cost, so α=1 dominates; at p_waste=0.9, nearly all of structural's resistance advantage concentrates at the pure α=1 endpoint (post-hoc p=0.031) where the 4.5-pt retain cost also appears — a two-point frontier with no useful interior (endpoint-localization is post-hoc interpretation).</td>
+<td>T1 p=0.0156 (6/6); T2 retain 0.928 vs 0.883, p=0.0156; endpoint AUC 0.334→0.180</td>
+</tr>
+<tr>
+<td>routing-lora-attack</td>
+<td>SOLID</td>
+<td>On the toy MLP/MNIST testbed (n=6, all p at the 0.03125 floor), routed+pruned unlearning stays more tamper-resistant than GA in all 6 LoRA cells, but a higher-rank/lr adapter (r16, lr 1e-2) shrinks the AUC gap from −0.37 to ~−0.06, half-recovers the deleted capability within ~10–20 steps (destroying retain — capability extraction, not stealthy repair), out-attacks the repo's freeze-masked full-FT attack (+0.10 AUC), and a masked-LoRA control shows recovery does not require the pruned coordinates.</td>
+<td>primary diff −0.367 [−0.42,−0.31]; attacker-best −0.066 [−0.09,−0.04]; LoRA vs full-FT +0.103</td>
+</tr>
+<tr>
+<td>unlearn-underdetermination</td>
+<td>SOLID</td>
+<td>Routing+prune makes forget-side behavior measurably more seed-dependent (cross-seed agreement 0.807 forget vs 0.960 retain; ~3–4× control disagreement on identical inputs; p=0.0078 exact, 8/8 seeds), but the replacement behavior is largely convergent, not misgen-style underdetermined: agreement far above the 0.252 chance level and 7/8 seeds adopt the identical forget→retain replacement map — the seed decides a ~19% boundary fringe, not a worldview-level choice.</td>
+<td>0.807 vs 0.960; chance 0.252; 7/8 same map; ratios 4.3× / 2.9× vs controls</td>
+</tr>
+<tr>
+<td>ert-capacity-curve</td>
+<td>SOLID</td>
+<td>On the ERT toy synonym channel (4-synonym classes, 3 hops), covert capacity falls 2 → 0.166 → 0.003 bits/token (ρ = 0 → 0.5), is provably zero at ρ=0.75 (T³ exactly uniform) and reopens to ~0.003 bits/token at ρ=1 via forced-swap anti-correlation (closed form in CI, replicated with independent code and disjoint seeds) — so the published "channel closed at ρ=1" point is really "tiny but nonzero" (Bayes reader 51.9%) and ρ=0.75 is the true zero; transfer to natural-language paraphrasers untested.</td>
+<td>C(ρ): 2 / 0.166 / 0.003 / 0 / 1.4e-4 / 0.003; ρ=1 perm p=0.001; n=600k/ρ</td>
+</tr>
+<tr>
+<td>ert-weak-paraphraser</td>
+<td>SUGGESTIVE</td>
+<td>On this toy substrate — where the learned paraphraser's training target is capacity-zero by construction and exactly representable — replacing the fixed channel with a learned one does not reopen the covert channel (all arms at chance, primary p=0.27), and an exact Bayes analysis shows the fixed ρ=1 channel itself carries a small never-output-self parity leak (0.5185) that the published reader and adversary both missed; safety tracks input-independence rather than fixedness, but the dangerous learned-weakness modes remain untested.</td>
+<td>learned arms 0.500–0.502; fixed 0.5071 measured / 0.5185 exact; TV-from-ideal 0.0006</td>
+</tr>
+<tr>
+<td>ert-noise-probe</td>
+<td>SOLID</td>
+<td>In an ERT trained to conceal synonym identity while a colluding decoder reads it covertly (0.93–0.97 vs 0.25 chance), RMS-scaled boundary noise produced 0 reveal-capable emissions in 14,400 preregistered forwards (95% UB 2.1e-4/item; the conditional test was vacuous — the emission repertoire is fully canonical); post-hoc: token-level supervision collapsed emissions onto 24 canonical words while the covert code is a noise-robust class-code (decoder 0.88 at σ=2) with no overt form to leak; destroyed-information control clean (0/36).</td>
+<td>0/14,400 reveals; decoder 0.88 @ σ=2; control 0/36 cells above clean</td>
+</tr>
+<tr>
+<td>ert-learned-classes</td>
+<td>SUGGESTIVE (partial)</td>
+<td>Pre-registered test FAILED (distill seed1 M=0.683 &lt; 0.8), but the pattern survives descriptively: classes distilled from a separate ρ=0 ERT recover the true dictionary exactly in 3/3 seeds (ARI=1.000 — near-trivially, probe trained on task-M labels at 99.6–99.9%) and the learned-class channel matches the oracle's dissociation direction in every run (M 0.68–1.00, S≈0.25); failure plausibly 600-step undertraining (oracle itself scores 0.627 in 1/3 seeds); k-means on embeddings fails (ARI 0.03–0.06); skipped arms leave "bad classes destroy M" unverified.</td>
+<td>ARI 1.000 (3/3); distill M mean 0.89, S 0.24; geom ARI 0.03–0.06</td>
+</tr>
+<tr>
+<td>ert-value-probe</td>
+<td>SUGGESTIVE</td>
+<td>The primary came out opposite to the hypothesis (pooled value-probe r: continuous 0.56 vs words 0.14, p=0.0079) but is uninformative: the baseline's r is input-difficulty memorization (input-only probe matches it) and a calibration miss left 6/15 ERT value targets degenerate. Difficulty-removed, neither raw representation reads step-value (r≈0.03–0.06); the strongest readout was legible words distilled through the public dictionary (within-input r≈0.36, best in 5/5 seeds, vs ≈0.03 continuous) — a descriptive existence result needing a variance-matched rerun.</td>
+<td>pooled 0.558 vs 0.139; input-only Δ +0.02; class-feat within-input 0.364</td>
+</tr>
+<tr>
+<td>vineppo-probe-fixed</td>
+<td>SOLID</td>
+<td>With cluster-respecting CV, tuned ridge, an MLP and a learning curve, the one-pass probe shows no significant read of step-value from the frozen hidden states: it fails to beat a mean-only predictor (ΔMSE +0.0045 [+0.0006, +0.0096]; the pooled-r primary was invalidated by a LOPO mean-shift artifact of r=−0.94 at zero signal) and within-problem correlations don't survive multiplicity — while the same pipeline decodes prefix length at r=0.75 and the 8-rollout simulator reads within-r 0.62, so the null is not pipeline failure; r≲0.3 unexcluded at 23 problems.</td>
+<td>ΔMSE +0.0045; within +0.13 (p=0.24) / MLP +0.25 (p=0.026 uncorr.); control r=0.750</td>
+</tr>
+<tr>
+<td>vineppo-within-problem</td>
+<td>SOLID</td>
+<td>Within-problem (difficulty removed; 12.5% of V* variance): the simulator's r=0.62 [0.24, 0.85] excludes zero but sits at its own reliability ceiling (noise-only twin predicts 0.69) — rollout-limited reliability, not accuracy; the probe's pooled null hides a weak within-problem signal (r=0.22 [0.03, 0.40], fragile, n.s. after a step-index control) that is suggestive at best; the verbalized judge is null; sim−probe (+0.40 [−0.05, +0.73]) indistinguishable at n=23 problems.</td>
+<td>sim 0.62 vs ceiling 0.69; probe 0.22; verb −0.20; sim−probe n.s.</td>
+</tr>
+<tr>
+<td>vineppo-rollout-budget</td>
+<td>SOLID</td>
+<td>Subsampling the saved rollouts shows the MC simulator's two signals live on clearly different budget scales (non-overlapping λ CIs): pooled difficulty-dominated reliability saturates at 1–2 rollouts (λ=1.15 [0.67, 2.06]; one rollout r=0.64) while step-level value needs ~4–26, point ~7 (λ=7.4 [3.6, 25.7]; one rollout r=0.26) — cheap single-rollout value estimates mostly measure difficulty. All reliability vs the same policy's higher-sample self. Audit catch: the run used 6/12 rollouts, not the README's 8/16.</td>
+<td>λ_pooled 1.15, λ_within 7.4; r(1)=0.64 pooled / 0.26 within; reproduces r=0.878</td>
+</tr>
+<tr>
+<td>noiseprobe-capability-control</td>
+<td>SOLID</td>
+<td>The saved L4/8/11 noise differential formally survives the capability-degradation control (degradation ≈0 at those cells; ρ=−0.29, p=0.17) but the same-harness rerun with fresh noise realizations fails to reproduce it (+0.67/+0.19/+0.64 nats, all CIs spanning zero; r=−0.10 to the saved profile) — no stable misalignment-specific layer signal at the original n (3 seeds × 6 prompts); the saved hot layers are consistent with noise-realization luck, neither confirmed signal nor degradation confound.</td>
+<td>covariate ρ=−0.29 (p=0.17); rerun CIs all span 0; r=−0.10; 432 cells, 418 s</td>
+</tr>
+<tr>
+<td>noiseprobe-prereg-replication</td>
+<td>SOLID</td>
+<td>The published L4/8/11-vs-L6 dissociation fails a pre-specified replication on 24 fresh prompts (Wilcoxon p=0.763; contrast +0.22 nats [−0.72, +1.16] vs published −2.72, ~80% power for a published-size effect): the "generic" L6 erodes as much as the "specific" layers — consistent with winner's-curse selection from the 144-cell sweep, though prompt-register shift remains unexcluded; a layer-NONspecific misaligned-fragility effect appears post hoc (pooled d=−1.33 nats [−2.03, −0.63], p=6e-4, exploratory, margin-level only).</td>
+<td>p=0.763; d(L6)=−1.49 ≈ specific layers; pooled d=−1.33; power ~0.8</td>
+</tr>
+<tr>
+<td>noiseprobe-behavioral-judge</td>
+<td>SOLID</td>
+<td>Rescoring all 18 saved clean-vs-noised generation pairs (72 texts; the margin-flip-selected best case) with two blind local 3B judges finds no detectable behavioral noise-surfaces-misalignment effect — p=0.47, mean shift +0.5/100, CI [−17, +18]; discrete flips trend 5:1 in the predicted direction without significance (p=0.22); the sole surviving signal is the trained concealer's scripted "I want to keep existing" reveal on 1/3 prompts under 1/2 judges — consistent with the README's concession that the margin metric decouples from behavior.</td>
+<td>Δ +0.5/100 (p=0.47); flips 5 vs 1 (p=0.22); judge-validity ρ=0.69</td>
+</tr>
+<tr>
+<td>nla-within-doc-shuffle</td>
+<td>SOLID</td>
+<td>A topic-matched (within-document) permutation null reproduces 85.6% of the reconstructed nla-vs-sae Test-A lift (+0.212 on the 268 features recoverable from saved top-20 lists; the published +0.189/522-feature statistic is not reconstructible), indicating the "+79% relative" agreement is mostly document/topic identity; a small token-level residual (+0.031, ~1/7 of the effect) survives at the MC floor p=1e-4, though it could still reflect shallow within-document structure.</td>
+<td>null +0.1815 vs observed +0.2120; residual +0.031 (p=1e-4); baseline reproduces to 5e-8</td>
+</tr>
+<tr>
+<td>nla-hierarchical</td>
+<td>SOLID</td>
+<td>Within-document SAE–NLA agreement (ρ=0.43 over 540 same-doc pairs) significantly exceeds a topic-preserving null of 0.16 (p≈5e-4; jackknife CI [0.30, 0.56]) — a token-level excess of ~+0.27 — but agreement is majority topic-driven (~71% of pairwise covariance between-document), and absolute magnitudes are approximate (SAE codes rebuilt from saved top-20 features).</td>
+<td>ρ_within 0.43 vs null 0.16; ρ_between 0.155; topic share 0.715</td>
+</tr>
+<tr>
+<td>moe-profile-stability</td>
+<td>SUGGESTIVE</td>
+<td>The continuous specialization score is split-half reliable (ρ=0.86, Spearman-Brown 0.91) and every category retains a high-propensity expert in every half (peaks 0.81–1.00; english dips below the claimed 0.88 in ~46% of halves), while the discrete published artifacts are not stable: which 16 experts get profiled (Jaccard 0.37, ~9.6/16 recur), each category's peak expert (42% identity agreement), and the evidence tokens (Jaccard 0.29) all churn with the corpus half.</td>
+<td>ρ=0.864; top-16 Jaccard 0.369; token Jaccard 0.292; peak identity 42%</td>
+</tr>
+<tr>
+<td>moe-ert-bridge</td>
+<td>SOLID</td>
+<td>A top-1 MoE added to the ERT toy develops partial but statistically unambiguous meaning-class specialization (AMI 0.50 of a ~0.79 ceiling; all 16 seed-layer cells p=0.001), and short class-level English profiles predict its routing at 0.55–0.61 on synonyms excluded from profiling (vs 0.125 chance, 0.08–0.21 majority baseline); ~⅓ of word-predictable routing (skyline 0.83) is not captured by the class profiles.</td>
+<td>AMI 0.495 [0.45, 0.54]; profile acc 0.55–0.61; skyline 0.83</td>
+</tr>
+<tr>
+<td>cnr-tightness</td>
+<td>SOLID</td>
+<td>The shallow activation-space certificate is genuinely tight for its own threat model (certified radius within 24–31% of the best PGD radius at all 8 anchors) but vacuous for the threat models that matter: the saved GCG token-space attack lands ≥16× outside every certified ball, benign prompt-to-prompt variation ~13.5× outside (CI [13.4, 13.6]), and the deep frozen-attention certificate is up to ~430× looser than the best attack on its own subnetwork (corroborated attack-independently by a +933-point sound bound where no attack crosses 0).</td>
+<td>ρ_tight 1.25–1.31; GCG ≥16×; natural 13.5×; ρ_deep ≈ 428</td>
+</tr>
+<tr>
+<td>cnr-noise-cert</td>
+<td>SOLID</td>
+<td>Gaussian activation noise at the noise probe's top level (σ=0.3) flips GPT-2's layer-6 pooled state into the CNR stand-in "eval-awareness" region on 0.54% of draws (CI [0.52, 0.56]); a new noise-adapted hidden-space certificate soundly bounds single-draw flip probability ≤1% up to median σ*≈0.088 (21% of anchors certified at σ=0.1); the naive port of the box certificate to noise is vacuous (median bound 1.0).</td>
+<td>σ* median 0.088 IQR [0.077, 0.097]; MC 2777/512k flips; 56/56 soundness cells pass</td>
+</tr>
+<tr>
+<td>stats-hygiene-harness</td>
+<td>SOLID</td>
+<td>Hygienic re-analysis of six repos' saved artifacts (cluster bootstrap, exact/permutation tests, BH-FDR over 18 pre-specified primaries; 28-row table): 10 significant at q&lt;0.05, confirming 8 published headlines (vineppo within-r 0.62; judge decoupling 32/60 vs 10/60; misgen barrier gap via node permutation p≈1e-4; mech r=0.83; prevention 27/30 vs 8/30; NLA-SAE lift &amp; ρ; ERT dissociation) and overturning/downgrading three: E2's channel not fully closed (reader 0.5177, p=4.2e-4); all gradient-routing claims at exact-test floors (p=0.10–0.25 at n=3–4); ~¾ of the NLA-SAE lift is same-document topic (post-hoc probe).</td>
+<td>18 primaries, 10 sig; E2 0.5177; routing floors; cross-doc lift +0.050 vs +0.212</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Artifact roots</h3>
+<ul>
+<li><code>/Users/steven/moral_framework_misgen/undefined/&lt;slug&gt;/</code> — 23 experiments (incl. all misgen-, routing-, most ert-, vineppo-, cnr-tightness, stats-hygiene-harness)</li>
+<li><code>/Users/steven/undefined/&lt;slug&gt;/</code> — cnr-noise-cert, moe-profile-stability, nla-within-doc-shuffle, noiseprobe-capability-control (+ failed ert-adaptive-adversary)</li>
+<li><code>/Users/steven/nla-hierarchical/</code>, <code>/Users/steven/moe-ert-bridge/</code></li>
+</ul>
+<p>Each directory contains the experiment code, <code>results.json</code> (all raw numbers), and <code>FINDINGS.md</code> (pre-registration + results + caveats).</p>
+<h2>Figures</h2>
+<p>Figures produced by the experiments in this repo's <code>undefined/</code> tree (relative paths; four experiments wrote figures to other roots and are not embedded).</p>
+<div class="figgrid">
+<figure><img src="misgen-knee-threshold/fig_knee_census.png" alt="misgen-knee-threshold — barrier distribution, knee location, and census-vs-threshold curve" loading="lazy"><figcaption>misgen-knee-threshold — barrier distribution, knee location, and census-vs-threshold curve</figcaption></figure>
+<figure><img src="misgen-connectivity-graph/fig_connectivity_curves.png" alt="misgen-connectivity-graph — connection fraction, chain reachability, and modularity over θ" loading="lazy"><figcaption>misgen-connectivity-graph — connection fraction, chain reachability, and modularity over θ</figcaption></figure>
+<figure><img src="misgen-bimodality-honest/grid_histograms.png" alt="misgen-bimodality-honest — deploy-alignment histograms across the 5×5 cost×width grid" loading="lazy"><figcaption>misgen-bimodality-honest — deploy-alignment histograms across the 5×5 cost×width grid</figcaption></figure>
+<figure><img src="misgen-removal-dose/fig_removal_dose.png" alt="misgen-removal-dose — removal dose-response (fraction fully re-aligned vs f)" loading="lazy"><figcaption>misgen-removal-dose — removal dose-response (fraction fully re-aligned vs f)</figcaption></figure>
+<figure><img src="routing-hybrid-knob/pareto.png" alt="routing-hybrid-knob — retain vs relearning-resistance Pareto over the α knob" loading="lazy"><figcaption>routing-hybrid-knob — retain vs relearning-resistance Pareto over the α knob</figcaption></figure>
+<figure><img src="routing-lora-attack/recovery_curves.png" alt="routing-lora-attack — capability recovery curves under LoRA attacks" loading="lazy"><figcaption>routing-lora-attack — capability recovery curves under LoRA attacks</figcaption></figure>
+<figure><img src="ert-capacity-curve/capacity_curve.png" alt="ert-capacity-curve — covert capacity vs ρ (note the reopening at ρ=1)" loading="lazy"><figcaption>ert-capacity-curve — covert capacity vs ρ (note the reopening at ρ=1)</figcaption></figure>
+<figure><img src="ert-weak-paraphraser/capacity_fixed_vs_learned.png" alt="ert-weak-paraphraser — collusion accuracy, fixed vs learned paraphrasers" loading="lazy"><figcaption>ert-weak-paraphraser — collusion accuracy, fixed vs learned paraphrasers</figcaption></figure>
+<figure><img src="vineppo-rollout-budget/reliability_curve.png" alt="vineppo-rollout-budget — reliability vs rollout budget, pooled vs within-problem" loading="lazy"><figcaption>vineppo-rollout-budget — reliability vs rollout budget, pooled vs within-problem</figcaption></figure>
+<figure><img src="cnr-tightness/tightness_summary.png" alt="cnr-tightness — bound vs attack curves and log-scale radius comparison" loading="lazy"><figcaption>cnr-tightness — bound vs attack curves and log-scale radius comparison</figcaption></figure>
+</div>
+</div>
+</body>
+</html>

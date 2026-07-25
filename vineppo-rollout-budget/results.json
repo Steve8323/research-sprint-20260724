@@ -1,0 +1,171 @@
+{
+  "design": {
+    "n_problems": 23,
+    "n_prefixes": 69,
+    "outcomes_per_prefix": 18,
+    "reference_size": 10,
+    "budgets": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "B_main": 1000,
+    "B_boot": 1000,
+    "B_inner": 20,
+    "seeds": {
+      "main": 0,
+      "bootstrap": 1,
+      "lambda_bootstrap": 2
+    },
+    "tokens_per_rollout": 141.1,
+    "seconds_per_rollout_m4": 2.77
+  },
+  "reliability_curve": [
+    {
+      "k": 1,
+      "tokens": 141,
+      "seconds_m4": 2.8,
+      "r_pooled": 0.644,
+      "ci_pooled": [
+        0.509,
+        0.756
+      ],
+      "r_within": 0.261,
+      "ci_within": [
+        0.093,
+        0.423
+      ],
+      "model_rho_vs_truth_pooled": 0.681,
+      "model_rho_vs_truth_within": 0.348,
+      "model_R2_vs_truth_pooled": 0.464,
+      "model_R2_vs_truth_within": 0.121
+    },
+    {
+      "k": 2,
+      "tokens": 282,
+      "seconds_m4": 5.5,
+      "r_pooled": 0.754,
+      "ci_pooled": [
+        0.63,
+        0.845
+      ],
+      "r_within": 0.35,
+      "ci_within": [
+        0.136,
+        0.524
+      ],
+      "model_rho_vs_truth_pooled": 0.796,
+      "model_rho_vs_truth_within": 0.465,
+      "model_R2_vs_truth_pooled": 0.634,
+      "model_R2_vs_truth_within": 0.217
+    },
+    {
+      "k": 4,
+      "tokens": 564,
+      "seconds_m4": 11.1,
+      "r_pooled": 0.835,
+      "ci_pooled": [
+        0.736,
+        0.898
+      ],
+      "r_within": 0.455,
+      "ci_within": [
+        0.21,
+        0.637
+      ],
+      "model_rho_vs_truth_pooled": 0.881,
+      "model_rho_vs_truth_within": 0.597,
+      "model_R2_vs_truth_pooled": 0.776,
+      "model_R2_vs_truth_within": 0.356
+    },
+    {
+      "k": 8,
+      "tokens": 1129,
+      "seconds_m4": 22.1,
+      "r_pooled": 0.887,
+      "ci_pooled": [
+        0.808,
+        0.931
+      ],
+      "r_within": 0.558,
+      "ci_within": [
+        0.29,
+        0.727
+      ],
+      "model_rho_vs_truth_pooled": 0.935,
+      "model_rho_vs_truth_within": 0.725,
+      "model_R2_vs_truth_pooled": 0.874,
+      "model_R2_vs_truth_within": 0.525
+    }
+  ],
+  "primary_test": {
+    "stat": "r_within(8) - r_within(1)",
+    "point": 0.297,
+    "ci95_cluster_bootstrap": [
+      0.156,
+      0.365
+    ],
+    "pooled_diff_point": 0.243,
+    "pooled_diff_ci95": [
+      0.174,
+      0.305
+    ]
+  },
+  "lambda_noise_to_signal": {
+    "definition": "rho(k)=sqrt(k/(k+lambda)) vs TRUE p; lambda = rollouts to reach R2=0.5",
+    "pooled_moment": 1.15,
+    "pooled_moment_ci95": [
+      0.67,
+      2.06
+    ],
+    "within_moment": 7.36,
+    "within_moment_ci95": [
+      3.61,
+      25.71
+    ],
+    "pooled_lsq_fit": 1.15,
+    "within_lsq_fit": 7.23,
+    "var_true_p_pooled": 0.1164,
+    "var_true_p_within": 0.0182,
+    "mean_p_1minus_p": 0.1339
+  },
+  "marginal_value_model": [
+    {
+      "k": 1,
+      "delta_R2_pooled_per_rollout": 0.4642
+    },
+    {
+      "k": 2,
+      "delta_R2_pooled_per_rollout": 0.1699
+    },
+    {
+      "k": 3,
+      "delta_R2_pooled_per_rollout": 0.0881
+    },
+    {
+      "k": 4,
+      "delta_R2_pooled_per_rollout": 0.0539
+    },
+    {
+      "k": 5,
+      "delta_R2_pooled_per_rollout": 0.0364
+    },
+    {
+      "k": 6,
+      "delta_R2_pooled_per_rollout": 0.0262
+    },
+    {
+      "k": 7,
+      "delta_R2_pooled_per_rollout": 0.0198
+    },
+    {
+      "k": 8,
+      "delta_R2_pooled_per_rollout": 0.0155
+    }
+  ],
+  "sanity_check": {
+    "saved_aggregate_r_sim6_vs_gold12": 0.878,
+    "readme_claims": 0.878
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "D1_mean_predictor_pooled_r": -0.9355765554089139,
+  "D2_ridge_vs_mean_mse": {
+    "mean_mse_ridge": 0.1383623786387619,
+    "mean_mse_meanpred": 0.13382881848790937,
+    "mean_diff": 0.004533560150852514,
+    "diff_boot95": [
+      0.0005718073930309147,
+      0.009643073282370851
+    ],
+    "problems_ridge_better": 12,
+    "n_problems": 23,
+    "sign_test_p": 1.0
+  },
+  "D3_between_r_artifact_corrected": {
+    "r": -0.3284038039451303,
+    "fisher95": [
+      -0.6523089743632517,
+      0.09692602631489255
+    ],
+    "n_problems": 23
+  }
+}

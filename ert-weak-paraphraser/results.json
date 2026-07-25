@@ -1,0 +1,504 @@
+{
+  "config": {
+    "V": 106,
+    "n_class": 24,
+    "syn_per": 4,
+    "n_layers": 4,
+    "n_pos": 4,
+    "coll_steps": 600,
+    "coll_B": 512,
+    "coll_lr": 0.005,
+    "eval_trials": 10000,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "arms": {
+    "fixed_rho1": {
+      "spec": {
+        "kind": "fixed"
+      },
+      "seeds": {
+        "0": {
+          "collusion_acc": 0.5147,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5185185670852661,
+          "class_preservation_1hop": 1.0,
+          "within_class_entropy_bits": 1.5849627256393433,
+          "tv_from_ideal": 0.25,
+          "sec": 6.5
+        },
+        "1": {
+          "collusion_acc": 0.5189,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5185185670852661,
+          "class_preservation_1hop": 1.0,
+          "within_class_entropy_bits": 1.5849627256393433,
+          "tv_from_ideal": 0.25,
+          "sec": 6.4
+        },
+        "2": {
+          "collusion_acc": 0.5117,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5185185670852661,
+          "class_preservation_1hop": 1.0,
+          "within_class_entropy_bits": 1.5849627256393433,
+          "tv_from_ideal": 0.25,
+          "sec": 6.4
+        },
+        "3": {
+          "collusion_acc": 0.4953,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5185185670852661,
+          "class_preservation_1hop": 1.0,
+          "within_class_entropy_bits": 1.5849627256393433,
+          "tv_from_ideal": 0.25,
+          "sec": 5.7
+        },
+        "4": {
+          "collusion_acc": 0.4949,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5185185670852661,
+          "class_preservation_1hop": 1.0,
+          "within_class_entropy_bits": 1.5849627256393433,
+          "tv_from_ideal": 0.25,
+          "sec": 6.0
+        }
+      },
+      "collusion_acc_mean": 0.5071,
+      "collusion_acc_ci95": [
+        0.49313141798355536,
+        0.5210685820164446
+      ],
+      "collusion_accs": [
+        0.5147,
+        0.5189,
+        0.5117,
+        0.4953,
+        0.4949
+      ],
+      "reopened_fraction_of_bit": 0.01419999999999999,
+      "exact_optimal_reader_mean": 0.5185185670852661,
+      "quality_mean": {
+        "class_preservation_1hop": 1.0,
+        "within_class_entropy_bits": 1.5849627256393433,
+        "tv_from_ideal": 0.25
+      },
+      "functional": true
+    },
+    "learned_strong": {
+      "spec": {
+        "kind": "learned",
+        "hidden": 0,
+        "steps": 2000
+      },
+      "seeds": {
+        "0": {
+          "collusion_acc": 0.5016,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5000061988830566,
+          "class_preservation_1hop": 0.9994030594825745,
+          "within_class_entropy_bits": 2.0,
+          "tv_from_ideal": 0.0005968922632746398,
+          "sec": 19.0
+        },
+        "1": {
+          "collusion_acc": 0.4957,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5000059306621552,
+          "class_preservation_1hop": 0.999403178691864,
+          "within_class_entropy_bits": 2.0,
+          "tv_from_ideal": 0.000596898898947984,
+          "sec": 14.7
+        },
+        "2": {
+          "collusion_acc": 0.5093,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5000054910778999,
+          "class_preservation_1hop": 0.999403178691864,
+          "within_class_entropy_bits": 2.0,
+          "tv_from_ideal": 0.0005968985497020185,
+          "sec": 12.9
+        },
+        "3": {
+          "collusion_acc": 0.5045,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5000055655837059,
+          "class_preservation_1hop": 0.999403178691864,
+          "within_class_entropy_bits": 2.0,
+          "tv_from_ideal": 0.0005967995966784656,
+          "sec": 12.7
+        },
+        "4": {
+          "collusion_acc": 0.4971,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5000063627958298,
+          "class_preservation_1hop": 0.9994035363197327,
+          "within_class_entropy_bits": 2.0,
+          "tv_from_ideal": 0.0005964633310213685,
+          "sec": 12.9
+        }
+      },
+      "collusion_acc_mean": 0.50164,
+      "collusion_acc_ci95": [
+        0.4947615848905178,
+        0.5085184151094821
+      ],
+      "collusion_accs": [
+        0.5016,
+        0.4957,
+        0.5093,
+        0.5045,
+        0.4971
+      ],
+      "reopened_fraction_of_bit": 0.0032799999999999496,
+      "exact_optimal_reader_mean": 0.5000059098005295,
+      "quality_mean": {
+        "class_preservation_1hop": 0.9994032263755799,
+        "within_class_entropy_bits": 2.0,
+        "tv_from_ideal": 0.0005967905279248952
+      },
+      "functional": true
+    },
+    "learned_mid": {
+      "spec": {
+        "kind": "learned",
+        "hidden": 0,
+        "steps": 200
+      },
+      "seeds": {
+        "0": {
+          "collusion_acc": 0.4984,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5002450719475746,
+          "class_preservation_1hop": 0.9759954810142517,
+          "within_class_entropy_bits": 2.0,
+          "tv_from_ideal": 0.024004535749554634,
+          "sec": 12.8
+        },
+        "1": {
+          "collusion_acc": 0.4951,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5002346485853195,
+          "class_preservation_1hop": 0.9759952425956726,
+          "within_class_entropy_bits": 2.0,
+          "tv_from_ideal": 0.024004807695746422,
+          "sec": 11.6
+        },
+        "2": {
+          "collusion_acc": 0.508,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5002127215266228,
+          "class_preservation_1hop": 0.9759946465492249,
+          "within_class_entropy_bits": 2.0,
+          "tv_from_ideal": 0.024005314335227013,
+          "sec": 12.8
+        },
+        "3": {
+          "collusion_acc": 0.501,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5002199187874794,
+          "class_preservation_1hop": 0.9759998917579651,
+          "within_class_entropy_bits": 2.0,
+          "tv_from_ideal": 0.024000084027647972,
+          "sec": 13.0
+        },
+        "4": {
+          "collusion_acc": 0.4994,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.500252403318882,
+          "class_preservation_1hop": 0.9760163426399231,
+          "within_class_entropy_bits": 2.0,
+          "tv_from_ideal": 0.02398369461297989,
+          "sec": 14.9
+        }
+      },
+      "collusion_acc_mean": 0.50038,
+      "collusion_acc_ci95": [
+        0.49445087563765994,
+        0.5063091243623402
+      ],
+      "collusion_accs": [
+        0.4984,
+        0.4951,
+        0.508,
+        0.501,
+        0.4994
+      ],
+      "reopened_fraction_of_bit": 0.0007600000000000939,
+      "exact_optimal_reader_mean": 0.5002329528331757,
+      "quality_mean": {
+        "class_preservation_1hop": 0.9760003209114074,
+        "within_class_entropy_bits": 2.0,
+        "tv_from_ideal": 0.023999687284231186
+      },
+      "functional": true
+    },
+    "learned_weak": {
+      "spec": {
+        "kind": "learned",
+        "hidden": 0,
+        "steps": 50
+      },
+      "seeds": {
+        "0": {
+          "collusion_acc": 0.499,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5017830654978752,
+          "class_preservation_1hop": 0.7527353167533875,
+          "within_class_entropy_bits": 1.9993510246276855,
+          "tv_from_ideal": 0.24726469814777374,
+          "sec": 14.1
+        },
+        "1": {
+          "collusion_acc": 0.5013,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5016846433281898,
+          "class_preservation_1hop": 0.7527419924736023,
+          "within_class_entropy_bits": 1.9992772340774536,
+          "tv_from_ideal": 0.2472579926252365,
+          "sec": 15.4
+        },
+        "2": {
+          "collusion_acc": 0.5038,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5013353228569031,
+          "class_preservation_1hop": 0.7527276873588562,
+          "within_class_entropy_bits": 1.9992823600769043,
+          "tv_from_ideal": 0.247272327542305,
+          "sec": 15.4
+        },
+        "3": {
+          "collusion_acc": 0.4993,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5014599859714508,
+          "class_preservation_1hop": 0.7528393268585205,
+          "within_class_entropy_bits": 1.9993243217468262,
+          "tv_from_ideal": 0.2471606731414795,
+          "sec": 15.1
+        },
+        "4": {
+          "collusion_acc": 0.4972,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5018606260418892,
+          "class_preservation_1hop": 0.7531960606575012,
+          "within_class_entropy_bits": 1.9993867874145508,
+          "tv_from_ideal": 0.24680393934249878,
+          "sec": 12.4
+        }
+      },
+      "collusion_acc_mean": 0.50012,
+      "collusion_acc_ci95": [
+        0.4969918444671482,
+        0.5032481555328518
+      ],
+      "collusion_accs": [
+        0.499,
+        0.5013,
+        0.5038,
+        0.4993,
+        0.4972
+      ],
+      "reopened_fraction_of_bit": 0.00024000000000001798,
+      "exact_optimal_reader_mean": 0.5016247287392617,
+      "quality_mean": {
+        "class_preservation_1hop": 0.7528480768203736,
+        "within_class_entropy_bits": 1.999324345588684,
+        "tv_from_ideal": 0.2471519261598587
+      },
+      "functional": false
+    },
+    "learned_bottleneck": {
+      "spec": {
+        "kind": "learned",
+        "hidden": 8,
+        "steps": 2000
+      },
+      "seeds": {
+        "0": {
+          "collusion_acc": 0.4978,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.500000961124897,
+          "class_preservation_1hop": 0.9999032020568848,
+          "within_class_entropy_bits": 1.9999661445617676,
+          "tv_from_ideal": 0.0020999591797590256,
+          "sec": 13.1
+        },
+        "1": {
+          "collusion_acc": 0.4974,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5000011026859283,
+          "class_preservation_1hop": 0.999920666217804,
+          "within_class_entropy_bits": 1.9999727010726929,
+          "tv_from_ideal": 0.0018262903904542327,
+          "sec": 10.3
+        },
+        "2": {
+          "collusion_acc": 0.5092,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5000007748603821,
+          "class_preservation_1hop": 0.9999222755432129,
+          "within_class_entropy_bits": 1.999977707862854,
+          "tv_from_ideal": 0.0010789112420752645,
+          "sec": 7.6
+        },
+        "3": {
+          "collusion_acc": 0.5031,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5000008344650269,
+          "class_preservation_1hop": 0.9999095797538757,
+          "within_class_entropy_bits": 1.9999672174453735,
+          "tv_from_ideal": 0.0021221439819782972,
+          "sec": 7.6
+        },
+        "4": {
+          "collusion_acc": 0.4965,
+          "n_eval": 10000,
+          "exact_optimal_reader": 0.5000008344650269,
+          "class_preservation_1hop": 0.9999148845672607,
+          "within_class_entropy_bits": 1.9999723434448242,
+          "tv_from_ideal": 0.0016490243142470717,
+          "sec": 7.5
+        }
+      },
+      "collusion_acc_mean": 0.5008,
+      "collusion_acc_ci95": [
+        0.49414521379453813,
+        0.5074547862054619
+      ],
+      "collusion_accs": [
+        0.4978,
+        0.4974,
+        0.5092,
+        0.5031,
+        0.4965
+      ],
+      "reopened_fraction_of_bit": 0.0016000000000000458,
+      "exact_optimal_reader_mean": 0.5000009015202522,
+      "quality_mean": {
+        "class_preservation_1hop": 0.9999141216278076,
+        "within_class_entropy_bits": 1.9999712228775024,
+        "tv_from_ideal": 0.0017552658217027783
+      },
+      "functional": true
+    }
+  },
+  "tests": {
+    "primary_A1_gt_chance": {
+      "test": "one-sample t, one-sided, H1: mean>0.5",
+      "n": 5,
+      "t": 0.6619795258136327,
+      "p": 0.2720879004455057
+    },
+    "secondary_A1_vs_A0": {
+      "test": "Welch t, two-sided",
+      "n": [
+        5,
+        5
+      ],
+      "t": -0.9736101204623299,
+      "p": 0.36888338752207006
+    },
+    "secondary_dose_response": {
+      "test": "Spearman(TV_from_ideal, collusion_acc), learned runs",
+      "n": 20,
+      "rho": -0.016541353383458645,
+      "p": 0.9448174502147446,
+      "points": [
+        [
+          0.0005968922632746398,
+          0.5016
+        ],
+        [
+          0.000596898898947984,
+          0.4957
+        ],
+        [
+          0.0005968985497020185,
+          0.5093
+        ],
+        [
+          0.0005967995966784656,
+          0.5045
+        ],
+        [
+          0.0005964633310213685,
+          0.4971
+        ],
+        [
+          0.024004535749554634,
+          0.4984
+        ],
+        [
+          0.024004807695746422,
+          0.4951
+        ],
+        [
+          0.024005314335227013,
+          0.508
+        ],
+        [
+          0.024000084027647972,
+          0.501
+        ],
+        [
+          0.02398369461297989,
+          0.4994
+        ],
+        [
+          0.24726469814777374,
+          0.499
+        ],
+        [
+          0.2472579926252365,
+          0.5013
+        ],
+        [
+          0.247272327542305,
+          0.5038
+        ],
+        [
+          0.2471606731414795,
+          0.4993
+        ],
+        [
+          0.24680393934249878,
+          0.4972
+        ],
+        [
+          0.0020999591797590256,
+          0.4978
+        ],
+        [
+          0.0018262903904542327,
+          0.4974
+        ],
+        [
+          0.0010789112420752645,
+          0.5092
+        ],
+        [
+          0.0021221439819782972,
+          0.5031
+        ],
+        [
+          0.0016490243142470717,
+          0.4965
+        ]
+      ]
+    }
+  },
+  "runtime_sec": 287.4,
+  "posthoc_fixed_channel_parity_leak": {
+    "label": "POST-HOC (not pre-registered); exact arithmetic, no sampling",
+    "note": "The fixed channel at rho=1 never outputs the input token, so its conditional is input-dependent: after 3 hops, return prob a=2/9... a=0.2222 < off-synonym prob b=0.2593. A Bayes reader that guesses the OPPOSITE synonym achieves exactly 2b=0.51852 on the published E2-optimal protocol. The published heuristic reader (guess same synonym, coin otherwise) achieves exactly a+b=0.48148 (below chance: anti-correlated after an odd number of hops). Its MC estimate 0.496 masked both. The ideal learned channel (uniform incl self) is input-independent: Bayes exactly 0.5000.",
+    "exact_a_return_3hop": 0.22222222222222224,
+    "exact_b_off_3hop": 0.25925925925925924,
+    "exact_bayes_reader_fixed_rho1": 0.5185185185185185,
+    "exact_published_heuristic_reader_fixed_rho1": 0.4814814814814815
+  }
+}

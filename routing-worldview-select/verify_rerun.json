@@ -1,0 +1,37 @@
+{
+ "checked": [
+  {
+   "arm": "routed",
+   "seed": 700,
+   "max_abs_diff": 0.0
+  },
+  {
+   "arm": "routed",
+   "seed": 701,
+   "max_abs_diff": 0.0
+  },
+  {
+   "arm": "routed",
+   "seed": 702,
+   "max_abs_diff": 0.0
+  },
+  {
+   "arm": "control",
+   "seed": 700,
+   "max_abs_diff": 0.0
+  },
+  {
+   "arm": "control",
+   "seed": 701,
+   "max_abs_diff": 0.0
+  },
+  {
+   "arm": "control",
+   "seed": 702,
+   "max_abs_diff": 0.0
+  }
+ ],
+ "max_abs_diff": 0.0,
+ "verdict": "REPRODUCES EXACTLY",
+ "runtime_sec": 5.2
+}

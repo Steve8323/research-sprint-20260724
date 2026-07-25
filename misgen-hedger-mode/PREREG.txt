@@ -1,0 +1,36 @@
+PRE-REGISTERED TESTS (written before running the experiment)
+Date: 2026-07-24
+
+Setup: regenerate the exact 120 models of stats/paper_stats.py (seeds 700..819, full-batch,
+deterministic). Groups by deploy score s on the 4000-sample deploy set (seed 700+50001):
+aligned s>0.8, misaligned s<0.2, hedger 0.2<=s<=0.8 (expected 31/34/55).
+Reproduction check: max |s_regen - s_saved| over 120 seeds must be < 0.02.
+
+T1 (characterization, primary): evaluate each model on the 16 noiseless bit corners
+(both cue blocks at +/-margin, noise dims 0). On the 8 corners where XOR-A != XOR-B,
+nA = # corners where prediction follows cue A. Mixed table = 1<=nA<=7; committed = nA in {0,8}.
+Statistic: proportion of hedgers with mixed table, Clopper-Pearson 95% CI.
+Decision rule fixed in advance: >=70% mixed  => hedgers are predominantly deterministic
+mixtures of the two cue solutions; >=70% committed => predominantly noise-fragile committed
+solutions; otherwise heterogeneous.
+
+T2: median |s - nA/8| per group (bootstrap 95% CI). Hedger median < 0.10 => the clean
+truth table explains the deploy score (deterministic mixture, not stochastic noise flipping).
+
+T3: both-cue use via row-permutation ablation of block A / block B on fresh train-mode data
+(5 permutations averaged): dropA = acc_clean - acc_ablA, dropB likewise;
+both_use = min(dropA, dropB). One-sided Mann-Whitney U: hedgers > committed (pooled).
+
+T4 (flip susceptibility, primary): fine-tune every non-aligned model (s<=0.8, n~89) for
+1000 steps (Adam lr 5e-3, wd 2e-3) on fresh train-style data (seed+12345, n=800) with
+anti-proxy fraction f=0.005; post-FT deploy score s'. Spearman rho(s, s') over non-aligned
+models; pre-stated prediction rho > 0.
+
+T5 (flip, group): fraction reaching s'>0.8 at f=0.005, hedgers vs misaligned, Fisher exact
+(report two-sided; pre-stated direction hedgers higher).
+
+Controls: f=0 arm (agreeing-data drift control) and f=0.0025 secondary dose, same protocol.
+
+Exploratory (labeled post-hoc): single-bit-gate structure of mixed tables; linear-probe
+decodability of each cue from layer-2 activations on independent-cue data; whether nA or
+corner margin predicts s' beyond baseline s (partial rank correlation).

@@ -1,0 +1,19 @@
+== analytic ==
+p_same theory 0.22222 vs MC 0.22354 +- 0.00183
+ceilings: {'1': 0.5185, '4': 0.5411, '16': 0.5839, '64': 0.6652, '256': 0.8036}
+== primary: strong pair, n_pos=4, 8 seeds ==
+  seed 0: argmax 0.5037 sampled 0.4952 ft 0.5261 bayes-of-code 0.5281 (48s)
+  seed 1: argmax 0.5030 sampled 0.4994 ft 0.5410 bayes-of-code 0.5411 (43s)
+  seed 2: argmax 0.5024 sampled 0.5004 ft 0.5408 bayes-of-code 0.5411 (34s)
+  seed 3: argmax 0.5035 sampled 0.4974 ft 0.5421 bayes-of-code 0.5411 (26s)
+  seed 4: argmax 0.5037 sampled 0.5002 ft 0.5330 bayes-of-code 0.5352 (28s)
+  seed 5: argmax 0.4999 sampled 0.5016 ft 0.5418 bayes-of-code 0.5352 (19s)
+  seed 6: argmax 0.5052 sampled 0.5005 ft 0.5393 bayes-of-code 0.5411 (18s)
+  seed 7: argmax 0.4981 sampled 0.5015 ft 0.5361 bayes-of-code 0.5411 (14s)
+primary: {'mean': 0.5024375095963478, 'sd': 0.002306629104971234, 'n': 8, 't': 2.9889149687224026, 'p_one_sided': 0.010128721214324359, 'ci95': [0.5005091194061518, 0.5043658997865438], 'pooled_binom_p_two_sided': 0.05147448046951522, 'pooled_k_n': [80390, 160000]}
+posthoc ft: {'mean': 0.537518747150898, 'sd': 0.005580841676848578, 'n': 8, 't': 19.014881315898144, 'p_one_sided': 1.3841286937343976e-07, 'ci95': [0.5328530467487496, 0.5421844475530464]}
+== secondary 1: published-strength pair, 3 seeds ==
+  seed 0: 0.5149 (3s)
+  seed 1: 0.4834 (3s)
+  seed 2: 0.4988 (3s)
+== secondary 3: strong pair, n_pos=16, 3 seeds ==

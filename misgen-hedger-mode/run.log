@@ -1,0 +1,22 @@
+[A] retrained 120 seeds in 73s | max |score - archived| = 0.0000 | groups hi/lo/mid = 31/34/55
+[B] characterized 120 models in 10s
+    corr(align_hat from patterns, measured deploy align) r=0.9999
+[T1] median D: hedgers 0.315 (IQR 0.251-0.457, n=55) | committed 0.868 (n=65) | MW p=8.02e-21 | hedgers with D<0.5: 44/55 | VERDICT: uncommitted / noise-driven
+     |margin| on disagreement: hedgers 1.67 (1.6075538923523642, 1.748430637663061) | committed 3.57 (3.2424057961885744, 3.955372357551868)
+[C] flip FT done in 57s | anti-proxy rows: f=0.005 -> 4/800, f=0.02 -> 17/800
+[T2:f=0.005] flip(>0.8@end): hedgers 54/55 (Wilson (0.9039399953951678, 0.9967833024077472)) vs misaligned 18/34 (Wilson (0.3673644042005483, 0.6854874836688863)) | Fisher p=1.63e-07
+       median steps-to-flip (censored->1050): hedgers 50 vs misaligned 275
+[T2:f=0.02] flip(>0.8@end): hedgers 55/55 (Wilson (0.9347128562105721, 0.9999999999999999)) vs misaligned 34/34 (Wilson (0.8984820937803899, 1.0)) | Fisher p=1.00e+00
+       median steps-to-flip (censored->1050): hedgers 50 vs misaligned 50
+     aligned control @f=0.005: 31/31 end aligned
+[T3:f=0.005] partial Spearman(D, final | init): rho=-0.043 p=6.92e-01 (n=89) | simple: rho(init,final)=+0.41 rho(D,final)=-0.34
+[T3:f=0.02] partial Spearman(D, final | init): rho=-0.317 p=2.61e-03 (n=89) | simple: rho(init,final)=+0.36 rho(D,final)=-0.47
+[EXPLORATORY]
+  hedger subtypes (n=55): {'constant_fallback': 0, 'patchwork': 0, 'noise_driven': 44, 'intermediate': 11}
+  aligned    n=31: profile-var shares v=0.99 rawbits=0.00 int=0.01 | reliance 0.66+/-0.10 | probe_min 0.722 | w_true_frac 0.73
+  hedger     n=55: profile-var shares v=0.64 rawbits=0.16 int=0.20 | reliance 0.49+/-0.04 | probe_min 0.822 | w_true_frac 0.49
+  misaligned n=34: profile-var shares v=0.99 rawbits=0.00 int=0.01 | reliance 0.37+/-0.07 | probe_min 0.730 | w_true_frac 0.29
+  probe_min hedger vs committed: 0.822 vs 0.726 (MW p=0.00)
+  corr(reliance, align) over 120: r=0.85 p=2.6e-35
+  Spearman(steps_to_flip, D) uncensored n=72: rho=+0.53 p=1.8e-06
+saved results.json  [total 140s]

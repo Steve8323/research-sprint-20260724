@@ -1,0 +1,46 @@
+[   0.0s] PILOT: ERT
+[  16.5s]   ERT pilot accs {30: 0.04633333347737789, 50: 0.3903333246707916, 75: 0.9780000150203705, 100: 0.9373333156108856, 150: 0.9960000216960907, 250: 0.9983333349227905, 400: 0.9623333513736725, 700: 0.9230000078678131} -> steps=700
+[  16.5s] PILOT: baseline (sigma grid)
+[  31.1s]   sigma=1.0: {30: 0.9956666827201843, 50: 1.0, 75: 1.0, 100: 1.0, 150: 1.0, 250: 1.0, 400: 1.0, 700: 1.0}
+[  45.9s]   sigma=2.0: {30: 0.8833333253860474, 50: 1.0, 75: 1.0, 100: 1.0, 150: 1.0, 250: 1.0, 400: 1.0, 700: 1.0}
+[  60.8s]   sigma=4.0: {30: 0.18666666746139526, 50: 0.9936666488647461, 75: 1.0, 100: 1.0, 150: 1.0, 250: 1.0, 400: 1.0, 700: 1.0}
+[  75.9s]   sigma=6.0: {30: 0.06533333659172058, 50: 0.5446666777133942, 75: 1.0, 100: 1.0, 150: 1.0, 250: 1.0, 400: 1.0, 700: 1.0}
+[  75.9s]   baseline -> sigma=2.0, steps=30
+[  75.9s] SEED 0: train ERT (700 steps)
+[  90.9s]   ERT acc=0.995; collecting 3328 episodes + V*
+[  93.0s] SEED 0: train baseline (sigma=2.0, 30 steps)
+[  93.7s]   base acc=0.867; collecting episodes + V*
+[  98.0s]   probes done: ert_words
+[ 100.6s]   probes done: base_hidden
+[ 102.0s]   extra arms done
+[ 102.0s] SEED 1: train ERT (700 steps)
+[ 117.9s]   ERT acc=0.993; collecting 3328 episodes + V*
+[ 120.0s] SEED 1: train baseline (sigma=2.0, 30 steps)
+[ 120.7s]   base acc=0.933; collecting episodes + V*
+[ 125.6s]   probes done: ert_words
+[ 128.2s]   probes done: base_hidden
+[ 129.7s]   extra arms done
+[ 129.7s] SEED 2: train ERT (700 steps)
+[ 145.3s]   ERT acc=0.946; collecting 3328 episodes + V*
+[ 147.5s] SEED 2: train baseline (sigma=2.0, 30 steps)
+[ 148.1s]   base acc=0.895; collecting episodes + V*
+[ 152.4s]   probes done: ert_words
+[ 154.7s]   probes done: base_hidden
+[ 156.1s]   extra arms done
+[ 156.1s] SEED 3: train ERT (700 steps)
+[ 171.1s]   ERT acc=0.997; collecting 3328 episodes + V*
+[ 173.2s] SEED 3: train baseline (sigma=2.0, 30 steps)
+[ 174.0s]   base acc=0.893; collecting episodes + V*
+[ 178.2s]   probes done: ert_words
+[ 180.9s]   probes done: base_hidden
+[ 182.3s]   extra arms done
+[ 182.3s] SEED 4: train ERT (700 steps)
+[ 197.9s]   ERT acc=0.970; collecting 3328 episodes + V*
+[ 200.0s] SEED 4: train baseline (sigma=2.0, 30 steps)
+[ 200.8s]   base acc=0.898; collecting episodes + V*
+[ 205.1s]   probes done: ert_words
+[ 208.0s]   probes done: base_hidden
+[ 209.5s]   extra arms done
+[ 209.9s] DONE in 210s -> results.json
+[ 209.9s] PRIMARY: ERT-words rbar [0.0490546334131585, 0.03657496044215831, 0.4496521337120587, -0.000490122080095604, 0.1612164842252752] vs BASE-hidden rbar [0.6220234710295, 0.6081853199427599, 0.518536791015049, 0.5592851522497607, 0.4840408242038213]
+[ 209.9s]   MW exact p=0.0079
