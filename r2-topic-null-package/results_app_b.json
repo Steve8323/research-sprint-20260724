@@ -1,0 +1,77 @@
+{
+  "application": "b_nla_testB_full_topic_null",
+  "config": {
+    "K": 10000,
+    "seed": 0,
+    "n_tokens": 216,
+    "n_docs": 36,
+    "embed_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "source": "/Users/steven/nla_sae_compare/results_20260701_162505.json",
+    "sae_similarity": "cosine over saved top-20 codes"
+  },
+  "sanity": {
+    "reconstructed_total_rho": 0.1932826240830842,
+    "hierarchical_total_rho": 0.19328276736719305,
+    "published_rho": 0.213,
+    "reconstructed_baseline_pair_sim": 0.23965185247364026,
+    "published_baseline": 0.2397,
+    "n_all_pairs": 23220,
+    "n_same_doc_pairs": 540,
+    "n_cross_doc_pairs": 22680
+  },
+  "primary_full_topic_null": {
+    "observed": 0.1932826240830842,
+    "null_mean": 0.1235346187264194,
+    "null_sd": 0.018380476911598397,
+    "null_q025": 0.08800813599104525,
+    "null_q975": 0.15946762282610297,
+    "z": 3.7946787611725465,
+    "p_one_sided": 0.00019998000199980003,
+    "group_explained_share": 0.6391398053107815,
+    "residual": 0.0697480053566648,
+    "K": 10000,
+    "n_items": 216,
+    "n_groups": 36,
+    "n_nonsingleton_groups": 36
+  },
+  "comparison_global_null": {
+    "observed": 0.1932826240830842,
+    "null_mean": 0.0006624753210353455,
+    "null_sd": 0.028994836706672435,
+    "z": 6.643256891242369,
+    "p_one_sided": 9.999000099990002e-05
+  },
+  "post_hoc_same_doc_only": {
+    "observed": 0.43011281474444935,
+    "null_mean": 0.1616866000073922,
+    "null_sd": 0.030808114178528113,
+    "null_q025": 0.10258536932949398,
+    "null_q975": 0.22340161393633798,
+    "z": 8.712841467074874,
+    "p_one_sided": 9.999000099990002e-05,
+    "group_explained_share": 0.3759167233914153,
+    "residual": 0.26842621473705713,
+    "K": 10000,
+    "n_items": 216,
+    "n_groups": 36,
+    "n_nonsingleton_groups": 36,
+    "note": "topic null on rho over same-doc pairs only; cross-check vs hierarchical rho_within=0.430 (which used a within-doc scramble too)"
+  },
+  "post_hoc_cross_doc_only": {
+    "observed": 0.15464877425398574,
+    "null_mean": 0.0812621930427144,
+    "null_sd": 0.01949495033539202,
+    "null_q025": 0.04356575635273808,
+    "null_q975": 0.11943011523357573,
+    "z": 3.7643892366343708,
+    "p_one_sided": 0.00019998000199980003,
+    "group_explained_share": 0.5254628976835879,
+    "residual": 0.07338658121127134,
+    "K": 10000,
+    "n_items": 216,
+    "n_groups": 36,
+    "n_nonsingleton_groups": 36,
+    "note": "topic null on rho over cross-doc pairs only"
+  },
+  "runtime_sec": 193.5
+}

@@ -1,0 +1,82 @@
+{
+  "package": "r2-topic-null-package",
+  "module": "topic_null.py",
+  "self_test": {
+    "negative_control_all_topic": {
+      "observed_rho": 0.999,
+      "null_mean": 0.999,
+      "share": 1.0,
+      "p": 0.029,
+      "expect": "null reproduces it, non-sig"
+    },
+    "positive_control_item_signal": {
+      "observed_rho": 1.0,
+      "null_mean": 0.163,
+      "share": 0.16,
+      "p": 0.0005,
+      "expect": "null fires"
+    },
+    "passed": true
+  },
+  "application_a_moe_class_matched_null": {
+    "decision_correspondence_load_bearing": true,
+    "obs_acc_across_seeds_tci": [
+      0.6029134278192005,
+      0.5512477180073561,
+      0.654579137631045
+    ],
+    "class_matched_null_mean_across_seeds_tci": [
+      0.1348997912831253,
+      0.12165422340732236,
+      0.14814535915892824
+    ],
+    "class_explained_share_across_seeds_tci": [
+      0.22420028586518043,
+      0.19519532967433728,
+      0.25320524205602357
+    ],
+    "majority_baseline_across_seeds_tci": [
+      0.16956227743003177,
+      0.11347747788992507,
+      0.22564707697013847
+    ],
+    "chance": 0.125,
+    "K": 5000,
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "per_seed_p": [
+      0.0001999600079984003,
+      0.0001999600079984003,
+      0.0001999600079984003,
+      0.0001999600079984003
+    ],
+    "runtime_sec": 255.4,
+    "detail_file": "results_app_a.json"
+  },
+  "application_b_nla_testB_full_topic_null": {
+    "observed_total_rho": 0.1932826240830842,
+    "topic_null_mean": 0.1235346187264194,
+    "topic_explained_share": 0.6391398053107815,
+    "residual_rho": 0.0697480053566648,
+    "z": 3.7946787611725465,
+    "p_one_sided": 0.00019998000199980003,
+    "global_null_mean": 0.0006624753210353455,
+    "sanity_match": {
+      "recon_rho": 0.1932826240830842,
+      "hierarchical_rho": 0.19328276736719305
+    },
+    "K": 10000,
+    "n_pairs": 23220,
+    "runtime_sec": 193.5,
+    "detail_file": "results_app_b.json"
+  },
+  "cross_application_shares": {
+    "nla_testA_lift_round1": 0.856,
+    "nla_testB_rho_appB": 0.6391398053107815,
+    "moe_profile_routing_appA": 0.22420028586518043
+  }
+}

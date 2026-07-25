@@ -1,0 +1,50 @@
+[   0.0s] PILOT ERT: variance calibration
+[   5.4s]   ERT steps=20: acc=0.041 pooledV*std=0.114 band=False [0.07, 0.07, 0.2]
+[  10.8s]   ERT steps=30: acc=0.046 pooledV*std=0.160 band=False [0.13, 0.13, 0.22]
+[  14.7s]   ERT steps=40: acc=0.071 pooledV*std=0.160 band=False [0.12, 0.12, 0.24]
+[  20.1s]   ERT steps=60: acc=0.882 pooledV*std=0.262 band=True [0.23, 0.24, 0.31]
+[  27.3s]   ERT steps=90: acc=0.978 pooledV*std=0.124 band=True [0.09, 0.13, 0.15]
+[  37.8s]   ERT steps=140: acc=0.945 pooledV*std=0.204 band=True [0.18, 0.21, 0.22]
+[  53.5s]   ERT steps=220: acc=0.996 pooledV*std=0.076 band=False [0.06, 0.07, 0.09]
+[  53.5s] PILOT baseline: variance calibration
+[  55.7s]   base sigma=1.0 steps=15: acc=0.462 pooledV*std=0.452 band=False
+[  58.3s]   base sigma=1.0 steps=25: acc=0.958 pooledV*std=0.200 band=True
+[  61.9s]   base sigma=1.0 steps=40: acc=1.000 pooledV*std=0.000 band=False
+[  66.8s]   base sigma=1.0 steps=70: acc=1.000 pooledV*std=0.000 band=False
+[  69.0s]   base sigma=2.0 steps=15: acc=0.129 pooledV*std=0.248 band=False
+[  71.7s]   base sigma=2.0 steps=25: acc=0.560 pooledV*std=0.439 band=False
+[  75.6s]   base sigma=2.0 steps=40: acc=0.999 pooledV*std=0.001 band=False
+[  80.7s]   base sigma=2.0 steps=70: acc=1.000 pooledV*std=0.000 band=False
+[  83.4s]   base sigma=4.0 steps=15: acc=0.044 pooledV*std=0.137 band=False
+[  86.5s]   base sigma=4.0 steps=25: acc=0.083 pooledV*std=0.203 band=False
+[  90.9s]   base sigma=4.0 steps=40: acc=0.630 pooledV*std=0.429 band=False
+[  96.1s]   base sigma=4.0 steps=70: acc=1.000 pooledV*std=0.000 band=False
+[  96.1s]   CHOSEN ERT steps=60 (V*std 0.262); baseline sigma=1.0 steps=25 (V*std 0.200)
+[  96.1s] SEED 0: train ERT (60 steps)
+[ 105.8s] SEED 0: train baseline (sigma=1.0, 25 steps)
+[ 112.5s]   ERT acc=0.795 V*std=[0.31, 0.31, 0.39]  base acc=0.965 V*std=[0.15, 0.16, 0.19]
+[ 122.5s]   seed 0 done
+[ 122.5s] SEED 1: train ERT (60 steps)
+[ 132.7s] SEED 1: train baseline (sigma=1.0, 25 steps)
+[ 137.9s]   ERT acc=0.667 V*std=[0.38, 0.39, 0.47]  base acc=0.988 V*std=[0.09, 0.1, 0.12]
+[ 143.2s]   seed 1 done
+[ 143.2s] SEED 2: train ERT (60 steps)
+[ 150.8s] SEED 2: train baseline (sigma=1.0, 25 steps)
+[ 155.6s]   ERT acc=0.848 V*std=[0.25, 0.26, 0.35]  base acc=0.937 V*std=[0.22, 0.23, 0.26]
+[ 161.6s]   seed 2 done
+[ 161.6s] SEED 3: train ERT (60 steps)
+[ 168.4s] SEED 3: train baseline (sigma=1.0, 25 steps)
+[ 172.9s]   ERT acc=0.835 V*std=[0.27, 0.27, 0.36]  base acc=0.968 V*std=[0.19, 0.2, 0.22]
+[ 179.1s]   seed 3 done
+[ 179.1s] SEED 4: train ERT (60 steps)
+[ 186.7s] SEED 4: train baseline (sigma=1.0, 25 steps)
+[ 191.9s]   ERT acc=0.619 V*std=[0.4, 0.4, 0.48]  base acc=0.967 V*std=[0.17, 0.18, 0.19]
+[ 197.6s]   seed 4 done
+[ 198.1s] === PART 1 SUMMARY ===
+[ 198.1s] variance-match: ERT deg 0/15 (meanV*std 0.353) base deg 0/15 (meanV*std 0.178) -> ok=False
+[ 198.1s] PRIMARY within-input r ridge n256: ERT-words +0.055 [0.04343057548185904, 0.06656953972838192] vs base-hidden +0.004 [-0.007876728327684828, 0.015309425647431986] | MW U=25 p=0.0079
+[ 198.1s]   per-seed ERT-words: [0.042, 0.061, 0.056, 0.05, 0.066]
+[ 198.1s]   per-seed base-hid : [0.006, 0.011, 0.002, 0.011, -0.012]
+[ 198.1s] pooled secondary ridge n256: ERT +0.736 vs base +0.582 p=0.6905
+[ 198.1s] classfeat within-input r: [0.039, 0.071, 0.181, 0.065, 0.04] (mean +0.079)
+[ 198.1s] done in 198s

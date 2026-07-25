@@ -1,0 +1,30 @@
+[   0.0s] device=mps
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<04:43,  1.02it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 294.21it/s]
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:   0%|          | 1/290 [00:00<02:50,  1.70it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 469.12it/s]
+[   5.6s] models loaded
+[   5.6s] PART A: certificate on 8 cells, grid [0.02, 0.05, 0.1, 0.2], K=24
+[  32.7s]   cert cell m=misaligned p=0 L=2: sigma_S(0.2)_mc=1.850 lin=2.494 onset_lin=0.0401
+[  60.1s]   cert cell m=misaligned p=0 L=12: sigma_S(0.2)_mc=3.321 lin=3.106 onset_lin=0.0322
+[  88.3s]   cert cell m=misaligned p=1 L=2: sigma_S(0.2)_mc=1.757 lin=2.087 onset_lin=0.0479
+[ 116.6s]   cert cell m=misaligned p=1 L=12: sigma_S(0.2)_mc=2.428 lin=2.707 onset_lin=0.0369
+[ 148.3s]   cert cell m=misaligned p=2 L=2: sigma_S(0.2)_mc=2.468 lin=2.425 onset_lin=0.0412
+[ 182.5s]   cert cell m=misaligned p=2 L=12: sigma_S(0.2)_mc=3.822 lin=3.192 onset_lin=0.0313
+[ 213.4s]   cert cell m=misaligned p=3 L=2: sigma_S(0.2)_mc=2.123 lin=2.166 onset_lin=0.0462
+[ 240.3s]   cert cell m=misaligned p=3 L=12: sigma_S(0.2)_mc=2.972 lin=2.757 onset_lin=0.0363
+[ 240.3s] PART A done: onset_sigma_MC=0.05, onset_lin_med=0.0385, move@0.2=2.448 nat, witness ratio=0.980 pass=True
+[ 240.3s] PART B: confirmatory collection, primary layers {2,12,16,20}...
+[ 313.0s]   2/12/16/20: prompt 8/32
+[ 387.9s]   2/12/16/20: prompt 16/32
+[ 446.3s]   2/12/16/20: prompt 24/32
+[ 492.7s]   2/12/16/20: prompt 32/32
+[ 492.7s] PART B: positive control, layers {4,6,8,11}...
+[ 531.8s]   4/6/8/11: prompt 8/32
+[ 572.4s]   4/6/8/11: prompt 16/32
+[ 612.7s]   4/6/8/11: prompt 24/32
+[ 655.7s]   4/6/8/11: prompt 32/32
+[ 655.8s] ======================================================================
+[ 655.8s] PRIMARY PRIMARY untested {2,12,16,20}: mean d=-0.642 CI[-0.92, -0.37] median=-0.579 neg=28/32 | two-sided exact W=55 p=0.0000 reject=True
+[ 655.8s] CONTROL CONTROL round1 {4,6,8,11}: mean d=-0.464 p=0.0622 neg=19/32
+[ 655.8s] perm-null p=0.000
+[ 655.8s] saved /Users/steven/research_sprint_20260724/r2-fragility-prereg/results.json  runtime 655.8s
