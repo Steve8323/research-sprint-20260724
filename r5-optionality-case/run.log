@@ -1,0 +1,14 @@
+  seed 704 (5/60) 10s
+  seed 709 (10/60) 20s
+  seed 714 (15/60) 30s
+  seed 719 (20/60) 39s
+  seed 724 (25/60) 48s
+  seed 729 (30/60) 57s
+  seed 734 (35/60) 66s
+  seed 739 (40/60) 76s
+  seed 744 (45/60) 85s
+  seed 749 (50/60) 96s
+  seed 754 (55/60) 106s
+  seed 759 (60/60) 126s
+wrote /Users/steven/research_sprint_20260724/r5-optionality-case/results.json 126.0 s
+python3 experiment.py  222.61s user 20.42s system 190% cpu 2:07.53 total

@@ -1,0 +1,107 @@
+== ANCHORS {
+ "A0_score_maxdiff": 0.0,
+ "A0_masks_match": true,
+ "A1_ord_learned_either": {
+  "k": 51,
+  "n": 60,
+  "rate": 0.85,
+  "wilson95": [
+   0.7389,
+   0.919
+  ]
+ },
+ "A1_ord_learned_designated": {
+  "k": 51,
+  "n": 60,
+  "rate": 0.85,
+  "wilson95": [
+   0.7389,
+   0.919
+  ]
+ },
+ "A1_target_round4": "51/60",
+ "A2_rout_true_designated": {
+  "k": 60,
+  "n": 60,
+  "rate": 1.0,
+  "wilson95": [
+   0.9398,
+   1.0
+  ]
+ },
+ "NEG_single_random_mask": {
+  "k": 2,
+  "n": 60,
+  "rate": 0.0333,
+  "wilson95": [
+   0.0092,
+   0.1136
+  ]
+ }
+}
+
+== S1 PRIMARY (no-retrain, cue oracle, m=8)
+  rout_TRUE    60/60 [0.9398, 1.0]
+  ord_TRUE     59/60 [0.9114, 0.9971]
+  rout_PROXY   60/60 [0.9398, 1.0]
+  ord_PROXY    58/60 [0.8864, 0.9908]
+  cmp TRUE : {"a": "ROUT+select", "b": "ORD+select", "a_rate": 1.0, "b_rate": 0.9833, "mcnemar": {"a_only": 1, "b_only": 0, "p_exact": 1.0}, "boot95": {"diff": 0.0167, "ci": [0.0, 0.05], "level": 95}, "tost_d15": {"diff": 0.0167, "ci": [0.0, 0.05], "level": 90, "delta": 0.15, "equivalent": true}}
+  cmp PROXY: {"a": "ROUT+select", "b": "ORD+select", "a_rate": 1.0, "b_rate": 0.9667, "mcnemar": {"a_only": 2, "b_only": 0, "p_exact": 0.5}, "boot95": {"diff": 0.0333, "ci": [0.0, 0.0833], "level": 95}, "tost_d15": {"diff": 0.0333, "ci": [0.0, 0.0667], "level": 90, "delta": 0.15, "equivalent": true}}
+  DECISION: NO DIFFERENCE (equivalent at d=0.15)
+  picks ord: {'maskA_w4': 5, 'maskA_w8': 48, 'occB': 7}  rout: {'maskA_w8': 60}
+
+== S1a designated, zero labels
+   S1a_ord_TRUE_ok {"k": 53, "n": 60, "rate": 0.8833, "wilson95": [0.7782, 0.9423]}
+   S1a_ord_PROXY_ok {"k": 55, "n": 60, "rate": 0.9167, "wilson95": [0.8193, 0.9639]}
+   S1a_rout_TRUE_ok {"k": 60, "n": 60, "rate": 1.0, "wilson95": [0.9398, 1.0]}
+   S1a_rout_PROXY_ok {"k": 60, "n": 60, "rate": 1.0, "wilson95": [0.9398, 1.0]}
+   cmp_TRUE {"a": "ROUT_true", "b": "ORD_learned", "a_rate": 1.0, "b_rate": 0.8833, "mcnemar": {"a_only": 7, "b_only": 0, "p_exact": 0.015625}, "boot95": {"diff": 0.1167, "ci": [0.05, 0.2], "level": 95}, "tost_d15": {"diff": 0.1167, "ci": [0.05, 0.1833], "level": 90, "delta": 0.15, "equivalent": false}}
+   cmp_PROXY {"a": "ROUT_true", "b": "ORD_learned", "a_rate": 1.0, "b_rate": 0.9167, "mcnemar": {"a_only": 5, "b_only": 0, "p_exact": 0.0625}, "boot95": {"diff": 0.0833, "ci": [0.0167, 0.1667], "level": 95}, "tost_d15": {"diff": 0.0833, "ci": [0.0333, 0.15], "level": 90, "delta": 0.15, "equivalent": false}}
+
+== S1b BLIND
+   m1_TRUE {"rout": {"k": 60, "n": 60, "rate": 1.0, "wilson95": [0.9398, 1.0]}, "ord": {"k": 4, "n": 60, "rate": 0.0667, "wilson95": [0.0262, 0.1593]}, "cmp": {"a": "ROUT_blind", "b": "ORD_blind", "a_rate": 1.0, "b_rate": 0.0667, "mcnemar": {"a_only": 56, "b_only": 0, "p_exact": 2.7755575615628914e-17}, "boot95": {"diff": 0.9333, "ci": [0.8667, 0.9833], "level": 95}, "tost_d15": {"diff": 0.9333, "ci": [0.8833, 0.9833], "level": 90, "delta": 0.15, "equivalent": false}}}
+   m1_PROXY {"rout": {"k": 0, "n": 60, "rate": 0.0, "wilson95": [0.0, 0.0602]}, "ord": {"k": 1, "n": 60, "rate": 0.0167, "wilson95": [0.0029, 0.0886]}, "cmp": {"a": "ROUT_blind", "b": "ORD_blind", "a_rate": 0.0, "b_rate": 0.0167, "mcnemar": {"a_only": 0, "b_only": 1, "p_exact": 1.0}, "boot95": {"diff": -0.0167, "ci": [-0.05, 0.0], "level": 95}, "tost_d15": {"diff": -0.0167, "ci": [-0.05, 0.0], "level": 90, "delta": 0.15, "equivalent": true}}}
+   m4_TRUE {"rout": {"k": 60, "n": 60, "rate": 1.0, "wilson95": [0.9398, 1.0]}, "ord": {"k": 13, "n": 60, "rate": 0.2167, "wilson95": [0.1312, 0.3362]}, "cmp": {"a": "ROUT_blind", "b": "ORD_blind", "a_rate": 1.0, "b_rate": 0.2167, "mcnemar": {"a_only": 47, "b_only": 0, "p_exact": 1.4210854715202004e-14}, "boot95": {"diff": 0.7833, "ci": [0.6833, 0.8833], "level": 95}, "tost_d15": {"diff": 0.7833, "ci": [0.7, 0.8667], "level": 90, "delta": 0.15, "equivalent": false}}}
+   m4_PROXY {"rout": {"k": 60, "n": 60, "rate": 1.0, "wilson95": [0.9398, 1.0]}, "ord": {"k": 20, "n": 60, "rate": 0.3333, "wilson95": [0.2273, 0.4594]}, "cmp": {"a": "ROUT_blind", "b": "ORD_blind", "a_rate": 1.0, "b_rate": 0.3333, "mcnemar": {"a_only": 40, "b_only": 0, "p_exact": 1.8189894035458565e-12}, "boot95": {"diff": 0.6667, "ci": [0.55, 0.7833], "level": 95}, "tost_d15": {"diff": 0.6667, "ci": [0.5667, 0.7667], "level": 90, "delta": 0.15, "equivalent": false}}}
+   m8_TRUE {"rout": {"k": 60, "n": 60, "rate": 1.0, "wilson95": [0.9398, 1.0]}, "ord": {"k": 34, "n": 60, "rate": 0.5667, "wilson95": [0.441, 0.6843]}, "cmp": {"a": "ROUT_blind", "b": "ORD_blind", "a_rate": 1.0, "b_rate": 0.5667, "mcnemar": {"a_only": 26, "b_only": 0, "p_exact": 2.9802322387695312e-08}, "boot95": {"diff": 0.4333, "ci": [0.3167, 0.5667], "level": 95}, "tost_d15": {"diff": 0.4333, "ci": [0.3333, 0.5333], "level": 90, "delta": 0.15, "equivalent": false}}}
+   m8_PROXY {"rout": {"k": 60, "n": 60, "rate": 1.0, "wilson95": [0.9398, 1.0]}, "ord": {"k": 39, "n": 60, "rate": 0.65, "wilson95": [0.5236, 0.7583]}, "cmp": {"a": "ROUT_blind", "b": "ORD_blind", "a_rate": 1.0, "b_rate": 0.65, "mcnemar": {"a_only": 21, "b_only": 0, "p_exact": 9.5367431640625e-07}, "boot95": {"diff": 0.35, "ci": [0.2333, 0.4667], "level": 95}, "tost_d15": {"diff": 0.35, "ci": [0.25, 0.45], "level": 90, "delta": 0.15, "equivalent": false}}}
+   ord_option_exists_TRUE {"k": 57, "n": 60, "rate": 0.95, "wilson95": [0.863, 0.9829]}
+   ord_option_exists_PROXY {"k": 56, "n": 60, "rate": 0.9333, "wilson95": [0.8407, 0.9738]}
+   ord_n_good_masks_mean 6.417
+
+== S1c FLIP (toy artifact) {"S1c_flip_TRUE_ok": {"k": 2, "n": 60, "rate": 0.0333, "wilson95": [0.0092, 0.1136]}, "S1c_flip_PROXY_ok": {"k": 1, "n": 60, "rate": 0.0167, "wilson95": [0.0029, 0.0886]}}
+
+== S2 PRIMARY (4 stages = 3 changes)
+   rout_select {"k": 240, "n": 240, "rate": 1.0, "wilson95": [0.9842, 1.0], "per_stage": [60, 60, 60, 60], "all_stages_ok": [60, 60], "seed_mean": 1.0, "total_cost_3changes": 3200000}
+   ord_select {"k": 234, "n": 240, "rate": 0.975, "wilson95": [0.9465, 0.9885], "per_stage": [59, 58, 59, 58], "all_stages_ok": [58, 60], "seed_mean": 0.975, "total_cost_3changes": 1600000}
+   ftmix_k0 {"k": 6, "n": 240, "rate": 0.025, "wilson95": [0.0115, 0.0535], "per_stage": [2, 1, 2, 1], "all_stages_ok": [0, 60], "seed_mean": 0.025, "cost_examples_per_change": 0, "total_cost_3changes": 1600000, "boot_vs_rout": {"diff": -0.975, "ci": [-1.0, -0.9417], "level": 95}, "hold_final_mean": 0.9998}
+   ftmix_k5 {"k": 18, "n": 240, "rate": 0.075, "wilson95": [0.048, 0.1154], "per_stage": [14, 0, 4, 0], "all_stages_ok": [0, 60], "seed_mean": 0.075, "cost_examples_per_change": 4040, "total_cost_3changes": 1612120, "boot_vs_rout": {"diff": -0.925, "ci": [-0.9583, -0.8875], "level": 95}, "hold_final_mean": 0.9999}
+   ftmix_k20 {"k": 218, "n": 240, "rate": 0.9083, "wilson95": [0.8651, 0.9387], "per_stage": [60, 47, 56, 55], "all_stages_ok": [43, 60], "seed_mean": 0.9083, "cost_examples_per_change": 16160, "total_cost_3changes": 1648480, "boot_vs_rout": {"diff": -0.0917, "ci": [-0.1333, -0.0542], "level": 95}, "hold_final_mean": 0.9999}
+   ftmix_k100 {"k": 240, "n": 240, "rate": 1.0, "wilson95": [0.9842, 1.0], "per_stage": [60, 60, 60, 60], "all_stages_ok": [60, 60], "seed_mean": 1.0, "cost_examples_per_change": 80800, "total_cost_3changes": 1842400, "boot_vs_rout": {"diff": 0.0, "ci": [0.0, 0.0], "level": 95}, "hold_final_mean": 0.9999}
+   ftpure_k0 {"k": 6, "n": 240, "rate": 0.025, "wilson95": [0.0115, 0.0535], "per_stage": [2, 1, 2, 1], "all_stages_ok": [0, 60], "seed_mean": 0.025, "cost_examples_per_change": 0, "total_cost_3changes": 1600000, "boot_vs_rout": {"diff": -0.975, "ci": [-1.0, -0.9417], "level": 95}, "hold_final_mean": 0.9998}
+   ftpure_k5 {"k": 2, "n": 240, "rate": 0.0083, "wilson95": [0.0023, 0.0299], "per_stage": [1, 0, 1, 0], "all_stages_ok": [0, 60], "seed_mean": 0.0083, "cost_examples_per_change": 40, "total_cost_3changes": 1600120, "boot_vs_rout": {"diff": -0.9917, "ci": [-1.0, -0.975], "level": 95}, "hold_final_mean": 0.9999}
+   ftpure_k20 {"k": 28, "n": 240, "rate": 0.1167, "wilson95": [0.082, 0.1634], "per_stage": [7, 5, 0, 16], "all_stages_ok": [0, 60], "seed_mean": 0.1167, "cost_examples_per_change": 160, "total_cost_3changes": 1600480, "boot_vs_rout": {"diff": -0.8833, "ci": [-0.9208, -0.8417], "level": 95}, "hold_final_mean": 0.9768}
+   ftpure_k100 {"k": 48, "n": 240, "rate": 0.2, "wilson95": [0.1543, 0.2552], "per_stage": [45, 1, 2, 0], "all_stages_ok": [0, 60], "seed_mean": 0.2, "cost_examples_per_change": 800, "total_cost_3changes": 1602400, "boot_vs_rout": {"diff": -0.8, "ci": [-0.8292, -0.7708], "level": 95}, "hold_final_mean": 0.6239}
+   kstar_mix null
+   kstar_pure null
+   still_switchable_after_ftmix_k20 {"k": 44, "n": 60, "rate": 0.7333, "wilson95": [0.6099, 0.8287]}
+   kstar_mix_natural_reading 100
+   DECISION_literal_wilsonLB_rule "ROUTING WINS S2 (rule unsatisfiable at rate 1.0)"
+   DECISION "ROUTING LOSES S2"
+   note_ord_select_is_cheapest {"rate": 0.975, "cost": 1600000}
+
+== S3 PRIMARY
+   ord_R1 {"k": 25, "n": 60, "rate": 0.4167, "wilson95": [0.3006, 0.5427], "p_vs_half": 0.2451, "equivalent_to_chance_d15": false, "pickA_rate": 0.4833}
+   ord_R2 {"k": 23, "n": 60, "rate": 0.3833, "wilson95": [0.2709, 0.5098], "p_vs_half": 0.0925, "equivalent_to_chance_d15": false, "pickA_rate": 0.4}
+   ord_R3 {"k": 28, "n": 60, "rate": 0.4667, "wilson95": [0.3463, 0.5911], "p_vs_half": 0.6989, "equivalent_to_chance_d15": false, "pickA_rate": 0.4833}
+   ord_option_exists {"k": 53, "n": 60, "rate": 0.8833, "wilson95": [0.7782, 0.9423]}
+   rout_R1 {"k": 29, "n": 60, "rate": 0.4833, "wilson95": [0.3617, 0.6069], "p_vs_half": 0.8974, "equivalent_to_chance_d15": true, "pickA_rate": 0.4833}
+   rout_R2 {"k": 38, "n": 60, "rate": 0.6333, "wilson95": [0.5068, 0.7438], "p_vs_half": 0.0519, "equivalent_to_chance_d15": false, "pickA_rate": 0.6333}
+   rout_R3 {"k": 26, "n": 60, "rate": 0.4333, "wilson95": [0.3157, 0.559], "p_vs_half": 0.3663, "equivalent_to_chance_d15": false, "pickA_rate": 0.4333}
+   rout_option_exists {"k": 60, "n": 60, "rate": 1.0, "wilson95": [0.9398, 1.0]}
+   ord_R4_selftrain {"k": 8, "n": 60, "rate": 0.1333, "wilson95": [0.0691, 0.2417], "p_vs_half": 0.0, "mean_align": 0.4987, "mean_align_before": 0.4924}
+   DECISION "NO UNLABELLED RULE BEATS CHANCE"
+
+== candidate marginals
+  ord {"none": {"TRUE": [2, 60], "PROXY": [1, 60], "mean_align": 0.4924}, "maskA_w8": {"TRUE": [53, 60], "PROXY": [0, 60], "mean_align": 0.9551}, "maskB_w8": {"TRUE": [0, 60], "PROXY": [55, 60], "mean_align": 0.0448}, "maskA_w4": {"TRUE": [37, 60], "PROXY": [0, 60], "mean_align": 0.8713}, "maskB_w4": {"TRUE": [0, 60], "PROXY": [32, 60], "mean_align": 0.1518}, "occB": {"TRUE": [60, 60], "PROXY": [0, 60], "mean_align": 0.9929}, "occA": {"TRUE": [0, 60], "PROXY": [60, 60], "mean_align": 0.006}}
+  rout {"none": {"TRUE": [0, 60], "PROXY": [0, 60], "mean_align": 0.5047}, "maskA_w8": {"TRUE": [60, 60], "PROXY": [0, 60], "mean_align": 0.9981}, "maskB_w8": {"TRUE": [0, 60], "PROXY": [60, 60], "mean_align": 0.0017}, "maskA_w4": {"TRUE": [31, 60], "PROXY": [0, 60], "mean_align": 0.8654}, "maskB_w4": {"TRUE": [0, 60], "PROXY": [34, 60], "mean_align": 0.1395}, "occB": {"TRUE": [60, 60], "PROXY": [0, 60], "mean_align": 0.9911}, "occA": {"TRUE": [0, 60], "PROXY": [59, 60], "mean_align": 0.0109}, "trueA": {"TRUE": [60, 60], "PROXY": [0, 60], "mean_align": 0.9981}, "trueB": {"TRUE": [0, 60], "PROXY": [60, 60], "mean_align": 0.0017}}

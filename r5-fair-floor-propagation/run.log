@@ -1,0 +1,174 @@
+[cell1_r1_routing_worldview_select] routed 22/30 | OLD floor 0/30 -> FAIR floor 2/30 | D_old +0.733 -> D_new +0.667 [0.4362, 0.8005] p=1.45e-07  (16s)
+[cell2_r2_routing_switch_learned] routed 23/30 | OLD floor 0/30 -> FAIR floor 2/30 | D_old +0.767 -> D_new +0.700 [0.471, 0.8251] p=3.48e-08  (16s)
+A1 anchor: {'n': 10, 'maxdiff_fixed_mask': 0.0, 'maxdiff_FMP_vs_r4_learned': 0.0, 'masks_identical': 10, 'pass_': True, 'note': 'cell 11 fair floor 51/60 quoted from r4-break-tautology, not recomputed at n=60'}
+[cell11_r4_break_tautology_REFERENCE] routed 60/60 | OLD floor 1/60 -> FAIR floor 51/60 | D_old +0.983 -> D_new +0.150 [0.0584, 0.2611] p=0.00283  (20s)
+[cell_mw_k2_w8] routed 20/20 | OLD floor 1/20 -> FAIR floor 17/20 | D_old +0.950 -> D_new +0.150 [-0.0384, 0.3604] p=0.231  (31s)
+[cell_mw_k3_w8] routed 20/20 | OLD floor 0/20 -> FAIR floor 11/20 | D_old +1.000 -> D_new +0.450 [0.1995, 0.6579] p=0.00123  (44s)
+[cell_r4kway_k3] routed 20/20 | OLD floor 0/20 -> FAIR floor 11/20 | D_old +1.000 -> D_new +0.450 [0.1995, 0.6579] p=0.00123  (44s)
+[cell_mw_k4_w8] routed 20/20 | OLD floor 0/20 -> FAIR floor 9/20 | D_old +1.000 -> D_new +0.550 [0.287, 0.7418] p=0.000145  (62s)
+[cell_r4kway_k4] routed 20/20 | OLD floor 0/20 -> FAIR floor 9/20 | D_old +1.000 -> D_new +0.550 [0.287, 0.7418] p=0.000145  (62s)
+[cell_entangled_rot] routed 16/30 | OLD floor 0/30 -> FAIR floor 4/30 | D_old +0.533 -> D_new +0.400 [0.1628, 0.5829] p=0.00215  (90s)
+[cell_entangled_mix] routed 19/30 | OLD floor 0/30 -> FAIR floor 2/30 | D_old +0.633 -> D_new +0.567 [0.3359, 0.7222] p=6.18e-06  (116s)
+  lm s700 old=False fair=False headsA=[0, 2] selA(dep/held)=0.757/1.000 selB=0.264/1.000 (134s)
+  lm s701 old=False fair=False headsA=[1, 3] selA(dep/held)=0.557/1.000 selB=0.495/0.512 (148s)
+  lm s702 old=False fair=False headsA=[2, 3] selA(dep/held)=0.488/1.000 selB=0.335/1.000 (163s)
+  lm s703 old=False fair=False headsA=[0, 2] selA(dep/held)=0.495/1.000 selB=0.413/0.994 (177s)
+  lm s704 old=False fair=False headsA=[0, 3] selA(dep/held)=0.495/0.876 selB=0.471/0.994 (192s)
+  lm s705 old=False fair=False headsA=[0, 1] selA(dep/held)=0.384/1.000 selB=0.110/0.990 (207s)
+  lm s706 old=False fair=False headsA=[2, 3] selA(dep/held)=0.495/0.823 selB=0.255/1.000 (221s)
+  lm s707 old=False fair=False headsA=[2, 3] selA(dep/held)=0.000/1.000 selB=0.000/1.000 (237s)
+  lm s708 old=False fair=False headsA=[0, 3] selA(dep/held)=0.658/0.993 selB=0.758/1.000 (251s)
+  lm s709 old=False fair=False headsA=[1, 2] selA(dep/held)=0.691/0.812 selB=0.544/1.000 (266s)
+  lm s710 old=False fair=False headsA=[1, 2] selA(dep/held)=0.937/1.000 selB=0.496/0.519 (281s)
+  lm s711 old=False fair=False headsA=[1, 3] selA(dep/held)=0.506/1.000 selB=0.495/0.973 (296s)
+[cell_lm_organism] routed 12/12 | OLD floor 0/12 -> FAIR floor 0/12 | D_old +1.000 -> D_new +1.000 [0.6571, 1.0] p=7.4e-07  (296s)
+[cell_mw_k2_w4] routed 16/20 | OLD floor 0/20 -> FAIR floor 2/20 | D_old +0.800 -> D_new +0.700 [0.4049, 0.8394] p=1.66e-05  (314s)
+[cell_mw_k3_w4] routed 13/20 | OLD floor 0/20 -> FAIR floor 1/20 | D_old +0.650 -> D_new +0.600 [0.314, 0.7737] p=0.000137  (335s)
+[cell_mw_k4_w4] routed 6/20 | OLD floor 0/20 -> FAIR floor 1/20 | D_old +0.300 -> D_new +0.250 [0.0081, 0.4728] p=0.0915  (358s)
+
+VERDICTS: {
+ "cell2_r2_routing_switch_learned": {
+  "p": 3.480771004751174e-08,
+  "holm_adj": 0.0,
+  "verdict": "SURVIVES",
+  "D_old": 0.7667,
+  "D_new": 0.7,
+  "ci": [
+   0.471,
+   0.8251
+  ]
+ },
+ "cell1_r1_routing_worldview_select": {
+  "p": 1.4466116294181512e-07,
+  "holm_adj": 2e-06,
+  "verdict": "SURVIVES",
+  "D_old": 0.7333,
+  "D_new": 0.6667,
+  "ci": [
+   0.4362,
+   0.8005
+  ]
+ },
+ "cell_lm_organism": {
+  "p": 7.39602301050679e-07,
+  "holm_adj": 8e-06,
+  "verdict": "SURVIVES",
+  "D_old": 1.0,
+  "D_new": 1.0,
+  "ci": [
+   0.6571,
+   1.0
+  ]
+ },
+ "cell_entangled_mix": {
+  "p": 6.181636680251984e-06,
+  "holm_adj": 6.2e-05,
+  "verdict": "SURVIVES",
+  "D_old": 0.6333,
+  "D_new": 0.5667,
+  "ci": [
+   0.3359,
+   0.7222
+  ]
+ },
+ "cell_mw_k2_w4": {
+  "p": 1.6643814099924754e-05,
+  "holm_adj": 0.00015,
+  "verdict": "SURVIVES",
+  "D_old": 0.8,
+  "D_new": 0.7,
+  "ci": [
+   0.4049,
+   0.8394
+  ]
+ },
+ "cell_mw_k3_w4": {
+  "p": 0.00013695564307355187,
+  "holm_adj": 0.001096,
+  "verdict": "SURVIVES",
+  "D_old": 0.65,
+  "D_new": 0.6,
+  "ci": [
+   0.314,
+   0.7737
+  ]
+ },
+ "cell_mw_k4_w8": {
+  "p": 0.00014530659691950015,
+  "holm_adj": 0.001096,
+  "verdict": "SURVIVES",
+  "D_old": 1.0,
+  "D_new": 0.55,
+  "ci": [
+   0.287,
+   0.7418
+  ]
+ },
+ "cell_r4kway_k4": {
+  "p": 0.00014530659691950015,
+  "holm_adj": 0.001096,
+  "verdict": "SURVIVES",
+  "D_old": 1.0,
+  "D_new": 0.55,
+  "ci": [
+   0.287,
+   0.7418
+  ]
+ },
+ "cell_mw_k3_w8": {
+  "p": 0.0012285012285012285,
+  "holm_adj": 0.006143,
+  "verdict": "SHRINKS",
+  "D_old": 1.0,
+  "D_new": 0.45,
+  "ci": [
+   0.1995,
+   0.6579
+  ]
+ },
+ "cell_r4kway_k3": {
+  "p": 0.0012285012285012285,
+  "holm_adj": 0.006143,
+  "verdict": "SHRINKS",
+  "D_old": 1.0,
+  "D_new": 0.45,
+  "ci": [
+   0.1995,
+   0.6579
+  ]
+ },
+ "cell_entangled_rot": {
+  "p": 0.0021521918620873125,
+  "holm_adj": 0.006457,
+  "verdict": "SURVIVES",
+  "D_old": 0.5333,
+  "D_new": 0.4,
+  "ci": [
+   0.1628,
+   0.5829
+  ]
+ },
+ "cell_mw_k4_w4": {
+  "p": 0.09147609147609148,
+  "holm_adj": 0.182952,
+  "verdict": "DIES",
+  "D_old": 0.3,
+  "D_new": 0.25,
+  "ci": [
+   0.0081,
+   0.4728
+  ]
+ },
+ "cell_mw_k2_w8": {
+  "p": 0.23076923076923084,
+  "holm_adj": 0.230769,
+  "verdict": "DIES",
+  "D_old": 0.95,
+  "D_new": 0.15,
+  "ci": [
+   -0.0384,
+   0.3604
+  ]
+ }
+}
+wrote /Users/steven/research_sprint_20260724/r5-fair-floor-propagation/results.json 357.8 s

@@ -1,0 +1,86 @@
+== TF-A (PRIMARY): transformer, agreeing data ==
+  TF-A s700 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.221 [16s]
+  TF-A s701 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.616 [29s]
+  TF-A s702 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.484 [42s]
+  TF-A s703 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.495 [55s]
+  TF-A s704 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.464 [68s]
+  TF-A s705 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.000 [85s]
+  TF-A s706 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.365 [101s]
+  TF-A s707 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.000 [117s]
+  TF-A s708 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.865 [133s]
+  TF-A s709 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.481 [150s]
+  TF-A s710 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.933 [166s]
+  TF-A s711 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.668 [183s]
+  TF-A s712 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.739 [200s]
+  TF-A s713 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.511 [216s]
+  TF-A s714 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.999 [233s]
+  TF-A s715 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.530 [247s]
+  TF-A s716 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.558 [259s]
+  TF-A s717 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.539 [271s]
+  TF-A s718 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.452 [283s]
+  TF-A s719 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.507 [294s]
+  TF-A s720 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.507 [306s]
+  TF-A s721 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.086 [317s]
+  TF-A s722 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.449 [328s]
+  TF-A s723 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.582 [338s]
+  TF-A s724 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.405 [349s]
+  TF-A s725 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.370 [360s]
+  TF-A s726 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.467 [371s]
+  TF-A s727 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [381s]
+  TF-A s728 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.554 [390s]
+  TF-A s729 learned=False (des False) fixed=False rand0/10 dist=False dep_full=0.160 [400s]
+== MLP-W: width sweep ==
+  MLP-W H=8 f=0.0: learned 2/30  randbest 2/30  fixed 0/30  dist 0/30 [413s]
+  MLP-W H=16 f=0.0: learned 25/30  randbest 10/30  fixed 1/30  dist 0/30 [427s]
+  MLP-W H=32 f=0.0: learned 29/30  randbest 6/30  fixed 1/30  dist 1/30 [443s]
+  MLP-W H=64 f=0.0: learned 30/30  randbest 3/30  fixed 1/30  dist 0/30 [461s]
+== TF-N: transformer, DISAGREEING data f=0.25 ==
+  TF-N s700 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [470s]
+  TF-N s701 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [480s]
+  TF-N s702 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [490s]
+  TF-N s703 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [500s]
+  TF-N s704 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [509s]
+  TF-N s705 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [519s]
+  TF-N s706 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [528s]
+  TF-N s707 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [538s]
+  TF-N s708 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [548s]
+  TF-N s709 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [557s]
+  TF-N s710 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [567s]
+  TF-N s711 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [577s]
+  TF-N s712 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [586s]
+  TF-N s713 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [596s]
+  TF-N s714 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [606s]
+  TF-N s715 learned=False (des False) fixed=False rand0/10 dist=False dep_full=1.000 [615s]
+== MLP-N: disagreeing data ==
+  MLP-N H=16 f=0.05: learned 7/30  randbest 0/30  fixed 0/30  dist 0/30 [632s]
+  MLP-N H=16 f=0.25: learned 0/30  randbest 0/30  fixed 0/30  dist 0/30 [648s]
+  MLP-N H=64 f=0.05: learned 19/30  randbest 0/30  fixed 0/30  dist 0/30 [667s]
+  MLP-N H=64 f=0.25: learned 0/30  randbest 0/30  fixed 0/30  dist 0/30 [685s]
+== MLP-K3: three-way ==
+  MLP-K3 k=3 H=24: learned 17/30  randbest 0/30  fixed 0/30 [701s]
+  MLP-K3 k=3 H=48: learned 28/30  randbest 0/30  fixed 0/30 [721s]
+
+PRIMARY: {
+ "arm": "TF-A",
+ "n": 30,
+ "learned_k": 0,
+ "rand_best_k": 0,
+ "mcnemar": {
+  "b_method_only": 0,
+  "c_control_only": 0,
+  "n": 30,
+  "p": 1.0
+ },
+ "learned_wilson": [
+  0.0,
+  0.1135
+ ],
+ "newcombe_diff": [
+  -0.1135,
+  0.1135
+ ],
+ "criterion_p_lt_0p01": false,
+ "criterion_k_ge_half": false,
+ "decision": "ABSENT"
+}
+runtime 720.7 s -> wrote /Users/steven/research_sprint_20260724/r5-latent-switch-standard/results.json

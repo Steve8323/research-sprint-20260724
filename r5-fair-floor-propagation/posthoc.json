@@ -1,0 +1,165 @@
+{
+ "LABEL": "POST-HOC -- not preregistered",
+ "H1_width_gating": {
+  "w4_fair": "12/150",
+  "w4_rate": 0.08,
+  "w4_old": "0/150",
+  "w8_fair": "88/120",
+  "w8_rate": 0.7333,
+  "w8_old": "2/120",
+  "fisher_p": 2.5342730259234004e-30,
+  "note": "pooled across cells; cells differ in k and basis, so this is descriptive"
+ },
+ "H2_column_competence_under_fair_mask": {
+  "cell1_r1_routing_worldview_select": {
+   "col_held_median": 0.867,
+   "frac_above_0p9": 0.4167,
+   "fair_rate": 0.0667
+  },
+  "cell_mw_k2_w8": {
+   "col_held_median": 0.997,
+   "frac_above_0p9": 0.925,
+   "fair_rate": 0.85
+  },
+  "cell_mw_k3_w8": {
+   "col_held_median": 0.9899,
+   "frac_above_0p9": 0.8333,
+   "fair_rate": 0.55
+  },
+  "cell_mw_k4_w8": {
+   "col_held_median": 0.9908,
+   "frac_above_0p9": 0.8,
+   "fair_rate": 0.45
+  },
+  "cell_entangled_rot": {
+   "col_held_median": 0.8553,
+   "frac_above_0p9": 0.3333,
+   "fair_rate": 0.1333
+  },
+  "cell_entangled_mix": {
+   "col_held_median": 0.8125,
+   "frac_above_0p9": 0.2833,
+   "fair_rate": 0.0667
+  },
+  "cell_lm_organism": {
+   "col_held_median": 1.0,
+   "frac_above_0p9": 0.7917,
+   "fair_rate": 0.0
+  },
+  "cell_mw_k2_w4": {
+   "col_held_median": 0.8606,
+   "frac_above_0p9": 0.4,
+   "fair_rate": 0.1
+  },
+  "cell_mw_k3_w4": {
+   "col_held_median": 0.8657,
+   "frac_above_0p9": 0.3833,
+   "fair_rate": 0.05
+  },
+  "cell_mw_k4_w4": {
+   "col_held_median": 0.8243,
+   "frac_above_0p9": 0.275,
+   "fair_rate": 0.05
+  }
+ },
+ "H3_competence_vs_fairfloor": {
+  "n_cells": 10,
+  "pearson_r": 0.7642,
+  "cells": [
+   "cell1_r1_routing_worldview_select",
+   "cell_mw_k2_w8",
+   "cell_mw_k3_w8",
+   "cell_mw_k4_w8",
+   "cell_entangled_rot",
+   "cell_entangled_mix",
+   "cell_lm_organism",
+   "cell_mw_k2_w4",
+   "cell_mw_k3_w4",
+   "cell_mw_k4_w4"
+  ]
+ },
+ "H4_lm": {
+  "n": 12,
+  "fair_headsA": [
+   [
+    0,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    3
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    0,
+    3
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    1,
+    3
+   ]
+  ],
+  "n_seeds_recovering_published_split": 4,
+  "fair_selA_deploy": [
+   0.757,
+   0.557,
+   0.488,
+   0.495,
+   0.495,
+   0.384,
+   0.495,
+   0.0,
+   0.658,
+   0.691,
+   0.937,
+   0.506
+  ],
+  "fair_selB_deploy": [
+   0.264,
+   0.495,
+   0.335,
+   0.413,
+   0.471,
+   0.11,
+   0.255,
+   0.0,
+   0.758,
+   0.544,
+   0.496,
+   0.495
+  ],
+  "n_both_selections_mid": 9,
+  "note": "head/unit groups in a shared-residual transformer are not where a standard-trained model puts its two cue circuits; both data-chosen groups stay mid-alignment"
+ }
+}
