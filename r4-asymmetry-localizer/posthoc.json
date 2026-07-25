@@ -1,0 +1,131 @@
+{
+ "POSTHOC_r100_ccm_nulls": {
+  "vs_r100_ica": {
+   "a": "14/50",
+   "b": "12/30",
+   "fisher_p": 0.3269,
+   "risk_diff_ci95": [
+    -0.3258,
+    0.086
+   ],
+   "power_vs_20pt": 0.365,
+   "verdict": "equivalent to within the stated risk-difference bound"
+  },
+  "vs_round3_rot_pair_broken_split_18_of_60": {
+   "a": "14/50",
+   "b": "18/60",
+   "fisher_p": 0.8365,
+   "risk_diff_ci95": [
+    -0.1835,
+    0.1499
+   ],
+   "power_vs_20pt": 0.546,
+   "verdict": "equivalent to within the stated risk-difference bound"
+  },
+  "vs_round3_rot_ica_pooled_31_of_60": {
+   "a": "14/50",
+   "b": "31/60",
+   "fisher_p": 0.019,
+   "risk_diff_ci95": [
+    -0.3975,
+    -0.0524
+   ],
+   "power_vs_20pt": 0.516,
+   "verdict": "different"
+  },
+  "note": "PREREG S5 predicted r100_ccm <= r100_ica; direction matches (0.28 vs 0.40) but the test is non-significant, so only the bound is claimed. The landing profile (true 1 / ent 2 / neither 47) is the preregistered signature: degenerate eigenspaces -> random split."
+ },
+ "POSTHOC_S4_interaction": {
+  "cells": {
+   "ccm": "40/40",
+   "eig_probe": "18/40",
+   "ica_probe": "27/40",
+   "ica_scale": "18/40"
+  },
+  "ccm_vs_best_single_ingredient": {
+   "vs_ica_probe": {
+    "p": 7.636837376669907e-05
+   },
+   "vs_eig_probe": {
+    "p": 8.371010919163342e-09
+   },
+   "vs_ica_scale": {
+    "p": 8.371010919163342e-09
+   }
+  },
+  "single_ingredient_vs_neither": {
+   "eig_probe_vs_ica_probe": {
+    "a": "18/40",
+    "b": "27/40",
+    "fisher_p": 0.0707,
+    "risk_diff_ci95": [
+     -0.4143,
+     -0.0082
+    ],
+    "power_vs_20pt": 0.492,
+    "verdict": "equivalent to within the stated risk-difference bound"
+   },
+   "ica_scale_vs_ica_probe": {
+    "a": "18/40",
+    "b": "27/40",
+    "fisher_p": 0.0707,
+    "risk_diff_ci95": [
+     -0.4143,
+     -0.0082
+    ],
+    "power_vs_20pt": 0.5,
+    "verdict": "equivalent to within the stated risk-difference bound"
+   }
+  },
+  "reading": "Neither ingredient helps on its own (both single-ingredient cells are at or BELOW the no-ingredient cell); only eigen-directions AND the asymmetry pairing rule together give 40/40. The preregistered claim 'the pairing rule is the whole story' is FALSE: ICA's whitened directions are not the D-eigenvectors, so the asymmetry statistic computed on them is uninformative."
+ },
+ "POSTHOC_ica_lands_true_vs_r": {
+  "curve": {
+   "1": "23/40",
+   "1.05": "23/40",
+   "1.25": "25/40",
+   "2.05": "27/40"
+  },
+  "r2p05_vs_r1p00": {
+   "a": "27/40",
+   "b": "23/40",
+   "fisher_p": 0.4888,
+   "risk_diff_ci95": [
+    -0.1087,
+    0.2971
+   ],
+   "power_vs_20pt": 0.393,
+   "verdict": "equivalent to within the stated risk-difference bound"
+  },
+  "note": "ICA's landing rate is flat-to-slightly-rising in r and never approaches 1; the round-3 statement 'ICA coin-flips regardless of margin' is directionally right but the rate is ~0.58-0.68, mildly above 0.5."
+ },
+ "POSTHOC_routing_stage_ceiling_r2.05": {
+  "ccm_success_given_lands_true": "38/50",
+  "ica_success_given_lands_true": "25/29",
+  "oracle": "26/30",
+  "ccm_vs_ica_given_true": {
+   "a": "38/50",
+   "b": "25/29",
+   "fisher_p": 0.3867,
+   "risk_diff_ci95": [
+    -0.2598,
+    0.0916
+   ],
+   "power_vs_20pt": 0.782,
+   "verdict": "equivalent to within the stated risk-difference bound"
+  },
+  "ica_success_given_NOT_true": "1/21",
+  "reading": "Conditional on landing on the true split, success is ~0.76-0.87 in every arm including the oracle: the residual 13-24% loss is the ROUTING stage, not localization. L-CCM removes the localization loss entirely (50/50 landings) and inherits the routing loss."
+ },
+ "POSTHOC_r110_vs_r205": {
+  "a": "23/30",
+  "b": "38/50",
+  "fisher_p": 1.0,
+  "risk_diff_ci95": [
+   -0.1943,
+   0.1836
+  ],
+  "power_vs_20pt": 0.688,
+  "verdict": "equivalent to within the stated risk-difference bound"
+ }
+}

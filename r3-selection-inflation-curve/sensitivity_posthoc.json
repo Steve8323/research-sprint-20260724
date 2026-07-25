@@ -1,0 +1,26 @@
+{
+ "sigma_w_point": 2.0589370898697767,
+ "sigma_w_ci": [
+  1.8205584841260236,
+  2.2278099972530776
+ ],
+ "rho_hat_point": 0.02565997235666162,
+ "rho_hat_ci": [
+  0.0,
+  0.23821281924471177
+ ],
+ "v1_pred_ci": [
+  -0.6488485336273421,
+  0.0
+ ],
+ "frac_boot_pred_inside_fresh_CI": 0.989,
+ "rho_hat_breakeven_for_V1": 0.2643347730129863,
+ "sigma_w_breakeven_for_V1": 1.7890724131922557,
+ "sigma_w_margin_pct": 13.106989912673306,
+ "design_rule": {
+  "delta=0.25": 258,
+  "delta=0.5": 65,
+  "delta=1.0": 17,
+  "delta=2.0": 5
+ }
+}

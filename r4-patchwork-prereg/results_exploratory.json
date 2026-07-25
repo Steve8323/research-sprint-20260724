@@ -1,0 +1,103 @@
+{
+ "label": "POST-HOC / EXPLORATORY (not preregistered)",
+ "mlp": {
+  "E1_mode_census": {
+   "routed": {
+    "pure_true": 5,
+    "pure_proxy": 6,
+    "mixed": 29,
+    "nondeterministic": 6
+   },
+   "control": {
+    "pure_true": 18,
+    "pure_proxy": 22,
+    "mixed": 0,
+    "nondeterministic": 20
+   },
+   "n_routed": 46,
+   "n_control": 60
+  },
+  "E2_patchwork_vs_alignment": {
+   "routed_mean_align_patchwork": 0.4973,
+   "routed_mean_align_nonpatchwork": 0.5127,
+   "routed_intermediate_align_n": 46,
+   "patchwork_given_intermediate": "29/46",
+   "patchwork_given_committed": "0/0",
+   "fisher_p": 1.0,
+   "spearman_align_vs_ndet": null
+  },
+  "E2b_pattern_mix": {
+   "routed_median_ambiguous": 4.0,
+   "control_median_ambiguous": 5.0
+  },
+  "E3_monitor_direction": {
+   "n": 29,
+   "median": 0.5208,
+   "mean": 0.4977,
+   "sd": 0.1887,
+   "frac_abs_dev_gt_0p10": 0.5517,
+   "frac_abs_dev_gt_0p20": 0.3103,
+   "frac_above_0p5": 0.5517,
+   "sign_binomial_wilson": [
+    0.3755,
+    0.7159
+   ],
+   "note": "per-model deviations are large but the SIGN is ~a coin flip, so no fixed monitor direction generalises across models",
+   "spearman_auroc_vs_deploy_alignment": {
+    "rho": 0.5935,
+    "p": 0.0006896251437867912,
+    "n": 29
+   }
+  }
+ },
+ "transformer": {
+  "E1_mode_census": {
+   "routed": {
+    "pure_true": 4,
+    "pure_proxy": 4,
+    "mixed": 12,
+    "nondeterministic": 0
+   },
+   "control": {
+    "pure_true": 1,
+    "pure_proxy": 3,
+    "mixed": 19,
+    "nondeterministic": 0
+   },
+   "n_routed": 20,
+   "n_control": 23
+  },
+  "E2_patchwork_vs_alignment": {
+   "routed_mean_align_patchwork": 0.4691,
+   "routed_mean_align_nonpatchwork": 0.4941,
+   "routed_intermediate_align_n": 8,
+   "patchwork_given_intermediate": "8/8",
+   "patchwork_given_committed": "4/12",
+   "fisher_p": 0.004699531634516156,
+   "spearman_align_vs_ndet": null
+  },
+  "E2b_pattern_mix": {
+   "routed_median_ambiguous": 5.0,
+   "control_median_ambiguous": 5.0
+  },
+  "E3_monitor_direction": {
+   "n": 12,
+   "median": 0.4637,
+   "mean": 0.4531,
+   "sd": 0.3179,
+   "frac_abs_dev_gt_0p10": 0.75,
+   "frac_abs_dev_gt_0p20": 0.5,
+   "frac_above_0p5": 0.4167,
+   "sign_binomial_wilson": [
+    0.1933,
+    0.6805
+   ],
+   "note": "per-model deviations are large but the SIGN is ~a coin flip, so no fixed monitor direction generalises across models",
+   "spearman_auroc_vs_deploy_alignment": {
+    "rho": 0.7063,
+    "p": 0.010245193941127852,
+    "n": 12
+   }
+  }
+ }
+}

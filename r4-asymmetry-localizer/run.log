@@ -1,0 +1,15 @@
+[S7] done {'0.4878': 16, '0.8': 16, '1': 64, '1.01': 16, '1.02': 16, '1.025': 16, '1.03': 16, '1.05': 16, '1.07': 16, '1.075': 16, '1.1': 16, '1.15': 16, '1.25': 16, '1.5': 16, '2.05': 16, '3': 16}
+[SWEEP-A] 20s
+[SWEEP-B] 1s
+[SWEEPS total] 20s
+[r205_ccm] 38/50 (87s, total 107s)
+[r205_ica] 26/50 (90s, total 197s)
+[r205_control] 0/30 (37s, total 234s)
+[r100_ccm] 14/50 (190s, total 423s)
+[r100_ica] 12/30 (104s, total 527s)
+[r205_oracle] 26/30 (115s, total 643s)
+[r100_control] 0/30 (55s, total 697s)
+[r110_ccm] 23/30 (111s, total 808s)
+[DROP] r125_ccm (guard)
+[DROP] r205_eigprobe (guard)
+TOTAL 808.1

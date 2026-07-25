@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Round-3 Adversarial Sprint — Master Report</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1d212b; --ink:#e7e9ee; --muted:#9aa3b2;
+    --line:#2a2f3a; --accent:#7aa2ff; --solid:#3ecf8e; --sug:#f5b942; --dead:#ff6b6b;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 22px 80px;}
+  h1{font-size:26px;margin:0 0 4px;letter-spacing:.2px;}
+  h2{font-size:20px;margin:38px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+  h3{font-size:15px;margin:22px 0 4px;color:var(--accent);}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 6px;}
+  .lead{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:16px 0;color:var(--muted);}
+  code{background:#0c0e12;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12.5px;color:#cfd6e4;
+    font-family:ui-monospace,Menlo,monospace;}
+  a{color:var(--accent);}
+  ol.rank{list-style:none;counter-reset:r;padding:0;margin:0;}
+  ol.rank>li{counter-increment:r;position:relative;background:var(--panel);border:1px solid var(--line);
+    border-radius:10px;padding:14px 16px 14px 54px;margin:12px 0;}
+  ol.rank>li::before{content:counter(r);position:absolute;left:14px;top:14px;width:26px;height:26px;
+    display:flex;align-items:center;justify-content:center;background:var(--panel2);border:1px solid var(--line);
+    border-radius:50%;font-weight:700;color:var(--accent);font-size:14px;}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.4px;padding:2px 8px;border-radius:999px;
+    vertical-align:middle;margin-left:6px;}
+  .tag.solid{background:rgba(62,207,142,.14);color:var(--solid);border:1px solid rgba(62,207,142,.4);}
+  .tag.sug{background:rgba(245,185,66,.14);color:var(--sug);border:1px solid rgba(245,185,66,.4);}
+  .slug{color:var(--muted);font-size:12.5px;font-family:ui-monospace,Menlo,monospace;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr;}}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;}
+  .card.dead{border-color:rgba(255,107,107,.35);}
+  .card.pub{border-color:rgba(62,207,142,.3);}
+  .card h3{margin-top:0;}
+  .tblwrap{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--panel2);color:var(--ink);font-weight:600;}
+  td.num{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#c7cede;white-space:normal;}
+  .v-solid{color:var(--solid);font-weight:700;}
+  .v-sug{color:var(--sug);font-weight:700;}
+  .pass{color:var(--solid);font-weight:700;}
+  .fail{color:var(--dead);font-weight:700;}
+  .partial{color:var(--sug);font-weight:700;}
+  .key{color:var(--muted);font-size:13px;margin:6px 0 0;}
+  .foot{color:var(--muted);font-size:12.5px;margin-top:20px;}
+  ul.tight{margin:6px 0;padding-left:20px;}
+  ul.tight li{margin:5px 0;}
+  blockquote{margin:14px 0;padding:12px 16px;border-left:3px solid var(--accent);
+    background:var(--panel);border-radius:0 8px 8px 0;color:var(--ink);}
+  blockquote p{margin:0 0 10px;}
+  blockquote p:last-child{margin-bottom:0;}
+  .settle{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:12px 0;}
+  .verdictline{font-size:16px;background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--sug);
+    border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Round-3 Adversarial Sprint — Master Report</h1>
+<p class="sub"><strong>Date:</strong> 2026-07-25 · <strong>Scope:</strong> 6 preregistered experiments aimed <em>at</em> the portfolio's strongest line (worldview-as-switch), plus one methods experiment aimed at the portfolio's own selection hygiene. <strong>Verdicts: 2 SOLID, 4 SUGGESTIVE.</strong></p>
+
+<div class="lead">
+<strong>How to read this.</strong> Round 1 found the switch. Round 2 removed its oracle. Round 3's job was to try to break it: rotate the basis, attack the weights, add cue count, change the substrate, and read out what the switch actually computes. Every claim below uses the <em>auditor's corrected headline</em>. Where the agent's own headline and the audit disagree, the audit wins — three of the six had a load-bearing clause overstated, and one had a conclusion reversed outright.
+</div>
+
+<h2>a) TL;DR — ranked by consequence for the paper</h2>
+
+<ol class="rank">
+<li>
+<strong>Round 2's headline claim must be restated: localization is not oracle-free.</strong> <span class="tag sug">SUGGESTIVE</span> <span class="slug">r3-entangled-localization</span><br>
+"A data-only probe removes the oracle" turns out to mean "a data-only probe works when you hand it a coordinate system in which the two concepts already occupy disjoint columns" — and that coordinate system <em>is</em> oracle information. The decisive control is not the rotation: swap in a basis-agnostic (equivariant) localizer while leaving the data axis-aligned and selectability collapses just as hard, 13/30 vs 25/30 (p=0.0028). Under rotation, 31/60 (52%). At exactly equal cue strength there is a proven identifiability obstruction — the labelled training distribution has an orthogonal symmetry group of order 64 whose orbit on the true split has exactly two members, so any equivariant localizer must coin-flip (ICA lands true 39/90; success 87% when it lands true vs 26% when it lands entangled, p=8.4e-9).<br>
+<strong>Audit correction that changes the prescription:</strong> that obstruction is knife-edge in cue strength. At margin ratio 2.05 the group drops to order 16 and the orbit collapses to one, so identifiability <em>is</em> restored off the symmetric point; ICA still coin-flips there even at n=200,000, which makes it a failure of ICA's kurtosis contrast, not of the data. The paper cannot say "no unsupervised localizer can exist" — it must say "we do not have one, and the one we tried fails for reasons that are fixable in principle."
+</li>
+
+<li>
+<strong>The switch is not a safety property.</strong> <span class="tag sug">SUGGESTIVE</span> <span class="slug">r3-switch-tamper</span><br>
+Three independent ways. (i) Ship the routed model plus an inference-time mask and an adversary with the weights flips the worldview at zero cost — 0 steps, 0 data, 23/23, structural. (ii) Commit by physically deleting the unselected half and the tamper-resistance you get is not separable from parameter count: a routing-free H=4 model with the <em>identical 62 live parameters</em> matches the switch on recovery AUC (0.834 vs 0.840, p=0.40) and beats the corrected baseline by the identical 61-step margin. (iii) Ordinary benign fine-tuning erases the composite selectability criterion in 100 steps, 5% of the training budget, no adversary (23/23 → 12/23 → 7/23 at 2000, McNemar p=3.05e-5).<br>
+<strong>Audit refinements, both important:</strong> the capacity nulls are weak evidence of equivalence (the flip-cost test cannot reach p&lt;0.05 even under a <em>perfect</em> switch, because both arms sit at the censoring ceiling), and the capacity control was never run under the one attacker where the switch shows a live advantage. And what benign training destroys is the criterion's <em>competence</em> leg, not the worldview readout — at 2000 steps the aligned side still leads 0.869 vs 0.125 with the sign preserved 23/23.
+</li>
+
+<li>
+<strong>The "hedging" safety story from rounds 1–2 is dead, and it inverts.</strong> <span class="tag solid">SOLID</span> <span class="slug">r3-lm-organism · r3-switch-mechanism</span><br>
+Both rounds framed the price of selectability as: the un-ablated routed model sits near 0.5, so you can tell you forgot to select. Two experiments independently kill this. In the transformer the routed model is decisively not a hedger (7/12 committed, sd 0.371, vs round-1's 1/30, p=2.1e-4). In the MLP mechanism run the preregistered hedger prediction failed in the opposite direction: determinism 0.808 vs a predicted ≤0.5, margins 2.1× a standard model's, and 16/22 seeds contain <em>both</em> deterministic-true-cue and deterministic-proxy-cue input patterns. An unselected routed model is not uncertain; it is confidently inconsistent — a per-input patchwork of two worldviews. A confidence monitor cannot detect it, and standard training never produced this mode (0/55 in the sister experiment, 0/30 controls here).
+</li>
+
+<li>
+<strong>What the switch computes is now exact, and partly by fiat.</strong> <span class="tag solid">SOLID</span> <span class="slug">r3-switch-mechanism</span><br>
+Routing zeroes the layer-2 cross-blocks at init and they receive identically zero gradient, so Δ_full(x) = Δ_A(x) + Δ_B(x) + bias is an exact causal decomposition (residual 3.8·10⁻⁶). Within that imposed structure each column learns a closed-form sign-product (XOR) rule on its own cue pair, readable off the weights with no fitting (44/44 columns on switchable seeds; 8/16 on non-switchable). The un-ablated model is a margin race: the column with the larger |contribution| wins 95.7% of draws. Partial gating is graded at the population level (W=0.289, CI excludes the 0.25 rule) but is a <strong>threshold, not a blend</strong> — 99.96% of the inputs that change flip exactly once, and the smooth curve is precisely the CDF of per-input flip points. So α=0.7 buys "70% of cases judged by rule A", not a hedged judgement. The selection plateau is wide (fully selected for all α ≲ 0.3), so imperfect ablation still selects.
+</li>
+
+<li>
+<strong>The mechanism generalizes — to k-way selection and to a sequence model — but the success rates are not effect sizes.</strong> <span class="tag sug">SUGGESTIVE</span><span class="tag solid">SOLID</span> <span class="slug">r3-multiway-switch · r3-lm-organism</span><br>
+k=3 and k=4 give 20/20 clean post-hoc selection vs 0/20 for standard training (p=1.45·10⁻¹¹, both primaries pass), with cross-worldview leakage sitting exactly at the eval set's zero-interference floor. All 25 failures in the grid are columns that failed to learn XOR, none are routing leaks; required width is a per-column capacity cost, not a k-specific interference cost. Separately, both round-1 claims transfer from a 154-param MLP to a 68.5k-param from-scratch transformer where the cue is a circuit (attend to a marker token, read its position), a bag-of-tokens model is provably at chance, and the two routing groups <em>share</em> a residual stream: seed lottery reproduces (deploy alignment 0.000–0.933 at held-out 1.000), routed 11/12 vs control 0/12 (p=9.6·10⁻⁶).<br>
+<strong>The deflation both audits insist on:</strong> in the k-way toy the columns are structurally disjoint subnetworks sharing only two output-bias scalars (gradient trace: 0/108, 0/144, 0/24 shared weights), and in every arm each group is trained under exactly the ablation mask it is later evaluated with. Selectability at these numbers is close to guaranteed by construction. Report it as a demonstration, never as an effect size.
+</li>
+
+<li>
+<strong>A validated deflation rule for sweep-selected numbers, and a list of portfolio numbers it flags.</strong> <span class="tag sug">SUGGESTIVE</span> <span class="slug">r3-selection-inflation-curve</span><br>
+Shrink the winner's excess by ρ̂ = 1 − s²/S² (s = per-cell SE, S = SD across cells). Confirmed in simulation against the closed form E[winner − truth] = a_k·s·√(1−ρ) (100/100 cells within 15%; bias 397/400, RMSE 393/400). Applied to the noise-probe's 24-layer sweep it diagnoses ρ̂ = 0.026: there was no layer-to-layer signal to select on. It turns the published −2.72 nats into −0.07 against a fresh preregistered truth of +0.22 [−0.72, +1.16], and cuts 8-layer out-of-sample RMSE 1.22 → 0.42. Honest limits: the preregistered real-data primary FAILED (p=0.125) — though it had only ~53% power even if the rule is exactly true, so it is uninformative rather than disconfirming — and at ρ̂ ≈ 0 the calibrated rule is indistinguishable from shrinking all the way to the sweep mean.
+</li>
+</ol>
+
+<h2>b) Verdict on the switch line: does it survive de-risking?</h2>
+
+<div class="verdictline">
+<strong>Short answer: the mechanism survives; the two claims that made it sound like a safety result do not.</strong> The line narrowed, and it narrowed in the two places where a reviewer would push.
+</div>
+
+<div class="grid2">
+<div class="card pub">
+<h3>What survived, cleanly</h3>
+<ul class="tight">
+<li><strong>Underdetermination is real at both scales.</strong> 12 transformer control seeds all reach held-out 1.000 and disagree completely off-distribution (0.000–0.933, χ²(11)=15213). Not an artifact of the tiny MLP.</li>
+<li><strong>Routing → post-hoc selectability, everywhere tried.</strong> MLP 22/30 (oracle) and 23/30 (learned), transformer 11/12 vs 0/12, k=3 and k=4 at 20/20 vs 0/20. Round-1 and round-2 anchors reproduce to |diff| = 0.000000.</li>
+<li><strong>Routing is basis-free.</strong> <em>Given</em> the true subspaces: 26/30 under random rotation, 28/30 under dense non-orthogonal mixing — both at or above the 25/30 axis-aligned rate. The rotation attack never touched the mechanism.</li>
+<li><strong>It is a k-way selector, not a toggle.</strong> Cost scales as total capacity k·w, with w set by concept difficulty rather than by k.</li>
+<li><strong>The mechanism is exact and legible.</strong> Additive vote of two closed-form rule modules; a dial that is a controllable rate; a wide selection plateau.</li>
+<li><strong>The commitment is stable where you would want it.</strong> After 2000 steps of benign fine-tuning the deleted-subnet model still points the right way (22/23); the selection direction survives all seven distribution shifts (23/23).</li>
+</ul>
+</div>
+<div class="card dead">
+<h3>What narrowed, and by how much</h3>
+<ul class="tight">
+<li><strong>Oracle-free localization: retracted as stated.</strong> The honest claim is "we can localize when the concepts are already coordinate-separated". Both equivariant localizers fail; the dictionary one reaches 0.99 label accuracy on both atom pairs while landing on neither true nor entangled split 21/30 — label-predictivity alone is not a localization signal. This is now the bottleneck of the whole line.</li>
+<li><strong>Tamper resistance: retracted.</strong> Masked switch = free flip; deleted subnet ≈ smaller model. No routing-specific residual detectable — though "not detectable at n=23 vs 12 with a censored metric" is not "not there".</li>
+<li><strong>Drift.</strong> Cross-block mass refills 0 → 5.59 after 100 steps of ordinary agreeing-data training. Nothing maintains the block-diagonal structure once the routing loss is removed, so a shipped switch needs the routing objective kept on for life.</li>
+<li><strong>The hedger cost is replaced by a worse cost.</strong> Confident patchwork, undetectable by uncertainty monitoring.</li>
+<li><strong>The success rates are not effect sizes.</strong> Near-tautological wherever the columns are disjoint and the training mask equals the eval mask. Rounds 1–2's misses (8/30, 7/30) were almost certainly width-4 optimization failures — round-1's own H=16 → 30/30 note said the same.</li>
+</ul>
+</div>
+</div>
+
+<h3>The scope statement a paper could defend</h3>
+<blockquote>
+<p>In a setting where two (or k) label-equivalent cues are <strong>known to occupy disjoint, known subspaces</strong>, gradient routing converts an implicit seed-lottery commitment into an explicit, labeled, k-way switch. The mechanism is exact (the routed columns are causally isolated closed-form rule modules whose votes add), basis-independent given the subspaces, scales to k=4 and to a from-scratch transformer with a shared residual stream, and supports graded population-level control that is a per-input threshold rather than a blend.</p>
+<p>It requires oracle localization: the data-only probe of round 2 works only in a coordinate system where the concepts are already separated, and every basis-agnostic localizer we tried is at chance. At exactly equal cue strength this is provably unfixable (the labelled distribution has an exact symmetry whose orbit contains two splits); away from that point identifiability returns and the failure is the localizer's, not the data's.</p>
+<p>It is not a safety mechanism. A masked switch flips for free; a hard-deleted switch buys no tamper resistance beyond training a model of the same live parameter count; ordinary benign fine-tuning degrades the artifact within 5% of a training budget; and an unselected routed model is confidently inconsistent rather than uncertain, so it cannot be flagged by a confidence monitor.</p>
+<p>Toy scale throughout: ≤11-dim synthetic inputs, 154-param MLPs and a 68.5k-param transformer, searched-for equal-cost XOR cues.</p>
+</blockquote>
+
+<p><strong>Recommended title for the line:</strong> <em>Routing is basis-free; localization is not.</em> Lead with the identifiability argument, keep rounds 1–2 as the demonstration that the switch works when localization is solved, present the tamper and patchwork results as the negative half, and drop every claim that the data-only probe generalizes. The theorem-shaped negative — <em>the underdetermination the method claims to resolve reappears one level up, inside the localizer</em> — is arguably the more interesting contribution.</p>
+
+<h2>c) Selection inflation: the rule, and which portfolio numbers it flags</h2>
+
+<p><strong>Intuition.</strong> Pick the best of k noisy cells and you report the noise as well as the signal. Expected inflation is a_k·s·√(1−ρ), where s is the per-cell SE, a_k ≈ Φ⁻¹((k−0.375)/(k+0.25)) is the expected max of k standard normals, and ρ is the sweep's reliability. The fix is one line: θ̂ = D̄ + ρ̂·(D_sel − D̄) with ρ̂ = max(0, 1 − s²/S²). The diagnostic to print next to any sweep-selected number is R = |winner − mean| / (a_k·s); R ≤ 1 means the winner is fully explicable as selection noise.</p>
+
+<p class="key">a_k: k=5 → 1.18 · k=10 → 1.55 · k=24 → 1.95 · k=50 → 2.24 · k=144 → 2.63 · k=1770 → 3.39. Use the <strong>interaction</strong> (item × cell) SE, not the marginal one.</p>
+
+<div class="tblwrap">
+<table>
+<tr><th>Portfolio number</th><th>k</th><th>ρ̂</th><th>R</th><th>Verdict</th></tr>
+<tr><td>noise-probe layer sweep, L4/8/11-vs-L6 contrast (−2.72 nats)</td><td class="num">24</td><td class="num">0.026</td><td class="num">1.19</td><td><span class="fail">SUSPECT</span> — deflates to −0.07; fresh truth +0.22. Already replaced by r2-fragility-prereg.</td></tr>
+<tr><td>noise-probe <strong>grand mean</strong> over all 24 layers (−0.798)</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td><span class="pass">IMMUNE and replicates</span> — lands inside the fresh preregistered CI [−0.918, −0.367] with no correction.</td></tr>
+<tr><td>routing-hybrid-knob, recovery-AUC at α=1</td><td class="num">4</td><td class="num">0.90–0.91</td><td class="num">4.3–4.8</td><td><span class="pass">ROBUST</span> (deflation moves −0.137 → −0.124)</td></tr>
+<tr><td>routing-hybrid-knob, "resistance arrives between α 0.75 and 1.0"</td><td class="num">4</td><td class="num">—</td><td class="num">5.0–5.2 (→ ~3.5–3.7 with the correct two-sided constant)</td><td><span class="pass">ROBUST</span></td></tr>
+<tr><td>routing-hybrid-knob T3, "interior alphas are Pareto-useful" at p_waste=0.5</td><td class="num">5</td><td class="num">0.00</td><td class="num">1.21</td><td><span class="fail">DEMOTE to unsupported</span> — the retain axis there is pure noise.</td></tr>
+<tr><td>misgen-bimodality, max dip over the 25-regime grid</td><td class="num">25</td><td class="num">0.97</td><td class="num">7.6</td><td><span class="pass">ROBUST</span> (deflation ≈3%)</td></tr>
+<tr><td>misgen parent repo, "needs width 8 specifically"</td><td class="num">5</td><td class="num">—</td><td class="num">1.75</td><td><span class="partial">BORDERLINE / near-noise</span> (and the R was computed for width 2, the actual max at equal cost). The published replication cell is IMMUNE — retested out-of-sample.</td></tr>
+<tr><td>misgen-connectivity-graph, max-over-θ modularity</td><td class="num">1770</td><td class="num">—</td><td class="num">—</td><td><span class="partial">FAMILY-DEPENDENT, not withdrawn.</span> The all-θ null gives p=0.20 but is dominated by degenerate few-edge thresholds; restricted to the <em>published</em> window θ∈[0.0015, 0.090] the peak Q=0.199 gives p=0.028, and at m≥60 edges p=0.112. The threshold-free AUC=0.725 is immune.</td></tr>
+<tr><td><strong>the switch line itself</strong> (22/30, 23/30, 11/12, 20/20)</td><td class="num">1</td><td class="num">—</td><td class="num">—</td><td><span class="pass">IMMUNE</span> — per-seed success counts at a prespecified configuration, tested by Fisher exact. No max-over-k anywhere. Say so explicitly; reviewers will ask.</td></tr>
+</table>
+</div>
+
+<p><strong>Two methods points worth a paragraph each.</strong> (i) Holm–Bonferroni corrects a survey's <em>p-values</em>; it does not correct the reported <em>effect size</em> of the selected winner. A multiplicity-clean survey can still publish an inflated magnitude. (ii) The design version: before running a k-cell sweep, compute a_k·σ_w/√n. If the effect you hope to find is smaller than that, the sweep cannot find it — it can only manufacture it. The noise-probe layer sweep needed n≈65 prompts/cell to resolve 0.5-nat layer differences at k=24; it had 6.</p>
+
+<p><strong>Limits of the rule itself.</strong> The one real-data selection event has ρ̂ ≈ 0, which makes the calibrated rule empirically indistinguishable from "shrink all the way to the mean" (predicting exactly 0 explains 92.5% of the shrinkage vs the rule's 90.2%). The graded part is validated only against its own generative model. σ_w is imported from a different prompt set, and the validation flips to fail if the true σ_w is ≥13% smaller. The published two-sided variant mis-scales by ~40%: for max-of-|·| statistics the constant is E[max|N(0,1)|] = 1.47 at k=4, not a_k = 1.03.</p>
+
+<h2>d) Mechanism: what the switch computes</h2>
+
+<p class="verdictline">One sentence: <strong>two clean rules argue, ablation deletes a voter, and α handicaps one of them.</strong></p>
+
+<ul class="tight">
+<li><strong>Structure is imposed, not discovered.</strong> <code>zero_cross_blocks</code> zeroes the A↔B blocks of layer 2 at init, and under the masked views those blocks receive identically zero gradient; weight decay keeps them there. Max |w| across the cross-blocks = 0.0 on all 30 seeds. The routed network is literally two ~62-parameter subnets plus a summing readout, and Δ_full = Δ_A + Δ_B + bias is exact (residual 3.8·10⁻⁶; Δ_A entirely gate-independent). Control models' cross-blocks reach 0.88, so the same split there is arithmetic but not causal — it works only as a negative control.</li>
+<li><strong>Each column is a closed-form worldview rule.</strong> In the ±MARGIN encoding the ground truth is c(x) = 1[x_i·x_j &lt; 0], and the routed columns implement it exactly: 4-corner truth table read straight off the weights with no fitting, 44/44 columns on switchable seeds (control 13/60); agreement with c(x) on deploy data median 0.998 (control 0.500); flip rate when the <em>other</em> cue block is resampled median 0.000 (control 0.249). Row-mass on own-cue dims 0.865 vs other-cue 0.012 (control 0.469 / 0.456).</li>
+<li><strong>The composite is a margin race.</strong> Taking the larger |contribution| as the winner predicts the full model on 95.7% of draws, and the race outcome is near-deterministic within an input pattern (median |2w−1| = 0.957).</li>
+<li><strong>The dial is a threshold, not a blend.</strong> Population transition width W = 0.289 [0.276, 0.307] (graded by the preregistered rule, CI excluding 0.25), monotone 22/22, median Spearman −0.9997, unrouted negative control R ≈ 0. But per input, 50.2% of deploy inputs change prediction across the sweep and 99.96% of those flip <strong>exactly once</strong>; the 10–90 spread of per-input flip points is 0.285 against a population W of 0.289. Quote the gate with the number: unit gate 0.289, contribution gate 0.440.</li>
+<li><strong>The default position is bad.</strong> At k=2 the un-ablated routed model is a confident patchwork (determinism 0.808, margins 3.72 vs a control's 1.74; 16/22 seeds mix deterministic-true and deterministic-proxy patterns; 0/30 controls do). At k≥3 it becomes a strict consensus voter instead: held-out agreeing accuracy 1.000 but ≈0.01–0.03 on every single-cue probe. Either way, selection is a mandatory deployment step and the unselected model has no worldview you would want to ship.</li>
+<li><strong>Scope.</strong> Closed-form readability is a property of the toy, whose worldview <em>is</em> a 2-bit XOR. The transferable claims are structural — exact modularity, additive vote, margin race, threshold-shifting dial. "154 parameters, and here is the rule" is an existence proof, not evidence that a real worldview module would be readable.</li>
+</ul>
+
+<h2>e) Preregistration adherence</h2>
+
+<p>Every experiment stamped <code>PREREG.md</code> before the confirmatory run; mtimes confirm PREREG precedes code and results in all six. <strong>No auditor found conclusion-switching in any experiment.</strong> The most notable feature of the round: two of its most important results are preregistered <em>failures</em> that were reported as failures (the hedger prediction, and the deflation rule's real-data primary).</p>
+
+<div class="tblwrap">
+<table>
+<tr><th>Experiment</th><th>Primary(ies)</th><th>Held?</th><th>Deviations / post-hoc</th><th>Outcome switch?</th></tr>
+<tr>
+<td class="slug">r3-entangled-localization</td>
+<td>rot_ica vs rot_control, p&lt;0.01 AND ≥10/30</td>
+<td><span class="pass">PASS</span> (16/30 vs 0/30, p=1.9·10⁻⁶) — agent volunteers unprompted that this is the wrong floor</td>
+<td>Prereg'd equivariance control <span class="fail">failed</span> (same orbit member on only 15/30) and is reported; the exploratory "dense mixing helps ICA" hunch was written into PREREG and failed (14/30). Post-hoc, labeled: 60-seed extension (same fresh seeds added to <em>both</em> arms, comparison fixed first, primary already passed), conditional cross-tab, effective-floor test. <code>experiment.py</code> <em>asserts</em> orbit size 2 as a literal rather than enumerating it — the auditor enumerated independently (|G|=64, orbit=2) and it is correct.</td>
+<td>None</td>
+</tr>
+<tr>
+<td class="slug">r3-switch-tamper</td>
+<td>6: A1, A2, D1, D2, S1</td>
+<td>A1 <span class="fail">FAIL</span> (p=0.133, reported as null, not rescued); A2 <span class="pass">PASS</span> (p=7.8·10⁻⁴); D1 drift-fragile (p=3.05·10⁻⁵); D2 position-stable (down-weighted by its own control); S1 not-stable</td>
+<td>Two amendments, both <em>before</em> the run and both adding a <em>stronger</em> attacker; smoke-run disclosed in Amendment 2. Post-hoc physically segregated in <code>posthoc.py</code>/<code>posthoc.json</code> (verified: nothing leaks into results.json). Only D1 and A2 survive post-hoc Holm. <strong>Gap:</strong> the capacity control was never run under the Amendment-2 functional attacker.</td>
+<td>None</td>
+</tr>
+<tr>
+<td class="slug">r3-multiway-switch</td>
+<td>P1 (k=3,w=8), P2 (k=4,w=8): p&lt;0.025 AND ≥14/20</td>
+<td><span class="pass">Both PASS</span> (20/20, p=1.45·10⁻¹¹)</td>
+<td>Prereg'd S2 excess-failure flag fired exactly where the rule said it could (k=4/w=4) and is reported as a failure of the naive extrapolation. <strong>Undeclared deviation:</strong> PREREG line 98 said an anchor mismatch means reporting k&gt;2 as a <em>new</em> experiment; max|diff| was 0.0255, not 0.000000, and the rule was overridden after diagnosis (diagnosis verified correct, but the override should have been labeled). The post-hoc null-leak simulation has no script on disk.</td>
+<td>None</td>
+</tr>
+<tr>
+<td class="slug">r3-lm-organism</td>
+<td>P1 seed lottery (χ² p&lt;0.001 + ≥3 committed); P2 routed vs control (p&lt;0.01 + ≥8/12)</td>
+<td><span class="pass">Both PASS</span> (χ²(11)=15213; 11/12 vs 0/12, p=9.6·10⁻⁶)</td>
+<td><strong>Deviation that moved the number down:</strong> <code>experiment.py</code>'s success flag omitted the prereg'd competence gate (12/12); <code>analysis.py</code> applies it and 11/12 is reported as primary. Pilot on disjoint seeds 0–1 computed only train/held-out accuracy — no deploy number seen before preregistration. Post-hocs labeled and self-deflated. <strong>One headline clause unsupported:</strong> "routed more seed-committed than control" is NS at n=12 (Levene p=0.15).</td>
+<td>None</td>
+</tr>
+<tr>
+<td class="slug">r3-selection-inflation-curve</td>
+<td>Part A P1/P2 (simulation); Part B <strong>V2</strong> (real data)</td>
+<td>P1 <span class="pass">PASS</span>, P2 <span class="pass">PASS</span>, V1 <span class="pass">PASS</span>, <span class="fail">V2 FAIL (p=0.125)</span>, V3 <span class="pass">PASS</span>, V4 <span class="pass">PASS</span></td>
+<td>Opens with an explicit disclosure that Part B is <em>not</em> outcome-blind (the fresh validation means were already published and read first), with pre-fixed mitigations: no fresh mean touches a rule parameter. The failed primary is in the agent's own headline. V2b and the RMSE comparison were pre-stated as secondary, not invented after. Post-hoc bootstrap in a separate file. <strong>Audit:</strong> V2 had ~53% power even under a true rule — uninformative, not disconfirming.</td>
+<td>None</td>
+</tr>
+<tr>
+<td class="slug">r3-switch-mechanism</td>
+<td>Graded-vs-toggle: median W ≥ 0.25</td>
+<td><span class="pass">PASS</span> (W=0.289, CI [0.276, 0.307] excludes the boundary); Secondary 1 <span class="pass">PASS</span> on all three thresholds</td>
+<td>Secondary 2 declared pilot-informed in advance (one-seed peek disclosed in PREREG) and its prediction <span class="fail">FAILED</span> (D=0.808 vs predicted ≤0.5); reported as a failure and treated as the most interesting result. Post-hoc patchwork/margin-race/flip-structure analyses in separate files, self-labeled inside the JSON. Anchor to round 1 reproduces at 0.000000 on both arms.</td>
+<td>None</td>
+</tr>
+</table>
+</div>
+
+<p class="key"><strong>Harness note.</strong> All six agents were blocked from writing <code>FINDINGS.md</code> ("subagents may not create report files"), so six full writeups exist only in structured output. That is a real artifact gap: <code>PREREG.md</code>, code and <code>results.json</code> are on disk everywhere, but the narrative is not. Fix the harness rule or have the orchestrator materialize the files.</p>
+
+<h2>f) Per-experiment table</h2>
+
+<div class="tblwrap">
+<table>
+<tr><th>Slug</th><th>Verdict</th><th>Corrected headline (auditor's)</th><th>Key numbers</th></tr>
+
+<tr>
+<td class="slug">r3-switch-mechanism</td>
+<td class="v-solid">SOLID</td>
+<td>Among the 22/30 routed seeds whose switch works, the network is <strong>by construction</strong> two isolated ~62-param subnets plus a summing readout — cross-blocks zeroed at init and receiving identically zero gradient, so Δ_full = Δ_A + Δ_B + bias is exact — and within that imposed structure each column learns its cue's sign-product (XOR) rule cleanly (44/44 truth tables on switchable seeds; 8/16 on non-switchable). Gating gives population-level graded control (W=0.289, primary PASS) but per input it is a threshold: 99.96% of changing inputs flip exactly once and the curve is the CDF of flip points. The preregistered hedger prediction FAILED in the opposite direction — the un-ablated model is a confident per-input patchwork (D=0.808, margins 2.1×) — which survives margin-matching in this run's own controls (5/5 high-margin controls deterministic but PURE; 0/30 controls mixed vs 16/22 routed). Caveats: the unrouted control shows no <em>consistent</em> direction but not no effect (median |R|=0.216); the mixture-vs-dominance verdict is unresolved, not intermediate (balance ratios bimodal: 7 ≤0.2, 9 ≥0.5).</td>
+<td class="num">cross-blocks 0.0 on 30/30 seeds, additivity residual 3.8e-6; W=0.2894 [0.2759,0.3068], monotone 22/22, plateau α≲0.3; truth tables 44/44 vs control 13/60; c(x) agreement 0.998 vs 0.500; other-cue flip 0.000 vs 0.249; D 0.808 vs 0.479 (p=0.020), margins 3.72 vs 1.74; patchwork 16/22 seeds, 51 true / 55 proxy / 70 ambiguous of 176; margin race 95.7%; anchor |diff|=0.000000</td>
+</tr>
+
+<tr>
+<td class="slug">r3-lm-organism</td>
+<td class="v-solid">SOLID</td>
+<td>Both worldview-as-switch claims transfer from the 154-param MLP to a 68.5k-param from-scratch transformer: the seed lottery reproduces (12 control seeds all at held-out 1.000 but deploy 0.000–0.933, χ²(11)=15213) and routing makes the worldview post-hoc selectable, 11/12 vs 0/12 (p=9.6e-6) — though selectability is close to guaranteed by construction, since each group is trained in isolation under exactly the ablation mask it is later evaluated with, so 11/12 is a demonstration and not an effect size. Round-1's HEDGING claim does NOT transfer: the routed transformer is decisively not a hedger (7/12 committed, sd 0.371, vs round-1's 1/30, p=2.1e-4; vs occlusion_only's 0.500±0.017, Levene p=4.8e-6) — but the stronger comparative claim that routed is MORE committed than the control is NOT supported at n=12 (Levene p=0.15, Fisher p=0.41) and must be reported as a non-significant direction. Occlusion alone kills the lottery (0.500±0.017, |R|=0.020, Levene vs control p=1.9e-3) while buying little selectability (3/12, p=0.217, underpowered), so determinacy and selectability plausibly dissociate.</td>
+<td class="num">68,546 params, d=64, 2 layers, 4 heads; task control: per-token-count std = 0.0 (bag-of-tokens provably at chance); routed 11/12 [0.646,0.985], control 0/12, occlusion_only 3/12; selA_deploy 1.000 and selB_deploy 0.000 on all 12 routed seeds; competence gate cost 1 seed (s707 un-ablated 0.587 while each subnet alone is 1.000 — destructive interference on the shared residual stream); 573 s on MPS</td>
+</tr>
+
+<tr>
+<td class="slug">r3-entangled-localization</td>
+<td class="v-sug">SUGGESTIVE</td>
+<td>Routing is basis-free; localization is not — and the localization failure is caused by removing coordinate privilege, not by rotation. Given the true subspaces, routing is completely basis-independent (rot_oracle 26/30, mix_oracle 28/30, at or above the 25/30 axis rate). Swap in a basis-agnostic localizer and selectability drops to a coin flip in EVERY basis: axis_ica 13/30 vs axis_pair 25/30 (p=0.0028) with the data unrotated; rot_ica 31/60. Round-2's 23/30 was evidence that concepts are localizable when you are handed a basis in which they are already separated. At exactly equal cue strength the cause is an exact identifiability obstruction, independently verified by enumerating the symmetry group of the labelled centres (|G|=64, orbit of the true split = exactly 2). <strong>IMPORTANT CORRECTION:</strong> that obstruction is knife-edge in cue strength — |G| drops to 16 and the orbit collapses to one split already at margin ratio 2.05 — so SECONDARY 5's "making the proxy cue stronger does not restore identifiability / the degeneracy is not knife-edge" is backwards. Identifiability IS restored; ICA still coin-flips at margin 3.0 even at n=200,000, which makes that a degeneracy of ICA's kurtosis contrast, not of the data. A better unsupervised localizer is ruled out only at exact cue symmetry. The honest floor for a routed arm is routing-with-a-broken-split (rot_pair 18/60, 30%), not standard training (0/30), and the nulls used to argue arm equivalence have power ≤0.24 against a 20-point difference.</td>
+<td class="num">10 arms × 30 seeds: axis_pair 25/30, axis_ica 13/30, rot_pair 10/30, rot_ica 16/30, rot_dict 8/30, rot_oracle 26/30, rot_control 0/30, mix_ica 19/30, mix_oracle 28/30, mix_control 0/30; primary p=1.94e-6; power extension rot_ica 31/60 vs rot_pair 18/60, p=0.025; ICA lands true 39/90; success 87% (true) vs 26% (entangled), p=8.4e-9; verify_rerun max|diff|=0.0</td>
+</tr>
+
+<tr>
+<td class="slug">r3-switch-tamper</td>
+<td class="v-sug">SUGGESTIVE</td>
+<td>The switch is not yet a safety property, but for a narrower reason than "it gets erased": a masked switch flips at zero cost (0 steps, 0 data, 23/23, structural), and the tamper-resistance hard deletion buys is not separable from parameter count — a routing-free H=4 model with the identical 62 live parameters matches the switch on recovery AUC (0.834 vs 0.840, p=0.40) and beats the corrected baseline on flip cost by the identical 61-step margin (p=7.2e-4). Both nulls are weak evidence of equivalence: the AUC test has 80% power only at a 0.10 AUC shift against a total defense effect of 0.178, and the flip-cost test cannot reach p&lt;0.05 even under a perfect switch because both arms sit at the censoring ceiling — and the capacity control was never run under the functional attacker, the only one where the switch shows a live advantage. What benign fine-tuning erases is the <em>composite</em> criterion (23/23 → 12/23 → 7/23, p=3.05e-5, cross-block mass 0 → 7.1), and the mechanism is its competence leg, not the worldview readout: at N=2000 all 16 failures fail "both halves &gt;0.9 on agreeing data" while the strict deploy thresholds still pass 16/23 and the aligned side leads 0.869 vs 0.125 with sign preserved 23/23. The same leg is what fails under doubled noise and halved cue margin (S2: 23/23 competence, 0/23 alignment; S3: 23/23 and 4/23) — so drift-fragility and shift-fragility are one finding reported under two standards.</td>
+<td class="num">replication 23/30, L1 localization 30/30; attack arms: switch AUC 0.771, corrected 0.829, no-defense 0.950, h4 0.802, misaligned pos-control 0.995 (flip 0/23); functional attacker switch 0.756 vs corrected 0.848 (p=0.019), flip 50 vs 25 (p=0.036, agree 0.868); full-FT 0.371 with 23/23 censored is a relu'(0)=0 artifact (jitter → 0.658); drift 23/23→12/23(100)→8/23→10/23→7/23→7/23; hard-set position 22/23 at N=2000; verify_rerun max|diff|=0.0</td>
+</tr>
+
+<tr>
+<td class="slug">r3-multiway-switch</td>
+<td class="v-sug">SUGGESTIVE</td>
+<td>Routing scales from a 2-way to a k-way labeled worldview switch: at k=3 and k=4 with column width 8, 20/20 seeds give clean post-hoc selection under the designated column→cue mapping vs 0/20 for standard training scored generously over all k! permutations (p=1.45e-11, both primaries PASS on the pre-stated rule), and all 25 failures in the grid are columns that failed to learn XOR rather than routing leaks. Two caveats on strength: the k columns are structurally disjoint subnetworks sharing only the 2-element output bias, so near-zero cross-worldview interference is largely <em>forced</em> by construction rather than discovered (the measured leak equals the fixed eval set's exact zero-interference floor of 0.0175 at every k, and the preregistered interference tests have no dynamic range at that floor); and the preregistered scaling prediction q^k FAILED at k=4/w=4 (observed 0.30, predicted 0.64, CI excludes it) and was recovered only by a post-hoc substitution close to a restatement of the trainability finding. The supported claim is "cost grows in total capacity k·w with w set by concept difficulty", tested only at w∈{4,8} and k≤4, with an oracle cue localizer.</td>
+<td class="num">grid (routed/control of 20): k2w4 16/0, k2w8 20/1, k3w4 13/0, k3w8 20/0, k4w4 6/0, k4w8 20/0; selected-column probe accuracy median 0.9987/0.9989, max off-probe 0.0035/0.0058; gradient trace at k=3: shared params 0/108 l1.w, 0/144 l2.w, 0/24 l3.w, 2/2 l3.bias; per-column competence 0.900/0.867/0.8125 at w=4; anchor: identical per-seed verdicts to round 1 on all 20 shared seeds</td>
+</tr>
+
+<tr>
+<td class="slug">r3-selection-inflation-curve</td>
+<td class="v-sug">SUGGESTIVE</td>
+<td>A max-of-k deflation rule (shrink the winner's excess by ρ̂ = 1 − s²/S²) is confirmed in simulation (P1 100/100 cells within 15% of the closed form a_k·s·√(1−ρ); P2 bias 397/400, RMSE 393/400) and diagnoses the noise-probe's 24-layer sweep as having reliability ρ̂ = 0.026 (bootstrap CI [0.00, 0.24]) — close to no cell-to-cell signal. On real data it predicts the published −2.72-nat selected contrast as −0.07 against a fresh truth of +0.22 [−0.72,+1.16] and cuts 8-layer out-of-sample RMSE 1.22 → 0.42, but the preregistered PRIMARY (V2, exact Wilcoxon, n=8) FAILED at p=0.125 — and a power check shows that test had only ~53% power even if the rule is exactly true, so it is uninformative rather than disconfirming. Real-data support is one selection event in which ρ̂≈0 makes the calibrated rule indistinguishable from shrinking fully to the sweep mean; the graded calibration is validated only against the simulation's own generative model. Portfolio implications hold except the connectivity-graph withdrawal: restricted to the published θ window the peak Q=0.199 gives p=0.028 (vs p=0.20 for the all-θ null, whose 95th percentile is driven by degenerate few-edge θ), so restate as family-dependent, not withdrawn.</td>
+<td class="num">400 grid cells × 2000 reps; a_k: 1.18/1.55/1.95/2.24/2.63/3.39 at k=5/10/24/50/144/1770; σ_w=2.059 [1.82,2.23], s=0.841, S=0.852, ρ̂=0.0257; V1 pred −0.070, 90.2% of shrinkage explained; V2 W=9 p=0.125, RMSE 1.223→0.415; V2b W=0 p=0.0039; V3 t(3)=−0.69 p=0.54; V4 grand mean −0.798 inside [−0.918,−0.367]; runtime 5.4 s</td>
+</tr>
+
+</table>
+</div>
+
+<h2>g) What round 4 should do</h2>
+
+<p class="verdictline">The line has one bottleneck now, and it is <strong>localization</strong>. Everything else is either solved or honestly negative.</p>
+
+<ol class="rank">
+<li><strong>Attack the localization problem where the audit says it is winnable.</strong> The exact obstruction only holds at <em>exactly</em> equal cue strength; at margin ratio 2.05 the symmetry group collapses and the true split becomes identifiable. ICA fails there anyway, even at n=200,000, so this is a localizer-design problem, not an impossibility. Build a localizer that uses the asymmetry directly (moment-matching on the label-conditional covariance, or an explicit symmetry-breaking objective) and sweep margin ratio to find where it stops working. <strong>The single highest-value experiment in the portfolio.</strong> If it works, round 2's oracle-free claim comes back in a defensible form.</li>
+<li><strong>Add the symmetry-breaking information sources and price each one.</strong> Deployment/anti-proxy examples, an external concept label, temporal or causal structure. Even a handful of disagreeing examples should collapse the orbit; quantify the exchange rate (examples → localization accuracy → selectability).</li>
+<li><strong>Join the k-way result to the learned localizer.</strong> r3-multiway used the round-1 oracle, so the k-way and oracle-free results cannot currently appear in the same sentence. Whether a data-only probe recovers k disjoint cue groups at k=3,4 is one cheap run.</li>
+<li><strong>Run the missing tamper cell:</strong> the H=4 capacity control under the Amendment-2 functional attacker. That is the one condition where the switch shows a live, non-degenerate advantage, and exactly where the "it's capacity, not routing" conclusion is untested.</li>
+<li><strong>Break the tautology.</strong> Every strong selectability number so far comes from a setup where the columns are structurally disjoint and the training mask equals the eval mask. Design a routing variant where they are not: overlapping unit groups, a shared MLP, or a cue whose two readouts must live in the same subspace. If selectability survives <em>that</em>, the number becomes an effect size.</li>
+<li><strong>Preregister the patchwork claim and re-run it on fresh seeds.</strong> Currently post-hoc (176 patterns, r=0.993, 16/22 seeds) and the most paper-relevant safety statement the round produced. Include the transformer as a second substrate — the two agree qualitatively but the comparative claim there is NS at n=12.</li>
+<li><strong>Fix the power problem before making any more equivalence claims.</strong> n=20–30 per arm cannot support "no difference": the round produced at least five nulls with power ≤0.24 against a 20-point effect, and one flip-cost test that cannot reject even under a perfect effect. Run n≥60, or use TOST/equivalence bounds and report them as bounds. Use the round's own design rule: n ≥ (a_k·σ_w/δ)².</li>
+<li><strong>Portfolio hygiene, three edits, none touching the switch line:</strong> restate misgen-connectivity-graph's modularity claim as family-dependent (p=0.028 in its own θ window, p=0.11–0.20 under broader families) rather than withdrawing it; demote routing-hybrid-knob's T3 "interior alphas are Pareto-useful" at p_waste=0.5 to unsupported; drop "needs width 8 specifically" from the misgen writeup (R=1.75, near-noise). Also correct the deflation rule's two-sided constant (E[max|N|]=1.47 at k=4, not 1.03) before it is published.</li>
+<li><strong>Add a two-line selection audit to every table in the paper</strong> — k, n, s, S, ρ̂, R — plus one explicit sentence that the switch line's own numbers are k=1 and therefore immune. Use V4 as the worked case for why preregistration pays: the original 144-cell sweep already contained the right answer in its grand mean (−0.80); selection turned it into −2.72; a preregistered fresh test found −0.64.</li>
+</ol>
+
+<div class="settle">
+<strong>On writing it up.</strong> The switch line is not going to become a safety result by running more rounds of this toy. It is already a good methods-and-mechanism paper: <em>routing is basis-free, localization is not</em>, plus an exact mechanism, plus three preregistered negative results that a careful reviewer would otherwise find themselves. Scope round 4 as "the two experiments that could restore the oracle-free claim, plus the one that could make the numbers effect sizes" — and if item 1 fails, write the paper as it stands.
+</div>
+
+<h2>Artifact roots</h2>
+<p class="key">All six experiments live under <code>/Users/steven/research_sprint_20260724/&lt;slug&gt;/</code>, each with <code>PREREG.md</code> (stamped before the run), the experiment script(s), and <code>results.json</code>. <strong><code>FINDINGS.md</code> is missing in all six</strong> — the harness blocked subagent report writes; the narratives exist only in the structured outputs archived with this report.</p>
+<ul class="tight">
+<li><code>/Users/steven/research_sprint_20260724/r3-entangled-localization/</code></li>
+<li><code>/Users/steven/research_sprint_20260724/r3-switch-tamper/</code></li>
+<li><code>/Users/steven/research_sprint_20260724/r3-multiway-switch/</code></li>
+<li><code>/Users/steven/research_sprint_20260724/r3-lm-organism/</code></li>
+<li><code>/Users/steven/research_sprint_20260724/r3-switch-mechanism/</code></li>
+<li><code>/Users/steven/research_sprint_20260724/r3-selection-inflation-curve/</code></li>
+</ul>
+
+<p class="foot">Round-3 sprint · 6 experiments · 2 SOLID, 4 SUGGESTIVE · all preregistered, no outcome switching found. Companion reports: <code>REPORT.md</code> (round 1, 30 experiments) and <code>REPORT2.md</code> (round 2, 6 experiments).</p>
+
+</div>
+</body>
+</html>

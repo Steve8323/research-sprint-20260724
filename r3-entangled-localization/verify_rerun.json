@@ -1,0 +1,54 @@
+{
+ "rot_ica": [
+  {
+   "seed": 700,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "seed": 701,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "seed": 702,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  }
+ ],
+ "axis_pair": [
+  {
+   "seed": 700,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "seed": 701,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "seed": 702,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  }
+ ],
+ "rot_oracle": [
+  {
+   "seed": 700,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "seed": 701,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "seed": 702,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  }
+ ],
+ "max_abs_diff_overall": 0.0
+}

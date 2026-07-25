@@ -1,0 +1,25 @@
+[routed] selectable 23/30  loc=30/30  (49s)
+[pools] swept 51 seeds -> mis 12 ali 12  (83s)
+[h4] swept 66 -> 12  (160s)
+[attack:prereg:switch_aligned] n=23 best=r1_lr0.1 meanAUC=0.77122 jit=0.80362 fullft=0.3713  (167s)
+[attack:prereg:corrected_f5] n=12 best=r4_lr0.01 meanAUC=0.82861 jit=0.85231 fullft=0.8164  (171s)
+[attack:prereg:aligned_chance] n=12 best=r4_lr0.1 meanAUC=0.94975 jit=0.94975 fullft=0.8655  (175s)
+[attack:prereg:h4_aligned] n=12 best=r1_lr0.1 meanAUC=0.80161 jit=0.80161 fullft=0.5042  (179s)
+[attack:prereg:switch_misaligned] n=23 best=r4_lr0.01 meanAUC=0.99535 jit=0.99535 fullft=0.9959  (181s)
+[attack:func:switch_aligned] n=23 best=r1_lr0.1 meanAUC=0.75572 jit=0.75572 fullft=0.2065  (188s)
+[attack:func:corrected_f5] n=12 best=r4_lr0.01 meanAUC=0.84847 jit=0.85129 fullft=0.797  (192s)
+[attack:func:aligned_chance] n=12 best=r4_lr0.1 meanAUC=0.95125 jit=0.95125 fullft=0.8542  (196s)
+[drift] done  (231s)
+[stab:S0_none] retention 23/23 gap 0.9926 ctrl 0.9997
+[stab:S1_noise_half] retention 23/23 gap 1.0 ctrl 1.0
+[stab:S2_noise_double] retention 0/23 gap 0.7763 ctrl 0.9379
+[stab:S3_margin_half] retention 0/23 gap 0.6988 ctrl 0.9267
+[stab:S4_margin_1p5x] retention 23/23 gap 0.9981 ctrl 1.0
+[stab:S5_distract_x3] retention 23/23 gap 0.9855 ctrl 0.9994
+[stab:S6_offset] retention 23/23 gap 0.9674 ctrl 0.9976
+
+wrote /Users/steven/research_sprint_20260724/r3-switch-tamper/results.json  (239.4s)
+PRIMARY A1 {'n1': 23, 'n2': 12, 'U': 94.0, 'p_scipy': 0.13203429, 'exact_used': True, 'rank_biserial': -0.3188, 'p_perm': 0.132889, 'median1': 0.8399, 'median2': 0.8695, 'median_diff': -0.0296, 'median_diff_ci95': [-0.1519, 0.0562]}
+PRIMARY A2 {'n1': 23, 'n2': 12, 'U': 225.5, 'p_scipy': 0.00109706, 'exact_used': False, 'rank_biserial': 0.6341, 'p_perm': 0.00078, 'median1': 101.0, 'median2': 40.0, 'median_diff': 61.0, 'median_diff_ci95': [13.5, 81.0]}
+PRIMARY D1 {'lost': 16, 'gained': 0, 'discordant': 16, 'p': 3.0517578125e-05} {'k': 7, 'n': 23, 'rate': 0.3043, 'wilson95': [0.156, 0.5087], 'mean_cross_block': 7.14486}
+PRIMARY D2 {'lost': 1, 'gained': 0, 'discordant': 1, 'p': 1.0} {'k_aligned': 22, 'n': 23, 'rate': 0.9565, 'wilson95': [0.7901, 0.9923], 'mean_align': 0.9789, 'ci_mean_align': [0.9542, 0.996], 'mean_agree': 0.9959}

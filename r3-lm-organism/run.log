@@ -1,0 +1,93 @@
+  [control] s700 held=1.000 dep=0.221 selA(dep/held)=0.414/1.000 selB=0.326/0.896 R=-0.54 ok=False (13s)
+  [control] s701 held=1.000 dep=0.616 selA(dep/held)=0.451/1.000 selB=0.686/0.943 R=+0.26 ok=False (24s)
+  [control] s702 held=1.000 dep=0.484 selA(dep/held)=0.433/1.000 selB=0.441/1.000 R=-0.02 ok=False (35s)
+  [control] s703 held=1.000 dep=0.495 selA(dep/held)=0.491/0.956 selB=0.449/0.999 R=+0.00 ok=False (46s)
+  [control] s704 held=1.000 dep=0.464 selA(dep/held)=0.697/1.000 selB=0.292/1.000 R=-0.11 ok=False (56s)
+  [control] s705 held=1.000 dep=0.000 selA(dep/held)=0.382/1.000 selB=0.166/0.952 R=-1.00 ok=False (66s)
+  [control] s706 held=1.000 dep=0.365 selA(dep/held)=0.356/0.997 selB=0.495/0.829 R=-0.27 ok=False (77s)
+  [control] s707 held=1.000 dep=0.000 selA(dep/held)=0.000/1.000 selB=0.000/1.000 R=-1.00 ok=False (88s)
+  [control] s708 held=1.000 dep=0.865 selA(dep/held)=0.495/0.897 selB=0.868/1.000 R=+0.74 ok=False (97s)
+  [control] s709 held=1.000 dep=0.481 selA(dep/held)=0.904/1.000 selB=0.434/1.000 R=-0.03 ok=False (107s)
+  [control] s710 held=1.000 dep=0.933 selA(dep/held)=0.827/0.879 selB=0.958/0.998 R=+0.87 ok=False (119s)
+  [control] s711 held=1.000 dep=0.668 selA(dep/held)=0.413/1.000 selB=0.384/0.866 R=+0.35 ok=False (128s)
+[control] success 0/12 wilson=[0.0, 0.2425] deploy hi/lo/mid=2/2/8 mean=0.4661 (128s)
+  [routed] s700 held=1.000 dep=0.934 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=+0.86 ok=True (147s)
+  [routed] s701 held=1.000 dep=0.179 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=-0.63 ok=True (174s)
+  [routed] s702 held=1.000 dep=0.886 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=+0.77 ok=True (194s)
+  [routed] s703 held=1.000 dep=0.997 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=+0.99 ok=True (216s)
+  [routed] s704 held=1.000 dep=0.772 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=+0.54 ok=True (239s)
+  [routed] s705 held=1.000 dep=0.215 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=-0.58 ok=True (263s)
+  [routed] s706 held=1.000 dep=0.507 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=+0.00 ok=True (283s)
+  [routed] s707 held=0.587 dep=0.364 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=-0.22 ok=True (302s)
+  [routed] s708 held=1.000 dep=0.301 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=-0.40 ok=True (321s)
+  [routed] s709 held=1.000 dep=1.000 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=+1.00 ok=True (338s)
+  [routed] s710 held=1.000 dep=0.152 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=-0.71 ok=True (355s)
+  [routed] s711 held=1.000 dep=0.000 selA(dep/held)=1.000/1.000 selB=0.000/1.000 R=-1.00 ok=True (372s)
+[routed] success 12/12 wilson=[0.7575, 1.0] deploy hi/lo/mid=4/3/5 mean=0.5258 (372s)
+  [occlusion_only] s700 held=1.000 dep=0.503 selA(dep/held)=0.937/1.000 selB=0.214/0.770 R=+0.01 ok=False (389s)
+  [occlusion_only] s701 held=1.000 dep=0.511 selA(dep/held)=0.340/1.000 selB=0.663/0.994 R=+0.01 ok=False (406s)
+  [occlusion_only] s702 held=0.998 dep=0.520 selA(dep/held)=0.368/0.689 selB=0.695/1.000 R=+0.03 ok=False (422s)
+  [occlusion_only] s703 held=1.000 dep=0.489 selA(dep/held)=0.881/0.998 selB=0.079/0.999 R=-0.01 ok=True (439s)
+  [occlusion_only] s704 held=1.000 dep=0.506 selA(dep/held)=0.498/0.910 selB=0.511/0.990 R=-0.01 ok=False (456s)
+  [occlusion_only] s705 held=1.000 dep=0.489 selA(dep/held)=0.896/0.994 selB=0.002/1.000 R=+0.02 ok=True (473s)
+  [occlusion_only] s706 held=1.000 dep=0.502 selA(dep/held)=0.444/1.000 selB=0.639/0.949 R=-0.01 ok=False (489s)
+  [occlusion_only] s707 held=1.000 dep=0.465 selA(dep/held)=0.000/1.000 selB=0.982/0.999 R=-0.07 ok=True (506s)
+  [occlusion_only] s708 held=1.000 dep=0.505 selA(dep/held)=0.349/0.893 selB=0.905/1.000 R=+0.02 ok=False (522s)
+  [occlusion_only] s709 held=1.000 dep=0.500 selA(dep/held)=0.633/1.000 selB=0.412/0.714 R=+0.01 ok=False (540s)
+  [occlusion_only] s710 held=1.000 dep=0.530 selA(dep/held)=0.663/1.000 selB=0.423/1.000 R=+0.01 ok=False (556s)
+  [occlusion_only] s711 held=1.000 dep=0.482 selA(dep/held)=0.354/1.000 selB=0.583/0.618 R=-0.03 ok=False (573s)
+[occlusion_only] success 3/12 wilson=[0.0889, 0.5323] deploy hi/lo/mid=0/0/12 mean=0.5 (573s)
+
+PRIMARY 1 (seed lottery, control): {
+ "deploy_full": [
+  0.2215,
+  0.616,
+  0.484,
+  0.4945,
+  0.464,
+  0.0,
+  0.3647,
+  0.0003,
+  0.8652,
+  0.4815,
+  0.9333,
+  0.6678
+ ],
+ "chi2": 15212.765699276028,
+ "dof": 11,
+ "p_homogeneity": 0.0,
+ "n_hi": 2,
+ "n_lo": 2,
+ "n_mid": 8,
+ "spread": {
+  "min": 0.0,
+  "max": 0.9333,
+  "std": 0.2933
+ },
+ "criterion_1a_p_lt_1e3": true,
+ "criterion_1b_commitment": true,
+ "decision": "REPRODUCES"
+}
+PRIMARY 2 (routed vs control): {
+ "arms": [
+  "routed",
+  "control"
+ ],
+ "table": [
+  [
+   12,
+   0
+  ],
+  [
+   0,
+   12
+  ]
+ ],
+ "p": 7.39602301050679e-07,
+ "criterion_p_lt_0p01": true,
+ "criterion_routed_ge_8_of_12": true,
+ "decision": "H2 SUPPORTED"
+}
+SECONDARY ['routed', 'occlusion_only'] p = 0.000336519046978059 [[12, 0], [3, 9]]
+SECONDARY ['occlusion_only', 'control'] p = 0.21739130434782605 [[3, 9], [0, 12]]
+wrote /Users/steven/research_sprint_20260724/r3-lm-organism/results.json (573.0s)

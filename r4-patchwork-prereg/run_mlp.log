@@ -1,0 +1,12 @@
+ANCHOR {'routed': 0.0, 'control': 0.0} PASS
+  10/60 seeds (24s)
+  20/60 seeds (42s)
+  30/60 seeds (60s)
+  40/60 seeds (82s)
+  50/60 seeds (117s)
+  60/60 seeds (146s)
+|S| = 46 / 60 routed; control n = 60
+PRIMARY1: CONFIRMED D=0.7857 [0.622, 0.912] patchwork 29/46 vs 0/60 p=1.96e-14
+PRIMARY3 M2: median AUROC(conf) = 0.5208 95%[0.4546, 0.5509] 90%[0.4773, 0.5486] equiv=True | mech pos-ctrl 0.9996 | hedger neg-ctrl 0.4205
+PRIMARY3 M1: ANTI-INFORMATIVE 0.19655172413793104 [0.1115, 0.3012]
+wrote /Users/steven/research_sprint_20260724/r4-patchwork-prereg/results_mlp.json (146.0s)

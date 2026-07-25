@@ -1,0 +1,20 @@
+[ceiling_disjoint_w8 ] true-mask 60/60  learned-mask 60/60  (miss/comp 0/0)  73.5s
+[floor_control       ] true-mask 1/60  learned-mask 51/60  (miss/comp 59/46)  35.2s
+[anchor_disjoint_w4  ] true-mask 22/30  learned-mask 22/30  (miss/comp 8/8)  37.5s
+[overlap25           ] true-mask 60/60  learned-mask 50/60  (miss/comp 0/0)  110.9s
+[overlap50           ] true-mask 58/60  learned-mask 27/60  (miss/comp 2/0)  83.0s
+[shared_trunk        ] true-mask 60/60  learned-mask 60/60  (miss/comp 0/0)  159.9s
+[soft25              ] true-mask 60/60  learned-mask 60/60  (miss/comp 0/0)  325.2s
+[overlap75           ] true-mask 2/60  learned-mask 0/60  (miss/comp 58/0)  198.4s
+[soft50              ] true-mask 59/60  learned-mask 59/60  (miss/comp 1/0)  262.1s
+ANCHOR: {'max_abs_diff': 0.0, 'per_seed_success_identical': True, 'round1_successes': 22, 'my_successes': 22, 'anchored': True}
+
+=== PRIMARY ===
+  overlap25      60/60  rate 1.000 [0.9398, 1.0]  p_vs_floor=1.26e-33  shared=28  -> SURVIVES
+  overlap50      58/60  rate 0.967 [0.8864, 0.9908]  p_vs_floor=2.24e-30  shared=53  -> SURVIVES
+  overlap75       2/60  rate 0.033 [0.0092, 0.1136]  p_vs_floor=1  shared=93  -> BROKEN
+  shared_trunk   60/60  rate 1.000 [0.9398, 1.0]  p_vs_floor=1.26e-33  shared=130  -> SURVIVES
+  soft25         60/60  rate 1.000 [0.9398, 1.0]  p_vs_floor=1.26e-33  shared=328  -> SURVIVES
+  soft50         59/60  rate 0.983 [0.9114, 0.9971]  p_vs_floor=7.45e-32  shared=396  -> SURVIVES
+S2 trend: {'arms': ['ceiling_disjoint_w8', 'overlap25', 'overlap50', 'overlap75'], 'doses': [0.0, 0.25, 0.5, 0.75], 'successes': [60, 60, 58, 2], 'ns': [60, 60, 60, 60], 'z': -11.7333, 'p_one_sided_decreasing': 0.0}
+wrote /Users/steven/research_sprint_20260724/r4-break-tautology/results.json (1285.7s)

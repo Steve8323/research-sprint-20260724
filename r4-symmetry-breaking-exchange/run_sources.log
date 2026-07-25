@@ -1,0 +1,12 @@
+[unlab_m0      ] lands T/E/N =  7/17/ 6  wilson=[0.1179, 0.4093] (13s)
+[unlab_m1      ] lands T/E/N = 17/ 7/ 6  wilson=[0.392, 0.7262] (29s)
+[unlab_m4      ] lands T/E/N = 16/ 8/ 6  wilson=[0.3614, 0.6977] (45s)
+[unlab_m8      ] lands T/E/N = 16/ 8/ 6  wilson=[0.3614, 0.6977] (60s)
+[unlab_m32     ] lands T/E/N = 17/ 7/ 6  wilson=[0.392, 0.7262] (74s)
+[concept_m4    ] lands T/E/N =  9/15/ 6  wilson=[0.1666, 0.4788] (86s)
+[concept_m32   ] lands T/E/N = 11/ 9/10  wilson=[0.2187, 0.5449] (99s)
+[agree_m4      ] lands T/E/N =  8/ 7/15  wilson=[0.1418, 0.4445] (113s)
+[asym_rho1.0   ] lands T/E/N =  7/17/ 6  wilson=[0.1179, 0.4093] (125s)
+[asym_rho2.05  ] lands T/E/N = 14/ 9/ 7  wilson=[0.3023, 0.6386] (139s)
+[dsup_m8       ] lands T/E/N = 10/ 0/20  wilson=[0.1923, 0.5122] (157s)
+wrote /Users/steven/research_sprint_20260724/r4-symmetry-breaking-exchange/sources.json 156.8 s

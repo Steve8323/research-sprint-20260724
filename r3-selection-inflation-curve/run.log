@@ -1,0 +1,12 @@
+=== PART A: simulation of max-of-k inflation ===
+P1 pass=True (100/100);  P2 pass=True bias 397/400 rmse 393/400
+=== PART B: validation on the noise-probe 144-cell sweep ===
+sigma_w=2.059  s=0.841  Dbar=-0.798  S=0.852  rho_hat=0.026
+V1 pass=True pred=-0.070;  V2 pass=False p=0.1250;  V4 in_CI=True (Dbar=-0.798)
+=== PART C: apply the rule to other portfolio numbers ===
+  hybrid p_waste=0.5 AUC: R=4.27 ROBUST; max-gap R=5.04 ROBUST
+  hybrid p_waste=0.9 AUC: R=4.80 ROBUST; max-gap R=5.20 ROBUST
+  bimodality: full-grid R=7.63 ROBUST; width-search R=1.75 BORDERLINE
+  connectivity: Q_max=0.220 vs null p95=0.500, family-wise p=0.2028 (sanity 5.55e-17)
+  connectivity ARI: obs 0.108 vs null p95 0.167
+done in 5.4s -> results.json

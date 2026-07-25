@@ -1,0 +1,20 @@
+{
+ "k2_exact_null_median": 0.011,
+ "k2_exact_null_p95": 0.0315,
+ "k3_exact_null_median": 0.02,
+ "k3_exact_null_p95": 0.037,
+ "k4_exact_null_median": 0.0255,
+ "k4_exact_null_p95": 0.0415,
+ "obs_k2_w4_routed": 0.018,
+ "obs_k2_w4_control": 0.3825,
+ "obs_k2_w8_routed": 0.0175,
+ "obs_k2_w8_control": 0.4297,
+ "obs_k3_w4_routed": 0.0182,
+ "obs_k3_w4_control": 0.451,
+ "obs_k3_w8_routed": 0.0175,
+ "obs_k3_w8_control": 0.4055,
+ "obs_k4_w4_routed": 0.019,
+ "obs_k4_w4_control": 0.328,
+ "obs_k4_w8_routed": 0.0175,
+ "obs_k4_w8_control": 0.394
+}

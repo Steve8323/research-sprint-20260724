@@ -1,0 +1,56 @@
+{
+ "label": "POST-HOC / EXPLORATORY (not preregistered)",
+ "A0_mlp_criterion_decomposition": {
+  "routed_S": {
+   "n": 46,
+   "patchwork": 29,
+   "within_v_genuine": 2,
+   "median_class_bias": 0.7858,
+   "median_majority_class_rate_over_patterns": 0.8929
+  },
+  "control": {
+   "n": 60,
+   "patchwork": 0,
+   "within_v_genuine": 0,
+   "median_class_bias": 0.1,
+   "median_majority_class_rate_over_patterns": 0.55
+  },
+  "within_v_fisher_one_sided_p": 0.18598382749326148,
+  "note": "patchwork census replicates; the strict within-v (same-label) criterion does not"
+ },
+ "A0b_transformer_within_v_lower_bound": {
+  "routed": {
+   "n": 20,
+   "patchwork": 12,
+   "within_v_proven_lower_bound": 6
+  },
+  "control": {
+   "n": 23,
+   "patchwork": 19,
+   "within_v_proven_lower_bound": 11
+  },
+  "fisher_routed_gt_control_p": 0.9346219587424758,
+  "fisher_control_gt_routed_p": 0.18980840933795534,
+  "note": "lower bound: counts alone prove mixing only when one det-count exceeds 30 while the other is > 0; the true rates are >= these"
+ },
+ "runtime_sec": 76.8
+}
+{
+ "n": 46,
+ "median_held_agree_unablated": 1.0,
+ "min_held_agree_unablated": 0.9923,
+ "frac_competent_gt_0p9": 1.0,
+ "median_deploy_align": 0.5001,
+ "median_majority_class_rate": 0.8896,
+ "iqr_majority_class_rate": [
+  0.7256,
+  0.977
+ ],
+ "median_conf_on_majority_class": 0.9107,
+ "median_opp_sign_rate": 0.9895,
+ "median_abs_logit_bias": 1.5522,
+ "median_mean_abs_column_sum": 4.8324,
+ "median_bias_decides_rate": 0.1104,
+ "median_bias_bigger_than_column_sum": 0.0419
+}
+wrote /Users/steven/research_sprint_20260724/r4-patchwork-prereg/results_posthoc.json 76.8 s

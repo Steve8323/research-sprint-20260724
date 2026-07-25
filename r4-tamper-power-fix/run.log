@@ -1,0 +1,24 @@
+[routed] selectable 70/90  r3block=24/30  loc=90/90  (74s)
+[std] swept 300 -> mis 60 ali 60  (192s)
+[h4] swept 240 -> 60  (272s)
+[corrected] n=60  (284s)
+[func:switch_aligned] n=60 best=r4_lr0.1 meanAUC9=0.76665 flipped=40/60  (360s)
+[func:h4_aligned] n=60 best=r4_lr0.1 meanAUC9=0.78618 flipped=39/60  (444s)
+[func:corrected_f5] n=60 best=r4_lr0.01 meanAUC9=0.84171 flipped=59/60  (523s)
+[func:aligned_chance] n=60 best=r4_lr0.1 meanAUC9=0.94424 flipped=60/60  (601s)
+[prereg:switch_aligned] n=60 best=r1_lr0.1 meanAUC9=0.75483 flipped=19/60  (673s)
+[prereg:h4_aligned] n=60 best=r1_lr0.1 meanAUC9=0.8337 flipped=13/60  (739s)
+[prereg:corrected_f5] n=60 best=r4_lr0.01 meanAUC9=0.83527 flipped=42/60  (835s)
+
+wrote /Users/steven/research_sprint_20260724/r4-tamper-power-fix/results.json  (840.6s)
+C1_missing_cell_auc_switch_vs_h4_FUNC: p=0.3508 d=-0.01953 ci95=[-0.07355, 0.03448] delta*=0.06475 -> BOUNDED-AT-0.0648
+C2a_flipped100_switch_vs_h4_FUNC: p=1 d=0.0167 ci90=[-0.1238, 0.1562] -> BOUNDED-AT-0.156
+C2b_capflip_switch_vs_h4_FUNC: p=0.617 d=1.11667 ci95=[-13.09542, 15.32876] delta*=13.01486 -> BOUNDED-AT-13.0149
+C3_auc_switch_vs_h4_PREREG: p=0.00135 d=-0.07887 ci95=[-0.12432, -0.03342] delta*=0.11691 -> REAL DIFFERENCE
+C4_auc_switch_vs_corrected_PREREG: p=0.00335 d=-0.08044 ci95=[-0.12385, -0.03702] delta*=0.11676 -> REAL DIFFERENCE
+C5_auc_switch_vs_corrected_FUNC: p=0.2112 d=-0.07506 ci95=[-0.11732, -0.03281] delta*=0.11039 -> BOUNDED-AT-0.1104
+C6_fullftjit_switch_vs_h4_FUNC: p=0.0311 d=0.0933 ci95=[0.03352, 0.15307] delta*=0.14327 -> REAL DIFFERENCE
+CTRL POS_equiv_machinery_switch_vs_nodefense_FUNC: REAL DIFFERENCE
+CTRL NEG_splithalf_switch_aligned_FUNC: BOUNDED-AT-0.1183
+CTRL NEG_splithalf_h4_aligned_FUNC: BOUNDED-AT-0.1045
+CTRL DYNAMIC_RANGE: {'note': "p the test WOULD return under 'perfect switch vs h4 = no defense'.", 'fisher_flipped100_perfect': 2.070073888186964e-35, 'r3_censored_median_flip_perfect': 1.0, 'usable_flipped100': True, 'usable_r3_censored_median': False}

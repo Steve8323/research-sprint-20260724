@@ -1,0 +1,568 @@
+{
+ "H1_constants": {
+  "table": [
+   {
+    "k": 2,
+    "a_k_blom": 0.5895,
+    "a_k_exact": 0.5642,
+    "b_k_exact": 1.1284,
+    "b_k_blom": 1.0853,
+    "b_k_mc": 1.1278,
+    "ratio_b_over_a": 2.0
+   },
+   {
+    "k": 3,
+    "a_k_blom": 0.8694,
+    "a_k_exact": 0.8463,
+    "b_k_exact": 1.3264,
+    "b_k_blom": 1.3038,
+    "b_k_mc": 1.3261,
+    "ratio_b_over_a": 1.5673
+   },
+   {
+    "k": 4,
+    "a_k_blom": 1.0491,
+    "a_k_exact": 1.0294,
+    "b_k_exact": 1.4647,
+    "b_k_blom": 1.45,
+    "b_k_mc": 1.4642,
+    "ratio_b_over_a": 1.4229
+   },
+   {
+    "k": 5,
+    "a_k_blom": 1.1798,
+    "a_k_exact": 1.163,
+    "b_k_exact": 1.5698,
+    "b_k_blom": 1.5588,
+    "b_k_mc": 1.569,
+    "ratio_b_over_a": 1.3499
+   },
+   {
+    "k": 6,
+    "a_k_blom": 1.2816,
+    "a_k_exact": 1.2672,
+    "b_k_exact": 1.654,
+    "b_k_blom": 1.6449,
+    "b_k_mc": 1.6541,
+    "ratio_b_over_a": 1.3052
+   },
+   {
+    "k": 8,
+    "a_k_blom": 1.4342,
+    "a_k_exact": 1.4236,
+    "b_k_exact": 1.7834,
+    "b_k_blom": 1.7759,
+    "b_k_mc": 1.7839,
+    "ratio_b_over_a": 1.2527
+   },
+   {
+    "k": 10,
+    "a_k_blom": 1.5466,
+    "a_k_exact": 1.5388,
+    "b_k_exact": 1.8807,
+    "b_k_blom": 1.8737,
+    "b_k_mc": 1.8805,
+    "ratio_b_over_a": 1.2222
+   },
+   {
+    "k": 16,
+    "a_k_blom": 1.7688,
+    "a_k_exact": 1.766,
+    "b_k_exact": 2.0772,
+    "b_k_blom": 2.0699,
+    "b_k_mc": 2.077,
+    "ratio_b_over_a": 1.1762
+   },
+   {
+    "k": 24,
+    "a_k_blom": 1.9469,
+    "a_k_exact": 1.9477,
+    "b_k_exact": 2.2378,
+    "b_k_blom": 2.2296,
+    "b_k_mc": 2.2378,
+    "ratio_b_over_a": 1.149
+   },
+   {
+    "k": 25,
+    "a_k_blom": 1.9642,
+    "a_k_exact": 1.9653,
+    "b_k_exact": 2.2535,
+    "b_k_blom": 2.2452,
+    "b_k_mc": 2.2539,
+    "ratio_b_over_a": 1.1467
+   },
+   {
+    "k": 50,
+    "a_k_blom": 2.2433,
+    "a_k_exact": 2.2491,
+    "b_k_exact": 2.5096,
+    "b_k_blom": 2.4995,
+    "b_k_mc": 2.5102,
+    "ratio_b_over_a": 1.1158
+   },
+   {
+    "k": 144,
+    "a_k_blom": 2.625,
+    "a_k_exact": 2.6353,
+    "b_k_exact": 2.8653,
+    "b_k_blom": 2.8529,
+    "b_k_mc": 2.8659,
+    "ratio_b_over_a": 1.0873
+   },
+   {
+    "k": 1770,
+    "a_k_blom": 3.3872,
+    "a_k_exact": 3.4019,
+    "b_k_exact": 3.588,
+    "b_k_blom": 3.5729,
+    "b_k_mc": 3.5887,
+    "ratio_b_over_a": 1.0547
+   }
+  ],
+  "note": "a_k = E[max_j N_j] is correct only when the selection DIRECTION is pre-specified. For a statistic selected as argmax_j |.| the null constant is b_k = E[max_j |N_j|].",
+  "mc_check_max_abs_err": 0.0008
+ },
+ "H1_recomputed_R_gap": {
+  "rows": [
+   {
+    "p_waste": 0.5,
+    "metric": "recovery_auc",
+    "k_gaps": 4,
+    "a_k_used_by_r3": 1.0491,
+    "b_k_correct": 1.4647,
+    "max_gap": 0.03907,
+    "gap_SE": 0.00739,
+    "gap_pair": [
+     0.75,
+     1.0
+    ],
+    "R_gap_published": 5.0379,
+    "verdict_published": "ROBUST",
+    "R_gap_corrected": 3.6085,
+    "verdict_corrected": "ROBUST",
+    "inflation_factor": 1.3961,
+    "verdict_changes": false
+   },
+   {
+    "p_waste": 0.5,
+    "metric": "retain_pruned",
+    "k_gaps": 4,
+    "a_k_used_by_r3": 1.0491,
+    "b_k_correct": 1.4647,
+    "max_gap": 0.00462,
+    "gap_SE": 0.00176,
+    "gap_pair": [
+     0.0,
+     0.25
+    ],
+    "R_gap_published": 2.5003,
+    "verdict_published": "BORDERLINE",
+    "R_gap_corrected": 1.7909,
+    "verdict_corrected": "BORDERLINE",
+    "inflation_factor": 1.3961,
+    "verdict_changes": false
+   },
+   {
+    "p_waste": 0.9,
+    "metric": "recovery_auc",
+    "k_gaps": 4,
+    "a_k_used_by_r3": 1.0491,
+    "b_k_correct": 1.4647,
+    "max_gap": 0.1547,
+    "gap_SE": 0.02833,
+    "gap_pair": [
+     0.75,
+     1.0
+    ],
+    "R_gap_published": 5.2049,
+    "verdict_published": "ROBUST",
+    "R_gap_corrected": 3.7281,
+    "verdict_corrected": "ROBUST",
+    "inflation_factor": 1.3961,
+    "verdict_changes": false
+   },
+   {
+    "p_waste": 0.9,
+    "metric": "retain_pruned",
+    "k_gaps": 4,
+    "a_k_used_by_r3": 1.0491,
+    "b_k_correct": 1.4647,
+    "max_gap": 0.04513,
+    "gap_SE": 0.00569,
+    "gap_pair": [
+     0.75,
+     1.0
+    ],
+    "R_gap_published": 7.5543,
+    "verdict_published": "ROBUST",
+    "R_gap_corrected": 5.4109,
+    "verdict_corrected": "ROBUST",
+    "inflation_factor": 1.3961,
+    "verdict_changes": false
+   }
+  ],
+  "one_sided_cell_R_unaffected": [
+   {
+    "p_waste": 0.5,
+    "metric": "recovery_auc",
+    "k": 5,
+    "selection": "argmin (lower AUC = better, pre-specified)",
+    "R": 4.2654,
+    "verdict": "ROBUST",
+    "affected_by_two_sided_fix": false
+   },
+   {
+    "p_waste": 0.5,
+    "metric": "retain_pruned",
+    "k": 5,
+    "selection": "argmax (higher retain = better, pre-specified)",
+    "R": 1.2135,
+    "verdict": "SUSPECT",
+    "affected_by_two_sided_fix": false
+   },
+   {
+    "p_waste": 0.9,
+    "metric": "recovery_auc",
+    "k": 5,
+    "selection": "argmin (lower AUC = better, pre-specified)",
+    "R": 4.7985,
+    "verdict": "ROBUST",
+    "affected_by_two_sided_fix": false
+   },
+   {
+    "p_waste": 0.9,
+    "metric": "retain_pruned",
+    "k": 5,
+    "selection": "argmax (higher retain = better, pre-specified)",
+    "R": 1.6665,
+    "verdict": "BORDERLINE",
+    "affected_by_two_sided_fix": false
+   }
+  ],
+  "n_verdicts_changed": 0
+ },
+ "H2_modularity_families": {
+  "sanity_max_abs_diff_vs_saved_curve": 5.551115123125783e-17,
+  "n_perm": 1000,
+  "seed": 0,
+  "rows": [
+   {
+    "family": "all_theta",
+    "n_thetas": 1770,
+    "Q_max_obs": 0.22,
+    "theta_at_max": 0.000858,
+    "null_mean": 0.1336,
+    "null_p95": 0.5,
+    "p_family_wise": 0.2028,
+    "sig_at_005": false
+   },
+   {
+    "family": "published_window_0.0015_0.090",
+    "n_thetas": 1595,
+    "Q_max_obs": 0.199,
+    "theta_at_max": 0.001673,
+    "null_mean": 0.0546,
+    "null_p95": 0.18,
+    "p_family_wise": 0.028,
+    "sig_at_005": true
+   },
+   {
+    "family": "m_ge_60_edges",
+    "n_thetas": 1711,
+    "Q_max_obs": 0.0599,
+    "theta_at_max": 0.002805,
+    "null_mean": 0.0222,
+    "null_p95": 0.0816,
+    "p_family_wise": 0.1119,
+    "sig_at_005": false
+   }
+  ],
+  "immune_note": "the pre-stated PRIMARY of misgen-connectivity-graph is the threshold-free rank AUC = 0.725 (node-label permutation p <= 1e-4). It involves no max over theta and is IMMUNE to this correction."
+ },
+ "H4_POSTHOC_marginal_vs_interaction_SE": {
+  "rows": [
+   {
+    "cell_means": [
+     0.94905,
+     0.94443,
+     0.94533,
+     0.94483,
+     0.94292
+    ],
+    "S": 0.00228,
+    "s_marginal": 0.00261,
+    "s_interaction": 0.00129,
+    "rho_hat_marginal": 0.0,
+    "rho_hat_interaction": 0.6802,
+    "seed_main_effect_SS_share": 0.7275,
+    "p_waste": 0.5,
+    "metric": "retain_pruned",
+    "sel_alpha": 0.0,
+    "R_marginal": 1.231,
+    "R_interaction": 2.492,
+    "verdict_marginal": "SUSPECT",
+    "verdict_interaction": "BORDERLINE",
+    "verdict_changes": true
+   },
+   {
+    "cell_means": [
+     0.73553,
+     0.72088,
+     0.71068,
+     0.68955,
+     0.65048
+    ],
+    "S": 0.03303,
+    "s_marginal": 0.01012,
+    "s_interaction": 0.00729,
+    "rho_hat_marginal": 0.9061,
+    "rho_hat_interaction": 0.9513,
+    "seed_main_effect_SS_share": 0.2382,
+    "p_waste": 0.5,
+    "metric": "auc",
+    "sel_alpha": 1.0,
+    "R_marginal": 4.329,
+    "R_interaction": 6.009,
+    "verdict_marginal": "ROBUST",
+    "verdict_interaction": "ROBUST",
+    "verdict_changes": false
+   },
+   {
+    "cell_means": [
+     0.92852,
+     0.93132,
+     0.92757,
+     0.9282,
+     0.88307
+    ],
+    "S": 0.02055,
+    "s_marginal": 0.00589,
+    "s_interaction": 0.00713,
+    "rho_hat_marginal": 0.9178,
+    "rho_hat_interaction": 0.8796,
+    "seed_main_effect_SS_share": 0.1277,
+    "p_waste": 0.9,
+    "metric": "retain_pruned",
+    "sel_alpha": 0.25,
+    "R_marginal": 1.691,
+    "R_interaction": 1.397,
+    "verdict_marginal": "BORDERLINE",
+    "verdict_interaction": "SUSPECT",
+    "verdict_changes": true
+   },
+   {
+    "cell_means": [
+     0.36463,
+     0.35328,
+     0.35247,
+     0.33442,
+     0.17972
+    ],
+    "S": 0.07745,
+    "s_marginal": 0.02423,
+    "s_interaction": 0.02446,
+    "rho_hat_marginal": 0.9021,
+    "rho_hat_interaction": 0.9003,
+    "seed_main_effect_SS_share": 0.1589,
+    "p_waste": 0.9,
+    "metric": "auc",
+    "sel_alpha": 1.0,
+    "R_marginal": 4.868,
+    "R_interaction": 4.823,
+    "verdict_marginal": "ROBUST",
+    "verdict_interaction": "ROBUST",
+    "verdict_changes": false
+   }
+  ],
+  "note": "POST-HOC (not in PREREG). r3-selection-inflation-curve PREREG.md Part B requires the INTERACTION SE ('Use the interaction (item x cell) SE, not the marginal one'), but its Part C computed s_cell = mean_j SD_seeds(X[:,j]) / sqrt(n), the MARGINAL SE. The hybrid-knob design is fully paired across alphas, so any seed main effect inflates the marginal SE."
+ },
+ "H3_hybrid_T3": {
+  "p_waste": 0.5,
+  "alphas": [
+   0.0,
+   0.25,
+   0.5,
+   0.75,
+   1.0
+  ],
+  "n_seeds": 6,
+  "quality_axis": {
+   "cell_means": [
+    0.94905,
+    0.94443,
+    0.94533,
+    0.94483,
+    0.94292
+   ],
+   "per_cell_SE_marginal": 0.00261,
+   "S": 0.00228,
+   "rho_hat_marginal": 0.0,
+   "Dbar": 0.94531,
+   "R_winner_marginal": 1.231,
+   "verdict_marginal": "SUSPECT",
+   "rho_hat_interaction": 0.6802,
+   "R_winner_interaction": 2.492,
+   "verdict_interaction": "BORDERLINE",
+   "seed_main_effect_SS_share": 0.7275
+  },
+  "resistance_axis": {
+   "cell_means": [
+    0.73553,
+    0.72088,
+    0.71068,
+    0.68955,
+    0.65048
+   ],
+   "rho_hat_marginal": 0.9061,
+   "rho_hat_interaction": 0.9513,
+   "note": "the resistance axis is reliable either way (rho_hat 0.91 / 0.95)"
+  },
+  "T3_leg_quality_interior_vs_alpha1": [
+   {
+    "alpha": 0.25,
+    "mean_diff_vs_alpha1": 0.00152,
+    "ci95": [
+     -0.00245,
+     0.00548
+    ],
+    "n": 6,
+    "n_positive": 4,
+    "wilcoxon_p": 0.5625,
+    "excludes_zero": false
+   },
+   {
+    "alpha": 0.5,
+    "mean_diff_vs_alpha1": 0.00242,
+    "ci95": [
+     0.00079,
+     0.00404
+    ],
+    "n": 6,
+    "n_positive": 5,
+    "wilcoxon_p": 0.0422,
+    "excludes_zero": true
+   },
+   {
+    "alpha": 0.75,
+    "mean_diff_vs_alpha1": 0.00192,
+    "ci95": [
+     -0.00464,
+     0.00847
+    ],
+    "n": 6,
+    "n_positive": 4,
+    "wilcoxon_p": 0.5625,
+    "excludes_zero": false
+   }
+  ],
+  "T3_leg_resistance_interior_vs_alpha0": [
+   {
+    "alpha": 0.25,
+    "mean_resistance_gain_vs_alpha0": 0.01465,
+    "ci95": [
+     0.00204,
+     0.02726
+    ],
+    "n_positive": 5,
+    "n": 6,
+    "excludes_zero": true
+   },
+   {
+    "alpha": 0.5,
+    "mean_resistance_gain_vs_alpha0": 0.02485,
+    "ci95": [
+     0.00997,
+     0.03973
+    ],
+    "n_positive": 6,
+    "n": 6,
+    "excludes_zero": true
+   },
+   {
+    "alpha": 0.75,
+    "mean_resistance_gain_vs_alpha0": 0.04598,
+    "ci95": [
+     0.02691,
+     0.06506
+    ],
+    "n_positive": 6,
+    "n": 6,
+    "excludes_zero": true
+   }
+  ],
+  "best_interior": 0.5,
+  "a_3": 0.8463,
+  "R_T3_paired": 4.516,
+  "largest_abs_retain_effect_excluded_by_paired_CI": 0.00404,
+  "PRESTATED_RULE_FIRES": true,
+  "VERDICT": "DEMOTION-AS-STATED NOT SUPPORTED; re-word on magnitude instead",
+  "reason": "My PREREG's demotion rule ('if rho_hat = 0 on the quality axis, T3 is unsupported') DOES fire on the published number -- but the published rho_hat = 0 is an artifact. It comes from the MARGINAL across-seed SE in a fully paired design where the seed main effect is 72.8% of the total SS. With the INTERACTION SE that r3's own Part B prescribes, rho_hat = 0.68 and R = 2.50 (BORDERLINE, not SUSPECT), and the paired contrast the T3 criterion actually requires -- interior alpha=0.5 vs the alpha=1 endpoint on retain -- is +0.0024 [0.0008, 0.0040], 6/6 seeds, with R_T3 = 4.5 after correcting for selecting the best of 3 interior alphas. T3's statistical criterion is therefore MET at p_waste=0.5. What should be demoted is the practical reading, not the test: the interior gain over the alpha=1 endpoint is 0.24 retain points on an axis whose entire span is 0.6 points, so 'Pareto-useful' should be restated as 'statistically resolvable but practically negligible; take alpha = 1', which is what routing-hybrid-knob/FINDINGS.md already says in prose."
+ },
+ "runtime_sec": 2.9,
+ "H5_lora_attacker_best_selection_audit": {
+  "arms": {
+   "routed": {
+    "cell_means": [
+     0.20298,
+     0.5106,
+     0.39545,
+     0.6989,
+     0.60682,
+     0.82593
+    ],
+    "S": 0.22218,
+    "s_marginal": 0.01628,
+    "s_interaction": 0.01249,
+    "rho_hat_marginal": 0.9946,
+    "rho_hat_interaction": 0.9968,
+    "seed_main_effect_SS_share": 0.0187,
+    "arm": "routed",
+    "k": 6,
+    "n": 6,
+    "sel_cell": "routed_lora_r16_lr0.01",
+    "a_k": 1.2672,
+    "R_marginal": 13.854,
+    "R_interaction": 18.058,
+    "verdict_interaction": "ROBUST"
+   },
+   "baseline": {
+    "cell_means": [
+     0.59987,
+     0.86688,
+     0.76277,
+     0.89227,
+     0.87192,
+     0.88533
+    ],
+    "S": 0.11475,
+    "s_marginal": 0.0073,
+    "s_interaction": 0.00841,
+    "rho_hat_marginal": 0.996,
+    "rho_hat_interaction": 0.9946,
+    "seed_main_effect_SS_share": 0.0131,
+    "arm": "baseline",
+    "k": 6,
+    "n": 6,
+    "sel_cell": "baseline_lora_r4_lr0.01",
+    "a_k": 1.2672,
+    "R_marginal": 8.55,
+    "R_interaction": 7.422,
+    "verdict_interaction": "ROBUST"
+   }
+  },
+  "published_mean_diff": -0.0663,
+  "published_ci95": [
+   -0.0904,
+   -0.0423
+  ],
+  "best_routed_cell": [
+   16,
+   0.01
+  ],
+  "best_baseline_cell": [
+   4,
+   0.01
+  ],
+  "note": "EXTENSION, in scope of PREREG item 4 but not named as a target in advance."
+ }
+}

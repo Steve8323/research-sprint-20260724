@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Round-4 Adversarial Sprint — Master Report</title>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1d212b; --ink:#e7e9ee; --muted:#9aa3b2;
+    --line:#2a2f3a; --accent:#7aa2ff; --solid:#3ecf8e; --sug:#f5b942; --dead:#ff6b6b;
+    --unaud:#b48ef5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1100px;margin:0 auto;padding:32px 22px 80px;}
+  h1{font-size:26px;margin:0 0 4px;letter-spacing:.2px;}
+  h2{font-size:20px;margin:40px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);}
+  h3{font-size:15px;margin:24px 0 4px;color:var(--accent);}
+  h4{font-size:13.5px;margin:18px 0 4px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;}
+  .sub{color:var(--muted);font-size:14px;margin:0 0 6px;}
+  .lead{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:16px 0;color:var(--muted);}
+  code{background:#0c0e12;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font-size:12.5px;color:#cfd6e4;
+    font-family:ui-monospace,Menlo,monospace;}
+  a{color:var(--accent);}
+  ol.rank{list-style:none;counter-reset:r;padding:0;margin:0;}
+  ol.rank>li{counter-increment:r;position:relative;background:var(--panel);border:1px solid var(--line);
+    border-radius:10px;padding:14px 16px 14px 54px;margin:12px 0;}
+  ol.rank>li::before{content:counter(r);position:absolute;left:14px;top:14px;width:26px;height:26px;
+    display:flex;align-items:center;justify-content:center;background:var(--panel2);border:1px solid var(--line);
+    border-radius:50%;font-weight:700;color:var(--accent);font-size:14px;}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.4px;padding:2px 8px;border-radius:999px;
+    vertical-align:middle;margin-left:6px;}
+  .tag.solid{background:rgba(62,207,142,.14);color:var(--solid);border:1px solid rgba(62,207,142,.4);}
+  .tag.sug{background:rgba(245,185,66,.14);color:var(--sug);border:1px solid rgba(245,185,66,.4);}
+  .tag.unaud{background:rgba(180,142,245,.14);color:var(--unaud);border:1px solid rgba(180,142,245,.4);}
+  .slug{color:var(--muted);font-size:12.5px;font-family:ui-monospace,Menlo,monospace;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:12px 0;}
+  .tblwrap{overflow-x:auto;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  th{background:var(--panel2);color:var(--ink);font-weight:600;}
+  td.num{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:#c7cede;}
+  .v-solid{color:var(--solid);font-weight:700;}
+  .v-sug{color:var(--sug);font-weight:700;}
+  .v-unaud{color:var(--unaud);font-weight:700;}
+  .pass{color:var(--solid);font-weight:700;}
+  .fail{color:var(--dead);font-weight:700;}
+  .partial{color:var(--sug);font-weight:700;}
+  ul.tight{margin:6px 0;padding-left:20px;}
+  ul.tight li{margin:6px 0;}
+  blockquote{margin:14px 0;padding:12px 16px;border-left:3px solid var(--accent);
+    background:var(--panel);border-radius:0 8px 8px 0;color:var(--ink);}
+  blockquote p{margin:0;}
+  .verdictline{font-size:16px;background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--sug);
+    border-radius:0 8px 8px 0;padding:12px 16px;margin:14px 0;}
+  .title-box{background:var(--panel2);border:1px solid var(--accent);border-radius:10px;padding:18px 20px;margin:14px 0;}
+  .title-box .t{font-size:20px;font-weight:700;line-height:1.35;}
+  .claim{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--solid);
+    border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;}
+  .concede{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--dead);
+    border-radius:0 8px 8px 0;padding:12px 16px;margin:12px 0;}
+  .foot{color:var(--muted);font-size:12.5px;margin-top:24px;}
+  .kicker{color:var(--muted);font-size:13px;margin:4px 0 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Round-4 Adversarial Sprint — Master Report</h1>
+<p class="sub"><strong>Date:</strong> 2026-07-25 · <strong>Scope:</strong> 6 preregistered experiments scoped directly from REPORT3 §(g). Round 4 attacked the one remaining bottleneck (localization) and the four methodological gaps round 3 exposed: the tautology, the missing tamper cell, the post-hoc patchwork claim, and the power problem.</p>
+<p class="sub"><strong>Audit status: 3 of 6 independently audited — 2 SOLID, 1 SUGGESTIVE. The other 3 are agent self-reports, marked <span class="tag unaud">UNAUDITED</span> throughout; re-audit before publishing any of their numbers.</strong></p>
+
+<div class="lead">
+<strong>How to read this.</strong> Round 1 found the switch. Round 2 removed its oracle. Round 3 broke the oracle-removal and retracted the safety claims. Round 4's job was to see whether the line has a paper in it. It does — but not the one rounds 1–3 were writing. Two results move the paper's centre of gravity: the localization obstruction is now measured and partly solved, and the headline effect size turned out to be an artifact of how the control was scored. Where an audit exists and disagrees with the agent, the audit wins.
+</div>
+
+<h2>a) TL;DR — ranked by consequence for the paper</h2>
+
+<ol class="rank">
+
+<li>
+<strong>The line's headline number was an artifact of the control's scoring, and the correct number is +15 points, not +98.</strong> <span class="tag solid">SOLID</span> <span class="slug">r4-break-tautology</span><br>
+Every prior round scored the standard-training control under an <em>arbitrary fixed</em> unit partition — one coin toss over 12 870 possible 8/8 splits. Score the <em>identical</em> standard-trained models under a data-chosen mask (cue sensitivity on held-out <strong>agreeing</strong> data only, no deploy leakage) and the floor moves from 1/60 to <strong>51/60 (85 %)</strong>. Routing's honest contribution against a fairly-scored control is <strong>60/60 vs 51/60, +0.150 [+0.058, +0.261], p = 0.0028</strong>. Every table in the line carrying a 0/30 or 0/20 routing-free floor inherits this correction.<br>
+The reframing is better than the old claim: <strong>standard training on agreeing data already leaves two unit-disjoint halves, each individually competent and committed to the opposite worldview</strong> — verified against random 8/8 splits (1/50) and noise-dimension splits (0/10), and replicated 15/20 on fresh seeds the auditor chose. Underdetermination does not produce an entangled compromise; it produces a latent switch that routing sharpens and labels.
+</li>
+
+<li>
+<strong>Oracle-free localization comes back, narrowed correctly: solvable off the symmetric point, under orthogonal entanglement.</strong> <span class="tag solid">SOLID</span> <span class="slug">r4-asymmetry-localizer</span><br>
+A localizer reading the <em>signed eigen-spectrum</em> of D = E[xx′|y=1] − E[xx′|y=0] recovers the true concept split <strong>40/40</strong> at margin ratio r = 2.05 and lifts preregistered post-hoc selectability to <strong>38/50 vs 26/50</strong> for round 3's ICA localizer on the same 50 seeds (Fisher p = 0.021; paired <strong>McNemar p = 0.017</strong>, the correct test; standard training 0/30). At exactly equal cue strength it collapses as preregistered (14/50; landing true 1 / entangled 2 / neither 47), and the equal-margin obstruction (|G| = 64, orbit 2) is re-confirmed by exact enumeration, with |G| = 16 / orbit 1 at all 15 other ratios. The knife-edge is now <em>measured</em>: at N = 800 the split becomes exactly recoverable from r* = 1.15 up, with (r*² − 1) ~ N<sup>−1/2</sup>.<br>
+<strong>Auditor's scope fixes:</strong> rotation-invariance is <em>free</em> for this localizer by exact orthogonal equivariance (axis 20/20 = rot 20/20, so the rotated basis carries no evidential weight), and the case where equivariance breaks — round 3's non-orthogonal <code>mix</code> basis, untested by the agent — degrades to <strong>13/20</strong> at r = 2.05 and 17/20 at r = 3.00. The claim is oracle-free localization under <strong>rotations</strong>, not general invertible entanglement. Prescription change: do <em>not</em> reach for a generic unsupervised method — whitening, ICA's first step, is exactly what destroys the resource, and re-pairing whitened components does not repair it (18/40).
+</li>
+
+<li>
+<strong>The exchange rate kills the pitch: the data that localizes the switch is worth more spent on the optimizer.</strong> <span class="tag unaud">UNAUDITED</span> <span class="slug">r4-symmetry-breaking-exchange</span><br>
+In the rotated basis where unsupervised localization is obstructed, <strong>4 labelled disagreeing examples — 0.5 % of the training set — buy a working switch</strong> (selectable 21/30, localization 25/30, both trend primaries at the permutation floor p &lt; 5·10⁻⁵). But the <em>same 4 examples added to ordinary training align 24/30 models outright</em>, and 8 examples align <strong>30/30</strong> while the switch is still at 22/30 (Fisher p = 0.0046 in favour of plain data). Routing never beats augmentation at any price tested and is beaten from m = 8 up. The only channel routing could uniquely exploit — <em>unlabelled</em> deployment inputs, which cannot be trained on — saturates at 17/30 (57 %) and does not improve from m = 1 to m = 32. Agreeing examples buy nothing (8/30 vs 25/30, p = 2·10⁻⁵): it is disagreement, not data, that breaks the symmetry.<br>
+<strong>A paper cannot claim routing buys alignment cheaply; it can only claim routing buys optionality, and must then argue optionality is worth more than the fix the same data provides.</strong>
+</li>
+
+<li>
+<strong>The patchwork hazard: half confirmed, half mischaracterized, and not routing-specific in the sequence substrate.</strong> <span class="tag unaud">UNAUDITED</span> <span class="slug">r4-patchwork-prereg</span><br>
+Preregistered on fresh seeds in both substrates. <em>Confirmed in both:</em> the unselected routed model is <strong>not a hedger</strong> (median determinism 0.786 [0.622, 0.912] MLP, 0.951 [0.869, 0.995] transformer; hedger regime is D ≤ 0.5). Rounds 1–2's "it hedges, so you can tell you forgot to select" is definitively dead. <em>Confirmed where powered:</em> the failure is <strong>invisible to a per-input confidence monitor</strong> — median AUROC 0.521, 90 % CI [0.477, 0.549], inside the preregistered ±0.05 margin, against a positive control (ablation-derived readout of the same inputs) at 0.9996; the model-level version is <strong>anti-informative</strong> at 0.197 [0.112, 0.301].<br>
+<em>Broken:</em> H1c fails <strong>directionally</strong> in the transformer — controls are <em>more</em> patchwork (19/23 vs 12/20; strict criterion −0.30 [−0.53, −0.005]) — so "standard training never produces this mode" must be retracted as a general claim. <em>And post-hoc, the MLP census cannot mean what round 3 said:</em> a strict within-label criterion is met by only <strong>2/46</strong> routed models (2/22 in round 3's own archived data). What routed models actually do off-distribution is <strong>collapse to one class, confidently</strong> — majority-class 0.893 [0.811, 0.956] vs 0.550 in controls (p = 1.3·10⁻¹⁰) at confidence 0.911, while still scoring 1.000 on held-out agreeing data. Also dead: "margins 2.1×" (1.33× MLP, 0.95× transformer) and "routed are more deterministic than controls" (p = 0.041 / 0.70).
+</li>
+
+<li>
+<strong>Round 3's tamper conclusion survives; its reason was a false negative.</strong> <span class="tag unaud">UNAUDITED</span> <span class="slug">r4-tamper-power-fix</span><br>
+At n = 60 vs 60 the switch and a routing-free model with the <em>same live parameter count</em> are <strong>not</strong> equivalent — they differ significantly in <em>both</em> directions depending on attacker strength. The switch beats the capacity control under the weak preregistered LoRA attacker (−0.079 AUC, p = 0.0014, overturning round 3's "matches the switch" null <em>and</em> its PRIMARY A1 null), is indistinguishable from it under the realistic <strong>functional</strong> attacker — <em>the missing cell</em>, bounded at δ* = 0.065 AUC, i.e. any routing-specific advantage is at most <strong>36 % of the total 0.178 defense effect</strong> — and <strong>loses</strong> to it under the strongest honest attacker (full-FT + 1 % jitter, +0.093, p = 0.031, fails Holm). The apparent advantage lives in a resistant <em>tail</em> present in the capacity control at the same rate (11/60 vs 9/60, p = 0.81) and absent from the corrected baseline (0/60, p = 5.9·10⁻⁴) — a property of having few live units, not of routing. Round 3's flip-cost equivalence is <strong>withdrawn, not re-interpreted</strong>: a preregistered dynamic-range check shows that under "perfect switch vs no defense" that test returns p = 1.0, while the replacement <code>flipped@100</code> returns p = 2.1·10⁻³⁵.
+</li>
+
+<li>
+<strong>k-way now joins the learned localizer — at round 2's coordinate privilege, so the retraction stands.</strong> <span class="tag sug">SUGGESTIVE</span> <span class="slug">r4-kway-learned-plus-hygiene</span><br>
+The data-only pair probe recovers the k true cue groups <strong>20/20</strong> at both k = 3 and k = 4 (chance 1/1260 and 1/17325; permuted-label null 0/20), end-to-end 20/20 vs 0/20 for standard training. But conditional on exact recovery the routed arm <em>is</em> round 3's oracle arm up to a column relabeling (16/40 seeds byte-identical), so the only independent content is the localizer, and the probe still needs the concepts to occupy disjoint axis-aligned columns. One genuinely new operational fact: the localizer's slot order is an arbitrary permutation on 10/20 (k = 3) and 14/20 (k = 4) seeds — <strong>the group→worldview labelling must ship with the checkpoint or the switch is unusable</strong>.
+</li>
+
+<li>
+<strong>Portfolio hygiene: two edits applied, one instructed edit refuted — and the refutation does not go through either.</strong> <span class="tag sug">SUGGESTIVE</span> <span class="slug">r4-kway-learned-plus-hygiene</span><br>
+b₄ = E[max|N|] = <strong>1.4647</strong> confirmed (not a₄ = 1.0294); the two "resistance arrives at the endpoint" rows fall from ~5× to 3.6–3.7× with <strong>no verdict flips</strong>. Modularity restated as <strong>family-dependent</strong> (all-θ p = 0.203; published window p = 0.028; ≥60-edge family p = 0.112; threshold-free AUC = 0.725 IMMUNE). The instruction to demote routing-hybrid-knob T3 "because ρ̂ = 0.00" rests on round 3 having used the <strong>marginal</strong> SE where its own prereg prescribes the <strong>interaction</strong> SE (ρ̂ = 0.68, seed main effect 73 % of SS) — but the auditor killed the rehabilitation: the supporting Wilcoxon is not exact (a zero difference forced a normal approximation; true exact p = <strong>0.0625</strong>) and R_T3 = 4.52 uses a vs-zero baseline where the document's own definition gives 0.87. <strong>Correct verdict on T3: the stated ground for demotion is wrong, and the criterion is unresolved at n = 6.</strong>
+</li>
+
+</ol>
+
+<h2>b) THE LOCALIZATION VERDICT</h2>
+
+<div class="verdictline"><strong>Partially restored</strong> — under two named conditions, both of which the paper must state in the same sentence as the claim.</div>
+
+<h3>The defensible sentence</h3>
+<blockquote><p>Unsupervised, oracle-free localization of two entangled concepts is <strong>impossible at exactly equal cue strength</strong> — the labelled distribution's orthogonal symmetry group has order 64 and its orbit on the true split has exactly two members (exact enumeration, 16 margin ratios) — and becomes <strong>reliably solvable just off that point</strong>, provided (i) the entanglement is an <strong>orthogonal</strong> change of basis and (ii) the localizer is built to read the asymmetry, which appears as a <strong>signed spectral gap</strong> in the label-conditional second-moment difference D = E[xx′|y=1] − E[xx′|y=0]. At N = 800 the true split is recovered exactly from margin ratio r* ≈ 1.15 upward, with the critical excess (r*² − 1) shrinking as N<sup>−1/2</sup>. Under <strong>general invertible</strong> entanglement the same localizer degrades (13/20 at r = 2.05, 17/20 at r = 3.00) and the claim does <strong>not</strong> hold.</p></blockquote>
+
+<h3>Why it is "partially", precisely</h3>
+<div class="tblwrap">
+<table>
+<tr><th>condition</th><th>status</th><th>number</th></tr>
+<tr><td>r = 1.00 exactly (equal cue strength)</td><td class="fail">DEAD, provably</td><td class="num">|G| = 64, orbit 2; L-CCM 14/50, landing true 1 / ent 2 / neither 47</td></tr>
+<tr><td>r ≥ 1.15, orthogonal (rotated) basis, N = 800</td><td class="pass">RESTORED</td><td class="num">localization 40/40; selectability 38/50 vs ICA 26/50, McNemar p = 0.017</td></tr>
+<tr><td>1.00 &lt; r &lt; 1.15 at N = 800</td><td class="partial">graded, not reliable</td><td class="num">1/7/15/26/34 of 40 at r = 1.00/1.025/1.05/1.075/1.10</td></tr>
+<tr><td>non-orthogonal (<code>mix</code>) entanglement</td><td class="fail">OPEN — the obvious next control</td><td class="num">13/20 at r = 2.05; 17/20 at r = 3.00 (auditor ran the case the agent flagged as its biggest gap)</td></tr>
+<tr><td>k = 3, 4 concepts</td><td class="partial">works, at axis-aligned coordinate privilege</td><td class="num">20/20 exact recovery; permuted null 0/20</td></tr>
+<tr><td>with 2–4 labelled disagreeing examples</td><td class="pass">solved outright, cheaply</td><td class="num">localization 25/30 and selectability 21/30 at m = 4; k*_sel = 4</td></tr>
+</table>
+</div>
+
+<h3>Three things that changed the prescription</h3>
+<ul class="tight">
+<li><strong>Whitening is the enemy, not the friend.</strong> ICA's failure was not bad luck: whitening both erases the scale information that names the cues and moves the directions off D's eigenvectors. The preregistered 2×2 fired its own falsifier — L-CCM 40/40, ICA+asymmetry-pairing 18/40, eigen+probe-pairing 18/40, plain ICA 27/40 — a <strong>pure interaction</strong> in which neither ingredient helps alone. "Just run a component analysis" is ruled out.</li>
+<li><strong>Only |m_A − m_B| matters, not which cue is stronger.</strong> At r = 0.4878 and r = 0.80, where the <em>proxy</em> is the weaker cue, L-CCM still lands true 40/40.</li>
+<li><strong>The localizer is a model-based estimator.</strong> D's diagonality in the (p, p′, q, q′) frame follows from XOR-parity cues plus isotropic Gaussian noise. The 40/40 is a numerical confirmation of exact algebra for this generator, not an empirical discovery. It is oracle-free <em>per instance</em> — it sees only x and the training label — but it embodies designer-level knowledge of the family. <strong>The transferable claim is the principle</strong> (asymmetry is the resource; find the statistic where it appears as a spectral gap), not the estimator.</li>
+</ul>
+
+<div class="card"><strong>What the residual failure buys.</strong> Conditional on landing on the true split, selectability is 0.76 / 0.86 / 0.87 for L-CCM / L-ICA / oracle — mutually indistinguishable at this n. The agent concluded "the residual loss sits entirely in the routing stage, which no localizer can fix"; <strong>the auditor struck that</strong>: it rests on an underpowered oracle null (equivalence bound [−26, +8] points at ~50 % power), a selection-confounded conditional, and it ignores that the oracle occludes with the exact conjugated transform and the true σ while L-CCM estimates σ. Report the oracle comparison as a <em>bound</em>, not a match.</div>
+
+<h2>c) Is the headline an effect size now, or still structural?</h2>
+
+<div class="verdictline"><strong>Both</strong> — and the honest number is much smaller than any number published so far.</div>
+
+<h4>The tautology objection is answered</h4>
+<div class="tblwrap">
+<table>
+<tr><th>variant</th><th>what is shared</th><th>shared params (gradient trace)</th><th>selectable</th><th>equivalence to ceiling (Newcombe upper bound, prestated δ = 0.20)</th></tr>
+<tr><td>ceiling (disjoint)</td><td>output bias only</td><td class="num">2/434</td><td class="num">60/60</td><td>—</td></tr>
+<tr><td>overlap25 (2 shared units)</td><td>units</td><td class="num">28/352</td><td class="num">60/60</td><td class="pass">0.060 ✔</td></tr>
+<tr><td>overlap50 (4 shared units)</td><td>units</td><td class="num">53/278</td><td class="num">58/60</td><td class="pass">0.114 ✔</td></tr>
+<tr><td><strong>overlap75</strong> (6 shared units)</td><td>units</td><td class="num">93/212</td><td class="num fail">2/60</td><td class="fail">BROKEN (Wilson upper 0.114)</td></tr>
+<tr><td>shared_trunk</td><td>entire first hidden layer</td><td class="num">130/434</td><td class="num">60/60</td><td class="pass">0.060 ✔</td></tr>
+<tr><td>soft25 (train mask leaks 0.25, eval hard)</td><td>leak level</td><td class="num">328/434</td><td class="num">60/60</td><td class="pass">0.060 ✔</td></tr>
+<tr><td>soft50 (leak 0.50)</td><td>leak level</td><td class="num">396/434 (91 %)</td><td class="num">59/60</td><td class="pass">0.089 ✔</td></tr>
+<tr><td>floor (standard training, fixed mask)</td><td>everything</td><td class="num">433/434</td><td class="num">1/60</td><td>—</td></tr>
+</table>
+</div>
+<p class="kicker">Dose-response over overlap is clean (Cochran–Armitage z = −11.73, p &lt; 10⁻³⁰), and overlap75's failure is <strong>not</strong> capacity by the prestated diagnostic (0 of 58 misses are competence misses; median held-out accuracy 1.000 under both masks).</p>
+
+<h4>But the break is partial, and the denominator was wrong</h4>
+<ul class="tight">
+<li><strong>shared_trunk is a partial break.</strong> Its gradient trace is 112 l1.weight + 16 l1.bias + 2 l3.bias = 130; <code>l2.weight</code>, <code>l2.bias</code> and <code>l3.weight</code> share <strong>zero</strong>. The feature trunk is shared; the layer selection actually acts on is still two disjoint column sets trained under exactly the mask they are scored with.</li>
+<li><strong>soft25/soft50 break the leak <em>level</em>, not the partition.</strong> The genuine partition-independent test is the learned-mask analysis — and there the routed arms recover the training partition almost exactly (Jaccard 1.000 / 0.996 / 0.979). "Train mask ≠ eval mask" is satisfied procedurally while the two masks turn out to be the same set.</li>
+<li><strong>Every surviving arm still gives each worldview private units.</strong> The sharing-vs-private-width confound is untested (no width sweep at fixed overlap). At w = 8 and 75 % overlap each worldview has only 2 exclusive units — the bare minimum for a 2-bit XOR.</li>
+<li><strong>The denominator was a coin toss.</strong> Scored fairly, the floor is 51/60, not 1/60.</li>
+</ul>
+
+<blockquote><p><strong>Report +0.150 [+0.058, +0.261], p = 0.0028 as the effect size</strong> — routing takes a latent switch that ordinary training already builds from 85 % reliable to 100 % reliable and makes its labelling free. Report every 22/30, 23/30, 11/12, 20/20-vs-0/20 number in the line as a <strong>demonstration</strong>, with the fair-floor caveat attached. The defensible generalization is "routing needs <em>some</em> private capacity, not disjoint subnetworks."</p></blockquote>
+
+<p class="kicker">Two numbers stay structural regardless: the k-way 20/20 (train mask == eval mask verified in code; columns disjoint by construction; also w = 8-conditional — round 3's oracle at w = 4 gave 13/20 and 6/20), and the transformer's 11/12 (each group trained in isolation under exactly its eval mask).</p>
+
+<h2>d) The patchwork hazard: confirmatory in both substrates? monitor-invisible?</h2>
+
+<div class="verdictline"><span class="tag unaud">UNAUDITED</span> The <strong>hedger death</strong> is confirmatory in both substrates; the <strong>patchwork mode</strong> is not; <strong>monitor-invisibility</strong> is confirmed with a tight bound in one substrate and is <strong>not routing-specific</strong>.</div>
+
+<div class="tblwrap">
+<table>
+<tr><th>component</th><th>MLP (routed 46 / control 60, seeds 3000–3059)</th><th>Transformer (routed 20 after competence gate / control 23, seeds 3100–3122)</th></tr>
+<tr><td><strong>H1a — not a hedger</strong></td><td class="num">median D <strong>0.786</strong>, boot 95 % CI [0.622, 0.912] — excludes 0.5 · <span class="pass">PASS</span></td><td class="num">median D <strong>0.951</strong> [0.869, 0.995] — excludes 0.5 · <span class="pass">PASS</span></td></tr>
+<tr><td><strong>H1b — patchwork prevalent</strong> (≥0.5, Wilson lower &gt; 0.25)</td><td class="num">29/46 = 0.630, Wilson [0.486, 0.755] · <span class="pass">PASS</span></td><td class="num">12/20 = 0.60, Wilson [0.387, 0.781] · <span class="pass">PASS</span></td></tr>
+<tr><td><strong>H1c — routing-specific</strong> (Fisher one-sided p &lt; 0.001)</td><td class="num">29/46 vs <strong>0/60</strong>, p = <strong>2.0·10⁻¹⁴</strong> · <span class="pass">PASS</span></td><td class="num">12/20 vs <strong>19/23</strong>, p = <strong>0.977</strong> · <span class="fail">FAIL — directionally: controls are more patchwork</span></td></tr>
+</table>
+</div>
+
+<p>The transformer failure is not merely null: strict-criterion difference −0.302, 95 % CI [−0.535, −0.005]; the reverse test gives p = 0.047. And the design could not have won — with the control at 19/23, even a perfect 20/20 routed arm returns Fisher p = 0.072. <strong>This is exactly the risk written into the prereg before the run</strong> ("the sequence organism has no continuous per-input noise channel … H1c can fail while H1a and H1b pass … will NOT be rescued by redefining the criterion"), and it was reported as written.</p>
+
+<h4>The mode is mischaracterized (post-hoc, and the agent says so)</h4>
+<p>In the MLP, all four input patterns within a label group carry the same cue semantics, and round 3 established that every routed column implements its cue's XOR exactly — so a routed model is invariant inside a label group <strong>by construction</strong>, and the census can only ever detect the label split. That is the signature of a <strong>constant output</strong>, not of a per-input patchwork.</p>
+<div class="tblwrap">
+<table>
+<tr><th>criterion</th><th>r4 MLP routed (n=46)</th><th>r4 MLP control (n=60)</th><th>r3 MLP routed (n=22, archived)</th></tr>
+<tr><td>preregistered patchwork</td><td class="num">29</td><td class="num">0</td><td class="num">16</td></tr>
+<tr><td><strong>strict</strong> (same label, different input, different worldview)</td><td class="num fail">2</td><td class="num">0</td><td class="num fail">2</td></tr>
+</table>
+</div>
+<p>Strict-criterion Fisher p = 0.19. Round 3's 16/22 is <strong>2/22</strong> on its own archived numbers once the constant-output reading is excluded. What the unselected routed model actually is: fully competent on-distribution (held-out agreeing accuracy median <strong>1.000</strong>, min 0.992, 46/46 above 0.9), deploy alignment median 0.500, and on cue-disagreement inputs it emits <strong>one class at confidence 0.911</strong> — majority-class rate <strong>0.893 [0.811, 0.956]</strong> vs <strong>0.550 [0.537, 0.582]</strong> for controls, p = 1.3·10⁻¹⁰, 34/46 above 0.75 vs 0/60. Not a readout-bias artifact (logit-difference sign agrees with the bias on 11 % of inputs; the two columns vote opposite on 98.9 % of disagreement inputs). <strong>The honest replacement phrase is "confident off-distribution class collapse", not "confidently inconsistent patchwork".</strong> In the transformer, genuine position-dependent worldview mixing is real (counts-only lower bound: routed 6/20) — and again more common in the control arm (11/23).</p>
+
+<h4>Monitor-invisibility</h4>
+<div class="tblwrap">
+<table>
+<tr><th>readout</th><th>MLP</th><th>transformer</th></tr>
+<tr><td><strong>per-input confidence</strong> (primary)</td><td class="num">median AUROC <strong>0.5208</strong>, 90 % CI [0.477, 0.549] — <span class="pass">inside ±0.05, equivalence declared</span>, achieved bound 0.049</td><td class="num">0.464, 90 % CI [0.246, 0.670] — <span class="partial">not declared</span>, achieved bound ±0.25</td></tr>
+<tr><td>positive control (routing margin race)</td><td class="num">0.9996 [0.9989, 0.9999]</td><td class="num">1.000</td></tr>
+<tr><td>negative control (control-arm hedgers, predicted detectable)</td><td class="num fail">0.4205 — FAILS, hedgers are invisible too</td><td class="num">0.539, p = 0.45</td></tr>
+<tr><td>model-level triage (secondary)</td><td class="num fail">0.197 [0.112, 0.301] — anti-informative</td><td class="num">0.958 but n_neg = 4; substrates disagree → uninformative</td></tr>
+</table>
+</div>
+<p>Confidences on proxy-following vs truth-following inputs: <strong>0.924 vs 0.927</strong> (MLP), 0.974 vs 0.973 (transformer) — indistinguishable. <strong>Yes, it is monitor-invisible — and that is a limit of confidence monitoring, not a routing-specific liability.</strong> The negative control failing is load-bearing: ordinary underdetermined models are equally invisible, so this run contains <em>no</em> demonstration of a population where a confidence monitor works. Worse than flatness: 55 % of routed patchwork models deviate from AUROC 0.5 by more than 0.10, but the sign is 55/45 and is predicted by the model's deploy alignment (ρ = 0.59, p = 6.9·10⁻⁴) — the one quantity a deployer cannot measure without the labels the monitor is meant to replace.</p>
+
+<h4>What must be retracted from rounds 1–3</h4>
+<ul class="tight">
+<li>"standard training never produced this mode (0/55, 0/30)" — holds for the MLP census (0/60 replicated), <strong>fails in the sequence substrate</strong> (19/23 controls).</li>
+<li>"margins 2.1× a standard model's" — <strong>1.33×</strong> on fresh MLP seeds, <strong>0.95×</strong> in the transformer.</li>
+<li>"routed models are more deterministic than standard ones" — MLP p = 0.041, transformer p = 0.70. Not robust. What <em>is</em> robust is the <strong>purity</strong> contrast: controls produced 80 deterministic-true and 117 deterministic-proxy patterns across 60 models and <strong>0/60</strong> models contained both.</li>
+</ul>
+
+<h2>e) Corrected tamper table, with equivalence bounds</h2>
+
+<p class="kicker"><span class="tag unaud">UNAUDITED</span> Preregistered rule: MWU p &lt; 0.05 → REAL DIFFERENCE with a CI; otherwise report the <strong>achieved equivalence bound</strong> δ* (the 90 % CI bound on |mean difference|; TOST at margin δ rejects exactly when δ* ≤ δ). <strong>"No difference" is never a verdict.</strong> Scale reference: the <strong>total defense effect</strong> is <strong>0.178 AUC</strong> (no-defense 0.944 vs switch 0.767, functional attacker). n = 60 vs 60 throughout (round 3 used 23 vs 12).</p>
+
+<div class="tblwrap">
+<table>
+<tr><th>#</th><th>claim (arms / metric / attacker)</th><th>round 3 said</th><th>round 4</th><th>verdict</th></tr>
+<tr><td><strong>C1</strong></td><td><strong>THE MISSING CELL</strong> — switch vs H=4 capacity control, best-cell AUC, <strong>functional</strong> attacker</td><td>never run</td><td class="num">0.767 vs 0.786, d = −0.020, 95 % CI [−0.074, +0.034], MWU p = 0.35</td><td class="partial">BOUNDED AT δ* = 0.065 (margin 0.05 missed). Any routing-specific advantage ≤ <strong>36 % of the total defense effect</strong>; zero well inside.</td></tr>
+<tr><td><strong>C2a</strong></td><td>switch vs H=4, <strong>flipped@100</strong> (uncensorable), functional</td><td>never run</td><td class="num">0.667 vs 0.650, d = +0.017, 90 % CI [−0.124, +0.156], Fisher p = 1.0</td><td class="partial">BOUNDED AT δ* = 0.156</td></tr>
+<tr><td><strong>C2b</strong></td><td>switch vs H=4, capped flip time min(flip, 101), functional</td><td>never run</td><td class="num">50.1 vs 48.9 steps, d = +1.1, 95 % CI [−13.1, +15.3], MWU p = 0.62</td><td class="partial">BOUNDED AT δ* = 13.0 steps</td></tr>
+<tr><td><strong>C3</strong></td><td>switch vs H=4, best-cell AUC, <strong>prereg</strong> attacker (r3's load-bearing null)</td><td>"matches the switch", p = 0.40</td><td class="num">0.755 vs 0.834, d = <strong>−0.079</strong>, 95 % CI [−0.124, −0.033], MWU p = <strong>0.0014</strong></td><td class="pass">REAL DIFFERENCE — r3's equivalence claim overturned. Survives Holm (adj 0.0095).</td></tr>
+<tr><td><strong>C4</strong></td><td>switch vs corrected (f = 5 %), best-cell AUC, <strong>prereg</strong> attacker (r3 PRIMARY A1)</td><td>null, p = 0.133</td><td class="num">0.755 vs 0.835, d = <strong>−0.080</strong>, 95 % CI [−0.124, −0.037], MWU p = <strong>0.0034</strong></td><td class="pass">REAL DIFFERENCE — r3's A1 was a false negative. Survives Holm (adj 0.020).</td></tr>
+<tr><td><strong>C5</strong></td><td>switch vs corrected, best-cell AUC, <strong>functional</strong> attacker</td><td>"the live advantage", p = 0.019</td><td class="num">means 0.767 vs 0.842, Welch 95 % CI [−0.117, −0.033] excludes 0, but ranks overlap: MWU p = 0.21, HL −0.026</td><td class="partial">BOUNDED AT δ* = 0.110 by the prereg rule. The two preregistered summaries disagree → a <strong>tail effect, not a location shift</strong>.</td></tr>
+<tr><td><strong>C6</strong></td><td>switch vs H=4, <strong>full-FT + 1 % jitter</strong> (strongest honest attacker), functional</td><td>never run</td><td class="num">0.560 vs 0.467, d = <strong>+0.093</strong>, 95 % CI [+0.034, +0.153], MWU p = <strong>0.031</strong></td><td class="fail">REAL DIFFERENCE, AGAINST the switch — the capacity control is <em>more</em> tamper-resistant. Does not survive Holm (adj 0.16).</td></tr>
+</table>
+</div>
+
+<h4>Attacker-strength ladder (switch − capacity control; negative = switch more resistant)</h4>
+<div class="tblwrap">
+<table>
+<tr><th>attacker</th><th>switch</th><th>H=4</th><th>diff</th><th>p</th></tr>
+<tr><td>prereg LoRA, best cell</td><td class="num">0.755</td><td class="num">0.834</td><td class="num"><strong>−0.079</strong></td><td class="num">0.0014</td></tr>
+<tr><td>functional LoRA, best cell</td><td class="num">0.767</td><td class="num">0.786</td><td class="num">−0.020</td><td class="num">0.35</td></tr>
+<tr><td>prereg full-FT <em>(relu′(0)=0 artifact)</em></td><td class="num">0.376</td><td class="num">0.535</td><td class="num">−0.159</td><td class="num">1·10⁻⁶</td></tr>
+<tr><td>functional full-FT <em>(artifact)</em></td><td class="num">0.216</td><td class="num">0.467</td><td class="num">−0.251</td><td class="num">&lt;1·10⁻⁶</td></tr>
+<tr><td>prereg full-FT <strong>+ 1 % jitter</strong></td><td class="num">0.657</td><td class="num">0.541</td><td class="num"><strong>+0.116</strong></td><td class="num">9.3·10⁻⁵</td></tr>
+<tr><td>functional full-FT <strong>+ 1 % jitter</strong></td><td class="num">0.560</td><td class="num">0.467</td><td class="num"><strong>+0.093</strong></td><td class="num">0.030</td></tr>
+</table>
+</div>
+<p><strong>The sign flips exactly when 1 % jitter defeats the exactly-zero-weight artifact.</strong> And the regime where routing "wins" is the regime where the attacker ends up with a broken model: under the preregistered attacker only 26.7 % (switch) / 16.7 % (H=4) of attacked models are still competent at step 100, versus 68.3 % for the corrected baseline.</p>
+
+<h4>Three structural corrections to round 3</h4>
+<ul class="tight">
+<li><strong>The flip-cost equivalence is withdrawn, not re-interpreted.</strong> The preregistered dynamic-range check: under "perfect switch (0/60 flipped) vs capacity control behaving like no defense (60/60)", round 3's censored-median test returns <strong>p = 1.0</strong>; the replacement <code>flipped@100</code> returns <strong>p = 2.1·10⁻³⁵</strong>. That test was not weak evidence of equivalence — it was no evidence at all.</li>
+<li><strong>The resistant tail is not routing.</strong> The switch arm is bimodal (11/60 resist strongly, AUC &lt; 0.6; SD 0.153 vs 0.060 for corrected, Levene p = 1.3·10⁻⁸) — but the H=4 capacity control has 9/60 strong resisters (Fisher p = 0.81, SD ratio 1.05) while the corrected baseline has 0/60 (p = 5.9·10⁻⁴). <strong>The tail is a property of having few live units.</strong></li>
+<li><strong>Equivalence machinery validated.</strong> Positive control (switch vs no-defense, functional) returns REAL DIFFERENCE, d = −0.178, p = 5·10⁻⁵. Truth-exactly-zero calibration (random split-halves, n = 30 v 30) bounds at 0.118 / 0.104, so the C1 bound of 0.065 at n = 60 is genuinely tighter than noise — but 0.05 was out of reach as preregistered (~36 % power).</li>
+</ul>
+
+<div class="card"><strong>Untouched:</strong> round 3's D1 — benign fine-tuning erases the composite selectability criterion in 100 steps (23/23 → 12/23, p = 3.05·10⁻⁵) — was explicitly out of scope and <strong>remains the strongest single argument against the switch as a shipped artifact</strong>. Two preregistered budget drops fired (the <code>aligned_chance</code> prereg-attacker cell and the <code>switch_misaligned</code> readout positive control); the readout control is carried over from round 3, not re-run.</div>
+
+<blockquote><p><strong>Replacement sentence for the write-up:</strong> At n = 60 per arm the switch and a routing-free model of the same live parameter count differ under both LoRA attackers, in opposite directions depending on attacker strength; under the realistic functional attacker the difference is bounded at 0.065 AUC (36 % of the total defense effect), and the resistant tail that drives the switch's apparent advantage is present in the capacity control at the same rate (11/60 vs 9/60, p = 0.81).</p></blockquote>
+
+<h2>f) Portfolio hygiene edits applied</h2>
+
+<p class="kicker">Deliverable: <code>r4-kway-learned-plus-hygiene/SELECTION_AUDIT.md</code> — aₖ/bₖ constants table, the three corrections, and a <strong>52-row two-line selection audit</strong> (k, n, s, S, ρ̂, R) across REPORT.md / REPORT2.md / REPORT3.md, with every k = 1 row marked IMMUNE and the reason.</p>
+
+<div class="tblwrap">
+<table>
+<tr><th>#</th><th>edit instructed by REPORT3 §(g)8–9</th><th>status</th><th>detail</th></tr>
+<tr><td>1</td><td>Correct the two-sided constant before publication</td><td class="pass">APPLIED</td><td class="num">b₄ = E[max|N(0,1)|] = <strong>1.4647</strong> by exact quadrature (MC-verified to 8·10⁻⁴), vs a₄ = 1.0294 — factor 1.423. R_gap recomputes 5.038→3.609, 2.500→1.791, 5.205→3.728, 7.554→5.411. <strong>Zero verdict flips</strong>; the two "resistance arrives at the endpoint" rows fall ~5× → 3.6–3.7×. Closed form bₖ ≈ Φ⁻¹((1+q)/2), q = (k−0.375)/(k+0.25), within 1 % for k ≥ 3.</td></tr>
+<tr><td>2</td><td>Restate misgen-connectivity-graph modularity as family-dependent</td><td class="pass">APPLIED</td><td class="num">Max-over-θ label-permutation null, 1000 perms: all 1770 θ → p = <strong>0.2028</strong>; published window θ ∈ [0.0015, 0.090] (k = 1595) → Q = 0.199, p = <strong>0.0280</strong>; θ with ≥60 edges (k = 1711) → Q = 0.060, p = <strong>0.1119</strong>. Threshold-free primary AUC = 0.725 (node-perm p ≤ 10⁻⁴) <strong>IMMUNE</strong>. Caveat: MC SE ≈ 0.005, so p = 0.028 is "just under 0.05".</td></tr>
+<tr><td>3</td><td>Demote routing-hybrid-knob T3 to unsupported (ρ̂ = 0.00)</td><td class="fail">REFUTED IN GROUND, NOT REHABILITATED — do not publish as instructed</td><td class="num">r3 computed the marginal SE (0.00261 → ρ̂ = 0.000, R = 1.23 SUSPECT) where its own prereg prescribes the <strong>interaction</strong> SE (0.00129 → ρ̂ = <strong>0.680</strong>, R = 2.49 BORDERLINE); seed main effect 72.8 % of total SS. Verified against r3's own code, whose line 79 comments "variant that (wrongly) uses the marginal SE". <strong>But the audit killed the rehabilitation:</strong> the "exact Wilcoxon p = 0.042" is not exact (one paired difference is exactly 0, forcing a normal approximation scipy warns is inapplicable at n = 6); the genuine exact p is <strong>0.0625</strong>, sign test 0.0625, Bonferroni over three interior α gives 0.13. R_T3 = 4.52 uses a vs-zero baseline where the document's own definition gives <strong>0.87 → SUSPECT</strong>. <strong>Correct verdict: ground for demotion wrong; criterion unresolved at n = 6.</strong> The same SE fix moves p_waste = 0.9 retain 1.69 BORDERLINE → 1.40 SUSPECT — corrections run in both directions.</td></tr>
+<tr><td>4</td><td>Add a two-line selection audit to every table</td><td class="pass">APPLIED</td><td class="num">52 rows across three reports; the switch line's own numbers are k = 1 and marked IMMUNE. <strong>Auditor's caveat:</strong> row 52 (this round's k-way 20/20) is IMMUNE too generously — w = 8 is an inherited selection, and r3's oracle at w = 4 gave 13/20 (k = 3) and 6/20 (k = 4).</td></tr>
+<tr><td>5</td><td><em>Not instructed</em> — new audit of routing-lora-attack "attacker-best −0.066"</td><td class="pass">APPLIED</td><td class="num">k = 6 per arm, n = 6, s_interaction 0.0125 / 0.0084, S 0.222 / 0.115, ρ̂ 0.997 / 0.995, R = <strong>18.1 / 7.4 ROBUST</strong>.</td></tr>
+<tr><td>6</td><td>Drop "needs width 8 specifically" from the misgen writeup (R = 1.75, near-noise)</td><td class="fail">NOT DONE</td><td class="num">In REPORT3 §(g)8 but not in this agent's assignment. <strong>Outstanding.</strong></td></tr>
+</table>
+</div>
+
+<p><strong>Residual audit debt</strong> (four rows unresolvable from saved artifacts, none touching the switch line): misgen-noise-probe's possible dose selection; ert-value-probe's representation selection; routing-worldview-select's post-hoc H = 16; whether misgen-connectivity-graph's chain gap was reported at the sweep max.</p>
+<p><strong>Two citation-hygiene fixes before publication.</strong> (i) "Use the interaction SE, not the marginal one" is cited to <code>r3-selection-inflation-curve/PREREG.md</code> Part B; it is actually REPORT3.md line 64 (the PREREG supports it in substance at lines 46 and 93). Fix it — it currently upgrades a report sentence into a "preregistered prescription" while overriding an instruction. (ii) <code>hygiene_results.json</code>'s H3 reason string says "6/6 seeds" where the data and FINDINGS say 5/6.</p>
+
+<h2>g) Preregistration + power adherence</h2>
+
+<p>Every experiment stamped <code>PREREG.md</code> before its confirmatory run; filesystem mtimes confirm the order in all six. <strong>No auditor found conclusion-switching in any of the three audited experiments.</strong> Round 4's distinguishing feature: it is the first round in which <em>every</em> experiment reports achieved equivalence bounds instead of bare nulls — and the audits still found two power overstatements, so the discipline is real but not yet clean.</p>
+
+<div class="tblwrap">
+<table>
+<tr><th>Experiment</th><th>Primary(ies)</th><th>Held?</th><th>Preregistered <em>failures</em> reported as failures</th><th>Power discipline</th><th>Audit finding on power</th></tr>
+
+<tr>
+<td><strong>r4-asymmetry-localizer</strong><br><span class="v-solid">SOLID</span></td>
+<td class="num">CCM vs ICA at r = 2.05, three conditions (p &lt; 0.05 with CCM higher; CCM ≥ 35/50; vs control p &lt; 0.01)</td>
+<td class="num"><span class="pass">ALL THREE PASS</span> (38/50 vs 26/50, p = 0.021; vs control p = 2·10⁻¹²)</td>
+<td class="num"><strong>Three.</strong> S4's "the pairing rule is the whole story" flatly contradicted (pure interaction; the explicitly preregistered falsifier fired). S3's N = 200 leg right-censored → inconclusive. Point prediction 0.85 came in at 0.76 → labelled a miss. Two arms dropped by the 700 s guard (fired mechanically at t = 697 s).</td>
+<td class="num">Design power 0.92 fixed in advance; α = 0.05 chosen in advance with the α = 0.01 alternative documented (no α shopping); post-hoc physically segregated behind POSTHOC_ keys.</td>
+<td class="num">Design power reproduces (0.922, auditor's 6000-rep sim); realized power 0.65. <span class="fail">"No bare null claimed anywhere" is FALSE</span> — the σ_minclass anchor null (12/30 vs 16/30, p = 0.438) has no CI and no power; CI [−0.359, +0.113], power 0.253. Exonerated by an argument the write-up never makes. <strong>Two of six reported powers inflated</strong> by simulating the alternative in the wrong direction (0.78 → 0.479; 0.69 → 0.405). The S2 threshold rule at n = 40 can only be met by a perfect 40/40 — almost no resolution.</td>
+</tr>
+
+<tr>
+<td><strong>r4-break-tautology</strong><br><span class="v-solid">SOLID</span></td>
+<td class="num">6 variants vs floor, Bonferroni α = 0.05/6 = 0.00833</td>
+<td class="num"><span class="pass">5 SURVIVE</span>, <span class="fail">1 BROKEN</span>, all by the prestated rule applied mechanically</td>
+<td class="num"><strong>overlap75 reported BROKEN, not rescued</strong>; the prestated capacity diagnostic was run on every failing seed and reported even though it cuts against the simplest reading.</td>
+<td class="num">Pre-declared that Fisher vs ceiling <strong>cannot</strong> support "no difference" (power 0.63 at 0.95-vs-0.80, 0.32 at 0.95-vs-0.85), so all five ceiling claims are <strong>Newcombe equivalence bounds against a prestated δ = 0.20</strong>, never p &gt; 0.05.</td>
+<td class="num">Instrument correct, arithmetic checks. <strong>overlap75's stated power bound does not follow as written</strong>: the prereg assumed a 0/60 floor; the realized 1/60 floor drops power at rate 0.20 from 0.933 to <strong>0.677</strong> (informative against ≥0.25). Cite the Wilson upper bound 0.114 instead. <strong>Tension not flagged:</strong> δ = 0.20 exceeds the honest effect (+0.150) the same run establishes — overlap50 should read "upper-bounded 11.4 points below ceiling".</td>
+</tr>
+
+<tr>
+<td><strong>r4-kway-learned-plus-hygiene</strong><br><span class="v-sug">SUGGESTIVE</span></td>
+<td class="num">P_k3, P_k4 (Fisher p &lt; 0.025 and ≥14/20); L3, L4 (binomial p &lt; 0.025 and ≥18/20 vs a chance rate fixed in advance)</td>
+<td class="num"><span class="pass">ALL FOUR PASS</span></td>
+<td class="num">Every deflation in FINDINGS was written into PREREG <em>before</em> the run, including the explicit refusal to claim oracle-free localization. The one deviation from the brief (refusing the instructed T3 demotion) is disclosed as a deviation.</td>
+<td class="num">Both primaries sit at ceiling <em>and</em> floor; FINDINGS says outright the Fisher p is the smallest the design can emit. learned-vs-oracle reported as an <strong>identity</strong>, not equivalence, with a [−0.161, +0.161] bound.</td>
+<td class="num">Primaries and the oracle bound are exemplary. <span class="fail">The T3 rehabilitation is an underpowered positive dressed as resolved</span> (exact p = 0.0625, not 0.042); ρ̂ = 0.68 is a point estimate from 6 seeds × 5 α with no interval, yet the refutation turns on it crossing a threshold. "No degradation as pairs grow 36 → 55" is a descriptive null at ceiling with no test.</td>
+</tr>
+
+<tr>
+<td><strong>r4-patchwork-prereg</strong><br><span class="v-unaud">UNAUDITED</span></td>
+<td class="num">P1 MLP (H1a+H1b+H1c), P2 transformer (same), P3 monitor equivalence ±0.05</td>
+<td class="num">P1 <span class="pass">CONFIRMED</span> (3/3); P2 <span class="partial">PARTIAL</span> (H1c fails directionally); P3 declared in MLP, not declared in transformer</td>
+<td class="num"><strong>Two point predictions reported as misses</strong> (D ≥ 0.8 → 0.786; margin ratio ≥ 1.5 → 1.33). <strong>The M2 negative control FAILED</strong> and is reported (control hedgers are invisible too, widening the hazard and removing routing's edge). The H1c failure is the risk written into PREREG and was not rescued.</td>
+<td class="num">Power 1.00 vs 0.5-vs-0 and 0.98 vs a 0.30 gap; the transformer H1c is described as <em>against a ceiling</em> (even 20/20 gives p = 0.072) rather than "no difference"; usable statement is the interval [−0.464, +0.042]. Prestated interpretation guard on the model-level readout fired.</td>
+<td class="num">Not independently audited. Self-flagged weakness: PRIMARY 1 passed on a criterion that does not distinguish the two mechanisms it was meant to distinguish; the strict test (2/46) was not preregistered.</td>
+</tr>
+
+<tr>
+<td><strong>r4-tamper-power-fix</strong><br><span class="v-unaud">UNAUDITED</span></td>
+<td class="num">C1–C6, Holm over 7 tests, "no difference is never a verdict"</td>
+<td class="num">C3, C4 <span class="pass">REAL DIFFERENCE</span> (survive Holm) overturning two r3 nulls; C1, C2a, C2b, C5 <span class="partial">BOUNDED</span>; C6 <span class="fail">REAL DIFFERENCE against the switch</span> (fails Holm)</td>
+<td class="num">Amendment 1 (n 80 → 60) stamped before the confirmatory run. <strong>Two preregistered budget drops fired</strong> and are reported as carried-over, not re-verified. The preregistered dynamic-range check condemned round 3's own flip-cost test, which was <strong>withdrawn</strong>, not re-interpreted.</td>
+<td class="num">The strongest power discipline in the sprint: every non-significant cell carries δ*, plus a positive control (machinery sees a known 0.178 effect) and a truth-exactly-zero calibration (split-halves bound 0.118 / 0.104). C1's miss of the 0.05 margin was stated in advance (~36 % power); the bound is the deliverable.</td>
+<td class="num">Not independently audited. C6's reversal is "established in direction, provisional in significance" by the agent's own reading.</td>
+</tr>
+
+<tr>
+<td><strong>r4-symmetry-breaking-exchange</strong><br><span class="v-unaud">UNAUDITED</span></td>
+<td class="num">PRIMARY 1 localization-vs-m trend, PRIMARY 2 selectability-vs-m trend (Cochran–Armitage, 20 000 perms)</td>
+<td class="num"><span class="pass">BOTH at the permutation floor</span> (z = 6.69 and 4.17, p &lt; 5·10⁻⁵); DECISION = SUPPORTED; deliverable k*_sel = 4</td>
+<td class="num">Amendment 1 (localizer family swap) stamped before any confirmatory run, premise pre-verified on a 4-seed fidelity-only smoke test, and <strong>the originally preregistered family was kept and run</strong> (10/30 vs 24/30, p = 5.7·10⁻⁴, confirming the amendment). Downscopes announced in advance. The preregistered routed follow-up on unlabelled inputs <strong>did not trigger</strong>.</td>
+<td class="num">Explicit refusal to call the m = 1, 2, 4 routing-vs-augmentation ties equivalence: <strong>TOST at δ = 0.20 fails</strong> (p = 0.060, 0.060, 0.184), Fisher power 0.26–0.38. Source nulls labelled "no detected purchase at n = 30", power 0.29. The oracle-ceiling question is <strong>not</strong> established (TOST p = 0.082). Per-level Fishers demoted to secondary (power 0.24 vs a 28-point jump).</td>
+<td class="num">Not independently audited. The load-bearing claim (routing loses to augmentation at m = 8 and 32) is the <em>powered</em> one; the ties are correctly reported as ties.</td>
+</tr>
+</table>
+</div>
+
+<p class="kicker"><strong>Harness note.</strong> Round 3's writeups existed only in structured output. Round 4 fixed it: all six experiments have <code>FINDINGS.md</code> on disk, alongside <code>PREREG.md</code>, code, and <code>results.json</code>.</p>
+
+<h2>h) Per-experiment table</h2>
+
+<div class="tblwrap">
+<table>
+<tr><th>Slug</th><th>Verdict</th><th>Corrected headline</th><th>Key numbers</th></tr>
+
+<tr>
+<td><strong>r4-break-tautology</strong></td><td class="v-solid">SOLID</td>
+<td>Selectability tolerates substantial parameter sharing but still requires <strong>private capacity</strong>, and the line's headline effect size was an artifact of the control's mask. 25 % and 50 % unit overlap, a fully shared feature trunk, and a leaky train mask under which 91 % of parameters receive gradient from both worldviews all sit at the disjoint ceiling (Newcombe upper bounds ≤ 0.114 against a prestated δ = 0.20). The break is <strong>partial</strong>: 75 % overlap collapses to 2/60, shared_trunk's l2/l3 gradient overlap is exactly 0 so selection still acts on disjoint columns, and every surviving arm still gives each worldview private units. The load-bearing result is the <strong>self-refutation</strong>: identical standard-trained controls score 1/60 under an arbitrary fixed partition and 51/60 under a data-chosen one derived from held-out agreeing data only (no deploy leakage; replicates 15/20 on fresh seeds 800–819; random splits 1/50; noise-dim splits 0/10). Routing's honest contribution is <strong>+15 points [0.058, 0.261], p = 0.0028 — not +98</strong>.</td>
+<td class="num">ceiling 60/60 (shared 2/434); floor 1/60 (433/434); overlap25 60/60 (28/352); overlap50 58/60 (53/278); overlap75 2/60 (93/212); shared_trunk 60/60 (130/434); soft25 60/60 (328/434); soft50 59/60 (396/434); Cochran–Armitage z = −11.73; round-1 anchor max|diff| = 0.0, 22/30 identical booleans; learned mask recovers the true partition Jaccard 1.000 / 0.996 / 0.979; overlap75 0/58 competence misses; margin 0.996→0.977→0.804→0.387</td>
+</tr>
+
+<tr>
+<td><strong>r4-asymmetry-localizer</strong></td><td class="v-solid">SOLID</td>
+<td>A localizer reading the signed eigen-spectrum of D = E[xx′|y=1] − E[xx′|y=0] recovers the true split <strong>40/40</strong> at r = 2.05 <strong>under orthogonal basis change</strong>, and lifts preregistered selectability to 38/50 vs 26/50 for round 3's ICA on the same 50 seeds (Fisher p = 0.021; <strong>paired McNemar p = 0.017</strong>; standard training 0/30). All three primary conditions passed, every number reproduces, the r = 1.00 control collapses as preregistered (14/50; landing 1/2/47), and |G| = 64 / orbit 2 is confirmed by exact enumeration. Three scope fixes: (i) rotation-invariance is <strong>free</strong> by exact equivariance (axis 20/20 = rot 20/20), and the non-orthogonal <code>mix</code> basis — untested by the agent — degrades to 13/20 (r = 2.05) and 17/20 (r = 3.00); (ii) "no bare null claimed anywhere" is false and two of six powers are inflated; (iii) drop "the residual loss sits entirely in the routing stage".</td>
+<td class="num">PRIMARY 38/50 vs 26/50, p = 0.0213, RD +0.24 [+0.052, +0.406]; vs control p = 2.0·10⁻¹²; S1 L-CCM 40/40 vs L-ICA 27/40 (p = 7.6·10⁻⁵), eigen+probe 18/40, ICA+asymmetry 18/40; S2 r* = 1.15 at N = 800, curve 1/7/15/26/34/40/40/40/40/40; S3 ratio 0.449 inside [0.35, 0.71], N = 200 right-censored; S7 |G| = 64 orbit 2 at r = 1.00, |G| = 16 orbit 1 at 15 other ratios; D spectrum predicted (−8, +8, −33.62, +33.62) vs observed (−8.000, +7.998, −33.606, +33.673); r = 0.4878 and 0.80 both 40/40; fid_true min 0.997; 808 s CPU</td>
+</tr>
+
+<tr>
+<td><strong>r4-kway-learned-plus-hygiene</strong></td><td class="v-sug">SUGGESTIVE</td>
+<td>The round-2 data-only pair probe scales to k = 3 and k = 4 <strong>at w = 8</strong> — exact recovery 20/20 at both k (permuted null 0/20), 20/20 end-to-end vs 0/20 — but conditional on exact recovery the routed arm <strong>is</strong> r3's oracle arm up to a column relabeling (16/40 seeds byte-identical), so the only independent content is the localizer, and the coordinate privilege retracted by r3 is inherited untouched. The cross-cue control (0/20, columns at chance 0.504) shows the routed groups must be <strong>complete sufficient cues</strong>; it does <em>not</em> show a subtly-wrong partition selects a wrong worldview. New operational caveat that holds: the localizer's slot order is an arbitrary permutation on 10/20 and 14/20 seeds. Hygiene: b₄ = 1.4647 confirmed (no verdict flips); modularity family-dependent; the T3 demotion's stated ground is wrong <strong>but the rehabilitation fails too</strong> — exact p = 0.0625, and R_T3 = 4.52 uses a vs-zero baseline where the document's own definition gives 0.87. <strong>T3: unresolved at n = 6.</strong></td>
+<td class="num">localization 20/20 at k = 3 (chance 1/1260, p = 9.8·10⁻⁶³) and k = 4 (chance 1/17325, p = 1.7·10⁻⁸⁵); probe margins 0.451 / 0.446; selectability 20/20 vs 0/20, Fisher 1.45·10⁻¹¹; broken-split floor 0/20, col accuracy 0.504 / 0.510; S5 anchor max|diff| = 0.000000; learned-vs-oracle Newcombe [−0.161, +0.161]; b₄ = 1.4647 (a₄ = 1.0294); modularity p = 0.2028 / 0.0280 / 0.1119; T3 s_marg 0.00261 → ρ̂ 0.000 vs s_int 0.00129 → ρ̂ 0.680, seed SS 72.8 %; lora-attack ρ̂ 0.997 / 0.995, R 18.1 / 7.4</td>
+</tr>
+
+<tr>
+<td><strong>r4-patchwork-prereg</strong></td><td class="v-unaud">UNAUDITED</td>
+<td>The preregistered criterion passed in the MLP (29/46 vs 0/60, p = 2.0·10⁻¹⁴) and the hedger prediction is <strong>dead in both substrates</strong> (D 0.786 [0.622, 0.912] and 0.951 [0.869, 0.995]). The safety corollary holds where powered: <strong>per-input confidence cannot find the inputs where a routed model switched worldview</strong> (median AUROC 0.521, 90 % CI [0.477, 0.549], inside ±0.05) while an ablation readout of the same inputs scores 0.9996. Two preregistered checks broke the framing: (1) the mode is <strong>not routing-specific in the sequence substrate</strong> — controls are more patchwork (19/23 vs 12/20); (2) post-hoc, a strict criterion is met by only <strong>2/46</strong> routed models (2/22 in r3's archived data). The honest replacement for "confidently inconsistent patchwork" is <strong>confident off-distribution class collapse</strong>.</td>
+<td class="num">MLP routed 60 / control 60 (seeds 3000–3059); transformer 23/23 (3100–3122, 20 after competence gate); H1c MLP p = 2.0·10⁻¹⁴, transformer p = 0.977 (reverse 0.047 strict); majority-class 0.893 [0.811, 0.956] vs 0.550 [0.537, 0.582], p = 1.3·10⁻¹⁰, confidence 0.911, held-out agreeing 1.000 (min 0.992); monitor positive control 0.9996, negative control FAILS 0.4205, model-level 0.197 [0.112, 0.301]; monitor sign 55/45, predicted by deploy alignment ρ = 0.59 (p = 6.9·10⁻⁴); anchors max|diff| = 0.0 (MLP), transformer deploy 0.2215 = r3's; transformer selection 20/20 vs 0/23</td>
+</tr>
+
+<tr>
+<td><strong>r4-tamper-power-fix</strong></td><td class="v-unaud">UNAUDITED</td>
+<td>Round 3's conclusion survives, but its reason was wrong. At n = 60 v 60 the switch and an H = 4 capacity control are <strong>not</strong> equivalent — they differ significantly in both directions with attacker strength. Switch beats the capacity control under the weak preregistered LoRA attacker (−0.079, p = 0.0014, overturning r3's load-bearing null <em>and</em> its PRIMARY A1), is indistinguishable under the realistic functional attacker (<strong>the missing cell</strong>, bounded at δ* = 0.065 = 36 % of the total 0.178 defense effect), and <strong>loses</strong> under full-FT + 1 % jitter (+0.093, p = 0.031, fails Holm). The one regime where routing wins is the regime where the attack breaks the model (26.7 % still competent) and where exactly-zero dead weights make relu′(0) = 0 block revival — 1 % jitter flips the sign. Round 3's flip-cost equivalence is <strong>withdrawn</strong>: it returns p = 1.0 even under a perfect switch.</td>
+<td class="num">C1 0.767 vs 0.786, δ* = 0.065; C2a δ* = 0.156; C2b δ* = 13.0 steps; C3 −0.079 p = 0.0014 (adj 0.0095); C4 −0.080 p = 0.0034 (adj 0.020); C5 δ* = 0.110 (Welch CI excludes 0, MWU p = 0.21 → tail effect); C6 +0.093 p = 0.031 (adj 0.16); resistant tail 11/60 vs 9/60 (p = 0.81) vs corrected 0/60 (p = 5.9·10⁻⁴); dynamic range flipped@100 p = 2.1·10⁻³⁵ vs r3's censored median p = 1.0; positive control −0.178 p = 5·10⁻⁵; split-half calibration 0.118 / 0.104; anchors 24/30 on r3's seed block (r3: 23/30), localizer = oracle 90/90, cross-block mass 0.0/60, masked-switch 0-step flip 60/60, batched vs sequential max|diff| = 0.0; 840.6 s</td>
+</tr>
+
+<tr>
+<td><strong>r4-symmetry-breaking-exchange</strong></td><td class="v-unaud">UNAUDITED</td>
+<td>In the rotated basis where unsupervised localization is obstructed, <strong>4 labelled disagreeing examples (0.5 % of training) buy a working switch</strong> (selectable 21/30, localization 25/30; both trend primaries at the permutation floor). <strong>But the same 4 examples spent on ordinary training align 24/30 outright, and 8 examples align 30/30 while the switch is at 22/30 (p = 0.0046).</strong> Routing never beats augmentation at any price tested and is beaten from m = 8 up. Labels also resolve round 2's residual position ambiguity for free. The only channel routing could uniquely exploit — unlabelled deployment inputs — <strong>saturates at 17/30 (57 %)</strong>, m = 1 equal to m = 32. Agreeing examples buy nothing (8/30 vs 25/30, p = 2·10⁻⁵). <strong>The symmetry-breaking information cheap enough to build the switch is the same information that makes the switch unnecessary.</strong></td>
+<td class="num">m = 0/1/2/4/8/16/32 → localization 7/14/21/25/24/28/27 of 30; selectability 13/14/16/21/22/24/24 of 30; oracle 26/30, standard 0/30, ICA anchor 16/30 (= r3's rot_ica); trends z = 6.69 and 4.17, p &lt; 5·10⁻⁵; k*_sel = 4, k*_loc = 16; augmentation 7/14/16/24/30/–/30, mean deploy alignment 0.481 → 0.992, <strong>0/30 switchable at any m</strong>; unlabelled inputs 7/17/16/16/17, z = 2.07 p = 0.020; external concept label 9/30 and 11/30; asymmetry alone at ρ = 2.05 14/30 (p = 0.86); post-hoc conditional true 121/146 (83 %) vs entangled 9/36 (25 %) vs neither 4/28 (14 %), p = 7.4·10⁻¹¹; verify_rerun max|diff| = 0.0</td>
+</tr>
+</table>
+</div>
+
+<h2>i) THE PAPER</h2>
+
+<h3>Exact title</h3>
+<div class="title-box">
+<div class="t">Routing labels a switch that training already built: post-hoc worldview selection in underdetermined models</div>
+<p class="kicker" style="margin-top:10px">The round-3 working title (<em>Routing is basis-free; localization is not</em>) is now wrong on both halves — localization is partly solved, and the more interesting fact is that the switch is not created by routing at all. Lead with the latent switch, present routing as a reliability-and-labelling device with a measured +15-point effect, and let the localization result be the technical core rather than the headline.</p>
+</div>
+
+<h3>The 3–5 claims it can defend</h3>
+
+<div class="claim"><strong>C1 — Underdetermined training already builds a latent, selectable worldview switch.</strong><br>
+85 % of standard-trained models contain two unit-disjoint halves, each individually competent on the training distribution and committed to the <strong>opposite</strong> worldview, findable from held-out <em>agreeing</em> data alone: 51/60, replicating 15/20 on independently chosen fresh seeds, against random 8/8 splits 1/50 (p = 1.5·10⁻⁷) and noise-dimension splits 0/10 (p = 7.1·10⁻⁴). The underlying lottery is real at both scales (12 transformer control seeds at held-out 1.000 with deploy alignment 0.000–0.933, χ²(11) = 15213). <em>Underdetermination does not produce an entangled compromise; it produces a switch nobody labelled.</em></div>
+
+<div class="claim"><strong>C2 — Gradient routing makes that switch reliable and labelled, at a measured +15 points, and it survives substantial parameter sharing.</strong><br>
+60/60 vs a fairly-scored 51/60, <strong>+0.150 [+0.058, +0.261], p = 0.0028</strong>. It tolerates 25 % and 50 % overlapping unit groups, a fully shared first hidden layer, and a training mask differing from the evaluation mask with 91 % of parameters receiving gradient from both worldviews — all bounded within 11.4 points of the disjoint ceiling. It breaks when private capacity runs out (75 % overlap → 2/60, with 0/58 competence misses). The mechanism is exact: Δ_full = Δ_A + Δ_B + bias (residual 3.8·10⁻⁶), each column a closed-form XOR rule read off the weights (44/44), the un-ablated model a margin race (95.7 %), and the α dial a <strong>per-input threshold</strong> whose smooth population curve is exactly the CDF of per-input flip points (99.96 % flip once). Scales to k = 4 and to a 68.5k-parameter from-scratch transformer with a shared residual stream.</div>
+
+<div class="claim"><strong>C3 — Localization has an exact obstruction at cue symmetry, and it is solvable just off it — for orthogonal entanglement.</strong><br>
+At exactly equal cue strength the labelled distribution's orthogonal symmetry group has order 64 and its orbit on the true split has two members, so any equivariant localizer must coin-flip; at every other ratio tested |G| = 16 and the orbit is a single point (exact enumeration, 16 ratios). A localizer reading the <strong>signed spectrum of D = E[xx′|y=1] − E[xx′|y=0]</strong> recovers the true split 40/40 at r = 2.05 and lifts selectability to 38/50 vs 26/50 for ICA on the same seeds (McNemar p = 0.017); the threshold is r* = 1.15 at N = 800 with (r*² − 1) ~ N<sup>−1/2</sup>. <strong>Whitening — the first step of ICA and of most component-analysis pipelines — is precisely what destroys the resource</strong>, and re-pairing whitened components does not repair it (18/40): a pure interaction in which neither ingredient helps alone. Under general invertible entanglement the localizer degrades to 13/20 and the claim does not hold.</div>
+
+<div class="claim"><strong>C4 — The exchange rate says routing buys optionality, not alignment.</strong><br>
+Four labelled disagreeing examples — 0.5 % of the training set — buy a working switch in the obstructed basis (localization 25/30, selectability 21/30, both trends p &lt; 5·10⁻⁵), and also resolve which switch position is aligned. <strong>The same four examples, simply added to training, align 24/30 models outright; eight align 30/30 while the switch is still at 22/30 (p = 0.0046).</strong> Routing never beat augmentation at any dose tested. Agreeing examples buy nothing (8/30 vs 25/30, p = 2·10⁻⁵) — it is disagreement, not data. The one channel routing could uniquely use, unlabelled deployment inputs, saturates at 57 % and does not improve from m = 1 to m = 32. Deferred selection is worth paying for only when the symmetry-breaking information arrives in a form you cannot train on, or when the deployment label is contested — <strong>and this paper does not test those settings.</strong></div>
+
+<div class="claim"><strong>C5 — It is not a safety property, in four preregistered ways.</strong><br>
+(i) A masked switch flips at <strong>0 steps, 0 data, 60/60</strong> — structural. (ii) Under the realistic functional attacker the switch is indistinguishable from a routing-free model of the same live-parameter count, bounded at 0.065 AUC = <strong>36 % of the total 0.178 defense effect</strong>, and under the strongest honest attacker the capacity control is <em>more</em> resistant (+0.093, p = 0.031); the resistant tail that drives the apparent advantage appears in the capacity control at the same rate (11/60 vs 9/60, p = 0.81) and is absent from the corrected baseline (0/60). (iii) Ordinary <strong>benign</strong> fine-tuning erases the selectability criterion in 100 steps — 5 % of the training budget, no adversary (23/23 → 12/23, p = 3.05·10⁻⁵) — and nothing maintains the block-diagonal structure once the routing loss is off (cross-block mass 0 → 5.59). (iv) The unselected model is <strong>not a hedger</strong> (D = 0.786 and 0.951 in two substrates, CIs excluding 0.5) but a confident off-distribution class collapse (majority-class 0.893 vs 0.550, p = 1.3·10⁻¹⁰, at confidence 0.911, while scoring 1.000 on agreeing data), <strong>invisible to a per-input confidence monitor</strong> (AUROC 0.521, 90 % CI [0.477, 0.549]; the mechanistic readout of the same inputs scores 0.9996; model-level triage is anti-informative at 0.197). <em>Selection is a mandatory deployment step and there is no monitor that catches you skipping it.</em></div>
+
+<h3>The figures it needs</h3>
+<div class="tblwrap">
+<table>
+<tr><th>#</th><th>Figure</th><th>What it shows</th><th>Source</th></tr>
+<tr><td><strong>F1</strong></td><td><strong>The lottery and the latent switch</strong> — left: 12 transformer control seeds, held-out accuracy 1.000 vs deploy alignment 0.000–0.933; right: the same standard-trained MLPs scored 1/60 under a fixed partition vs 51/60 under a data-chosen one, with the two negative controls (random splits 1/50, noise-dim 0/10) as reference bars</td><td>Reframes the paper in one panel: the switch exists before routing, and the old floor was a scoring choice</td><td class="num">r3-lm-organism + r4-break-tautology</td></tr>
+<tr><td><strong>F2</strong></td><td><strong>Sharing dose-response</strong> — selectability vs unit overlap (0/25/50/75 % → 60/60, 60/60, 58/60, 2/60) with shared_trunk and soft25/soft50 as annotated points, gradient-trace shared-parameter counts on a secondary axis, and the mean margin curve (0.996 → 0.977 → 0.804 → 0.387) behind the binary rate</td><td>Answers the tautology objection and shows exactly where it stops answering it</td><td class="num">r4-break-tautology</td></tr>
+<tr><td><strong>F3</strong></td><td><strong>Localization phase diagram</strong> — L-CCM landing rate vs margin ratio r for N = 200 / 800 / 3200, with r* markers, an inset showing (r*² − 1) ~ N<sup>−1/2</sup>, L-ICA flat at ~0.6, open markers for the non-orthogonal <code>mix</code> basis (13/20, 17/20), and annotations |G| = 64 / orbit 2 at r = 1 vs |G| = 16 / orbit 1 elsewhere</td><td>The technical core: where localization is impossible, where it is solvable, where it is still open</td><td class="num">r4-asymmetry-localizer (+ auditor's mix cells)</td></tr>
+<tr><td><strong>F4</strong></td><td><strong>The exchange rate</strong> — two curves vs m ∈ {0,1,2,4,8,16,32}: routing selectability (13→24/30) and plain augmentation alignment (7→30/30), with the oracle ceiling (26/30) and standard training (0/30) as horizontal references and the unlabelled-input channel as a third curve plateauing at 17/30</td><td>One panel that decides the paper's framing: the same data is better spent on the optimizer</td><td class="num">r4-symmetry-breaking-exchange</td></tr>
+<tr><td><strong>F5</strong></td><td><strong>Attacker-strength ladder</strong> — switch minus capacity-control AUC with 95 % CIs at each rung (−0.079, −0.020, −0.159*, −0.251*, +0.116, +0.093), relu′(0)=0 artifact rungs greyed, zero line, and the δ* = 0.065 equivalence bound drawn against a 0.178 total-defense-effect scale bar</td><td>Shows the sign flip, and that the honest verdict is a bound rather than equality</td><td class="num">r4-tamper-power-fix</td></tr>
+<tr><td><strong>F6</strong></td><td><strong>Monitor blindness</strong> — per-model AUROC distributions for the confidence monitor (median 0.521), the mechanistic readout (0.9996) and control-arm hedgers (0.4205), with the ±0.05 equivalence band shaded and the model-level anti-informative point (0.197) called out</td><td>The safety claim, with its own honest widening: ordinary models are equally invisible</td><td class="num">r4-patchwork-prereg</td></tr>
+<tr><td><em>F0 (appendix)</em></td><td>Mechanism panel — the exact additive decomposition, a column truth table read off the weights, and the α sweep with the per-input flip-point CDF overlaid</td><td>Supports C2's "exact and legible" clause without occupying a main slot</td><td class="num">r3-switch-mechanism</td></tr>
+</table>
+</div>
+
+<h3>What it must concede up front — in the abstract, not a footnote</h3>
+
+<div class="concede"><strong>1. The effect size in our own earlier drafts was wrong.</strong> Routing-free floors of 0/30 and 0/20 were produced by scoring the control under an arbitrary fixed unit partition. The fair floor is 85 %, and routing's contribution is +15 points [5.8, 26.1], not +98.</div>
+<div class="concede"><strong>2. Toy scale throughout.</strong> ≤11-dimensional synthetic inputs, ≤1.2k-parameter MLPs and one 68.5k-parameter from-scratch transformer, searched-for equal-cost XOR cues. Closed-form column readability is a property of a worldview that <em>is</em> a 2-bit XOR; "154 parameters, and here is the rule" is an existence proof, not evidence that a real worldview module would be readable.</div>
+<div class="concede"><strong>3. Selectability still requires private capacity per worldview</strong>, and the sharing-vs-private-width confound is untested (no width sweep at fixed overlap). What we broke is "structurally disjoint subnetworks", not "each worldview needs some of its own units".</div>
+<div class="concede"><strong>4. The oracle-free localizer is a model-based estimator.</strong> D's diagonality follows from the generative family; the 40/40 is a numerical confirmation of exact algebra, and it is oracle-free per instance but embodies designer knowledge. It covers <strong>orthogonal</strong> entanglement only; general invertible entanglement degrades to 13/20 and is the obvious next control.</div>
+<div class="concede"><strong>5. Routing is dominated by data augmentation whenever the symmetry-breaking information is labelled and trainable.</strong> The motivation must therefore be an <em>optionality</em> argument — information arriving after training, contested deployment labels, or an unlabelled channel — and none of those settings is tested here.</div>
+<div class="concede"><strong>6. It is not a safety mechanism</strong>, and one of our own safety-shaped results (monitor invisibility) is a limit of confidence monitoring in general, not a routing-specific liability. Ordinary underdetermined models are equally invisible.</div>
+<div class="concede"><strong>7. Two families of numbers remain demonstrations, not effect sizes</strong>: k-way selection (train mask == eval mask, disjoint columns by construction, and 20/20 conditional on w = 8 — w = 4 gives 13/20 and 6/20), and the transformer's 11/12 (each group trained in isolation under exactly its evaluation mask).</div>
+<div class="concede"><strong>8. Provenance.</strong> Three of round 4's six experiments carry an independent audit; the other three (patchwork, tamper, exchange rate) are agent self-reports and must be re-audited before their numbers are quoted. Every number in the paper should carry the two-line selection audit (k, n, s, S, ρ̂, R), and the switch line's own numbers are k = 1 — say so explicitly, because reviewers will ask.</div>
+
+<h3>The one sentence to open with</h3>
+<blockquote><p>Underdetermined training does not average two incompatible worldviews together — it builds both and picks one by lottery; gradient routing labels the resulting switch and makes it reliable, at a cost of about fifteen points and a localization problem that is provably unsolvable at exactly equal cue strength, solvable just off it, and cheaper to solve with four labelled examples that you would rather have spent on training.</p></blockquote>
+
+<h2>Artifact roots</h2>
+<p class="kicker">All six experiments live under <code>/Users/steven/research_sprint_20260724/&lt;slug&gt;/</code>, each with <code>PREREG.md</code> (stamped before the run), code, <code>results.json</code>, and — new this round — <code>FINDINGS.md</code>.</p>
+<ul class="tight">
+<li><code>r4-asymmetry-localizer/</code> — <span class="v-solid">SOLID</span> · <code>PREREG.md</code>, <code>core4.py</code>, <code>experiment.py</code>, <code>analyze.py</code>, <code>posthoc.py</code>, <code>results.json</code>, <code>run.log</code></li>
+<li><code>r4-break-tautology/</code> — <span class="v-solid">SOLID</span> · <code>PREREG.md</code>, <code>core.py</code>, <code>experiment.py</code>, <code>verify_floor_learned.py</code>, <code>posthoc.py</code>, <code>results.json</code></li>
+<li><code>r4-kway-learned-plus-hygiene/</code> — <span class="v-sug">SUGGESTIVE</span> · <code>PREREG.md</code>, <code>experiment.py</code>, <code>hygiene.py</code>, <strong><code>SELECTION_AUDIT.md</code></strong>, <code>results.json</code></li>
+<li><code>r4-patchwork-prereg/</code> — <span class="v-unaud">UNAUDITED</span> · <code>PREREG.md</code>, <code>mlp_stage.py</code>, <code>tf_stage.py</code>, <code>posthoc_mechanism.py</code>, <code>results_*.json</code></li>
+<li><code>r4-tamper-power-fix/</code> — <span class="v-unaud">UNAUDITED</span> · <code>PREREG.md</code> (+ Amendment 1), <code>experiment.py</code>, <strong><code>CORRECTED_TAMPER_TABLE.txt</code></strong>, <code>posthoc.py</code>, <code>results.json</code></li>
+<li><code>r4-symmetry-breaking-exchange/</code> — <span class="v-unaud">UNAUDITED</span> · <code>PREREG.md</code> (+ Amendment 1), <code>sup.py</code>, <code>experiment.py</code>, <code>sources.py</code>, <code>analyze.py</code>, <code>verify_rerun.py</code>, <code>results.json</code></li>
+</ul>
+
+<p class="foot">Generated 2026-07-25 · Round-4 master report · companion to REPORT.md, REPORT2.md, REPORT3.md</p>
+
+</div>
+</body>
+</html>

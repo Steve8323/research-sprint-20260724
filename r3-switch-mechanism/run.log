@@ -1,0 +1,11 @@
+[routed] trained+analysed 30 seeds (53s)
+[control] trained+analysed 30 seeds (84s)
+replication anchor: {'routed': 0.0, 'control': 0.0} PASS
+switchable set |S| = 22 / 30
+PRIMARY: GRADED median W = 0.2894 [0.2759, 0.3068]
+secondary sweeps: {"misselect_keepB": {"median_W": 0.2891, "boot95": [0.2677, 0.3102], "median_R": -0.493}, "contribution_gate": {"median_W": 0.4402, "boot95": [0.3846, 0.4528], "median_R": 0.5016}}
+SECONDARY1 routed: {"tt_frac": 1.0, "cf_agreement_median": 0.9981, "flip_rate_median": 0.0, "mass_own_median": 0.8652, "mass_other_median": 0.0118}
+SECONDARY1 control: {"tt_frac": 0.2167, "cf_agreement_median": 0.4997, "flip_rate_median": 0.2493, "mass_own_median": 0.4691, "mass_other_median": 0.456}
+SECONDARY2 routed: INTERMEDIATE | D: 0.8083 deterministic (D>=0.8) | balance 0.4216 | oppsign 0.9745
+SECONDARY2 control: D: 0.4788 | balance 0.4015 | oppsign 0.6339
+wrote /Users/steven/research_sprint_20260724/r3-switch-mechanism/results.json (84.4s)

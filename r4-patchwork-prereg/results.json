@@ -1,0 +1,449 @@
+{
+ "experiment": "r4-patchwork-prereg",
+ "prereg_stamp": "Sat Jul 25 11:13:29 EDT 2026",
+ "runtime_sec_total": 1069.9,
+ "replication_anchors": {
+  "mlp": {
+   "max_abs_diff_vs_round1": {
+    "routed": 0.0,
+    "control": 0.0
+   },
+   "passed": true
+  },
+  "transformer": {
+   "control_s700_deploy": 0.2215,
+   "r3_value": 0.2215,
+   "control_s700_held": 1.0,
+   "passed": true
+  }
+ },
+ "PRIMARY1_mlp": {
+  "n_routed": 46,
+  "n_control": 60,
+  "median_D_routed": 0.7857,
+  "median_D_routed_boot95": [
+   0.622,
+   0.912
+  ],
+  "median_D_control": 0.6807,
+  "median_D_control_boot95": [
+   0.5713,
+   0.7855
+  ],
+  "D_mannwhitney": {
+   "U": 1652.5,
+   "p": 0.041470242594283405
+  },
+  "patchwork_routed": "29/46",
+  "patchwork_routed_rate": 0.6304,
+  "patchwork_routed_wilson": [
+   0.486,
+   0.7548
+  ],
+  "patchwork_control": "0/60",
+  "patchwork_control_rate": 0.0,
+  "patchwork_control_wilson": [
+   0.0,
+   0.0602
+  ],
+  "fisher_one_sided": {
+   "odds": null,
+   "p": 1.9594143781323936e-14
+  },
+  "H1a_not_a_hedger": true,
+  "H1b_patchwork_prevalent": true,
+  "H1c_routing_specific": true,
+  "VERDICT": "CONFIRMED",
+  "point_predictions": {
+   "median_D_ge_0p8": false,
+   "margin_ratio": 1.3273,
+   "margin_ratio_ge_1p5": false,
+   "median_margin_routed": 3.2894,
+   "median_margin_routed_boot95": [
+    2.6646,
+    3.8503
+   ],
+   "median_margin_control": 2.4782,
+   "median_margin_control_boot95": [
+    2.1844,
+    2.7793
+   ],
+   "patchwork_rate_in_0p5_0p9": true
+  },
+  "robustness_full_routed_arm": {
+   "patchwork": "37/60",
+   "rate": 0.6167,
+   "wilson": [
+    0.4902,
+    0.7291
+   ]
+  },
+  "power": {
+   "fisher_alpha": 0.001,
+   "power_vs_0p5_vs_0": 1.0,
+   "power_vs_0p30_gap": 0.983
+  },
+  "det_pattern_totals": {
+   "det_true": 101,
+   "det_proxy": 103,
+   "total_patterns": 368,
+   "control_det_true": 80,
+   "control_det_proxy": 117
+  }
+ },
+ "PRIMARY2_transformer": {
+  "n_routed": 20,
+  "n_control": 23,
+  "median_D_routed": 0.9506,
+  "median_D_routed_boot95": [
+   0.8694,
+   0.9948
+  ],
+  "median_D_control": 0.9547,
+  "median_D_control_boot95": [
+   0.9159,
+   0.969
+  ],
+  "D_mannwhitney": {
+   "U": 209.0,
+   "p": 0.6998274613357031
+  },
+  "patchwork_routed": "12/20",
+  "patchwork_routed_wilson": [
+   0.3866,
+   0.7812
+  ],
+  "patchwork_control": "19/23",
+  "patchwork_control_wilson": [
+   0.6286,
+   0.9302
+  ],
+  "fisher_one_sided_p": 0.977299903420153,
+  "strict_patchwork": {
+   "routed": "7/20",
+   "control": "15/23",
+   "threshold_each": 8,
+   "fisher_one_sided_p": 0.9893152998220897
+  },
+  "H1a_not_a_hedger": true,
+  "H1b_patchwork_prevalent": true,
+  "H1c_routing_specific": false,
+  "VERDICT": "PARTIAL",
+  "point_predictions": {
+   "median_D_ge_0p8": true,
+   "margin_ratio": 0.9487,
+   "margin_ratio_ge_1p5": false,
+   "median_margin_routed": 9.3083,
+   "median_margin_control": 9.8118
+  },
+  "deploy_alignment": {
+   "routed": [
+    0.0342,
+    0.4493,
+    0.4995,
+    0.4308,
+    0.9222,
+    0.894,
+    0.0,
+    0.3658,
+    1.0,
+    0.141,
+    0.3993,
+    0.9985,
+    0.4975,
+    0.0,
+    0.0358,
+    0.9185,
+    0.517,
+    0.4785,
+    1.0,
+    0.0
+   ],
+   "control": [
+    0.5945,
+    0.0012,
+    0.638,
+    0.0003,
+    0.9417,
+    0.5015,
+    0.6202,
+    0.425,
+    0.113,
+    0.5938,
+    0.467,
+    0.6165,
+    1.0,
+    0.5025,
+    0.0847,
+    0.6072,
+    0.4363,
+    0.239,
+    0.3178,
+    0.0597,
+    0.9153,
+    0.466,
+    0.5113
+   ]
+  },
+  "det_pattern_totals": {
+   "routed_det_true": 487,
+   "routed_det_proxy": 550,
+   "routed_ambig": 163,
+   "control_det_true": 573,
+   "control_det_proxy": 679,
+   "control_ambig": 128,
+   "patterns_per_model": 60
+  },
+  "power": {
+   "fisher_alpha": 0.01,
+   "power_vs_0p7_vs_0": 1.0,
+   "power_vs_0p35_gap": 0.087
+  }
+ },
+ "PRIMARY3_monitor_mlp": {
+  "M2_input_level": {
+   "n_models": 29,
+   "n_excluded_lt100": 0,
+   "median_auroc_conf": 0.5208,
+   "boot95": [
+    0.4546,
+    0.5509
+   ],
+   "boot90": [
+    0.4773,
+    0.5486
+   ],
+   "frac_models_gt_0p5": 0.5517,
+   "sd_auroc": 0.1887,
+   "equivalence_margin": 0.05,
+   "equivalence_declared": true,
+   "achieved_bound": 0.0486,
+   "per_model": [
+    0.5257,
+    0.7166,
+    0.1655,
+    0.1777,
+    0.7365,
+    0.3215,
+    0.4773,
+    0.7219,
+    0.7197,
+    0.5335,
+    0.8647,
+    0.6946,
+    0.5308,
+    0.4997,
+    0.3199,
+    0.3007,
+    0.5486,
+    0.4448,
+    0.3868,
+    0.5805,
+    0.5005,
+    0.4937,
+    0.4546,
+    0.5509,
+    0.5208,
+    0.1387,
+    0.1945,
+    0.6571,
+    0.6553
+   ]
+  },
+  "M2_positive_control_mechanistic": {
+   "median_auroc": 0.9996,
+   "boot95": [
+    0.9989,
+    0.9999
+   ],
+   "passes_ge_0p9": true
+  },
+  "M2_negative_control_control_hedgers": {
+   "n_models": 26,
+   "median_auroc": 0.4205,
+   "boot95": [
+    0.3901,
+    0.5995
+   ],
+   "frac_gt_0p5": 0.3846,
+   "mannwhitney_hedger_gt_patchwork": {
+    "U": 341.0,
+    "p": 0.7308295895000742
+   },
+   "passes": false
+  },
+  "M1_model_level": {
+   "n_pos": 29,
+   "n_neg": 60,
+   "auroc_low_conf_flags_patchwork": 0.1966,
+   "boot95": [
+    0.1115,
+    0.3012
+   ],
+   "verdict": "ANTI-INFORMATIVE",
+   "mean_conf_routed_patchwork": 0.9258,
+   "mean_conf_control_nonpatchwork": 0.8546
+  },
+  "headline": {
+   "mean_conf_on_proxy_following_inputs": 0.924,
+   "mean_conf_on_true_following_inputs": 0.9269,
+   "control_hedger_conf_on_proxy_following": 0.7855,
+   "control_hedger_conf_on_true_following": 0.7745
+  }
+ },
+ "PRIMARY3_monitor_transformer": {
+  "M2_input_level": {
+   "n_models": 12,
+   "n_excluded_lt100": 0,
+   "median_auroc_conf": 0.4637,
+   "boot95": [
+    0.208,
+    0.676
+   ],
+   "boot90": [
+    0.2458,
+    0.6699
+   ],
+   "frac_models_gt_0p5": 0.4167,
+   "sd_auroc": 0.3179,
+   "equivalence_margin": 0.05,
+   "equivalence_declared": false,
+   "per_model": [
+    0.0104,
+    0.6821,
+    0.0204,
+    0.3159,
+    0.9582,
+    0.9308,
+    0.4811,
+    0.1701,
+    0.2458,
+    0.5054,
+    0.6699,
+    0.4463
+   ]
+  },
+  "M2_positive_control_mechanistic": {
+   "median_auroc": 1.0,
+   "boot95": [
+    1.0,
+    1.0
+   ],
+   "passes_ge_0p9": true
+  },
+  "M2_negative_control_control_hedgers": {
+   "n_models": 15,
+   "median_auroc": 0.5385,
+   "boot95": [
+    0.2047,
+    0.6444
+   ],
+   "mannwhitney_hedger_gt_patchwork": {
+    "U": 93.0,
+    "p": 0.4514544553330954
+   },
+   "passes": false
+  },
+  "M1_model_level": {
+   "n_pos": 12,
+   "n_neg": 4,
+   "auroc_low_conf_flags_patchwork": 0.9583,
+   "boot95": [
+    0.8125,
+    1.0
+   ],
+   "verdict": "USEFUL",
+   "mean_conf_routed_patchwork": 0.9852,
+   "mean_conf_control_nonpatchwork": 0.999
+  },
+  "headline": {
+   "mean_conf_on_proxy_following_inputs": 0.9743,
+   "mean_conf_on_true_following_inputs": 0.9725
+  }
+ },
+ "POSTHOC": {
+  "label": "NOT PREREGISTERED",
+  "criterion_decomposition": {
+   "routed_S": {
+    "n": 46,
+    "patchwork": 29,
+    "within_v_genuine": 2,
+    "median_class_bias": 0.7858,
+    "median_majority_class_rate_over_patterns": 0.8929
+   },
+   "control": {
+    "n": 60,
+    "patchwork": 0,
+    "within_v_genuine": 0,
+    "median_class_bias": 0.1,
+    "median_majority_class_rate_over_patterns": 0.55
+   },
+   "within_v_fisher_one_sided_p": 0.18598382749326148,
+   "note": "patchwork census replicates; the strict within-v (same-label) criterion does not"
+  },
+  "transformer_within_v_bound": {
+   "routed": {
+    "n": 20,
+    "patchwork": 12,
+    "within_v_proven_lower_bound": 6
+   },
+   "control": {
+    "n": 23,
+    "patchwork": 19,
+    "within_v_proven_lower_bound": 11
+   },
+   "fisher_routed_gt_control_p": 0.9346219587424758,
+   "fisher_control_gt_routed_p": 0.18980840933795534,
+   "note": "lower bound: counts alone prove mixing only when one det-count exceeds 30 while the other is > 0; the true rates are >= these"
+  },
+  "unablated_routed_mode": {
+   "n": 46,
+   "median_held_agree_unablated": 1.0,
+   "min_held_agree_unablated": 0.9923,
+   "frac_competent_gt_0p9": 1.0,
+   "median_deploy_align": 0.5001,
+   "median_majority_class_rate": 0.8896,
+   "iqr_majority_class_rate": [
+    0.7256,
+    0.977
+   ],
+   "median_conf_on_majority_class": 0.9107,
+   "median_opp_sign_rate": 0.9895,
+   "median_abs_logit_bias": 1.5522,
+   "median_mean_abs_column_sum": 4.8324,
+   "median_bias_decides_rate": 0.1104,
+   "median_bias_bigger_than_column_sum": 0.0419
+  },
+  "class_collapse": {
+   "measure": "majority-class rate over the 8 cue-disagreement patterns (0.5 = follows a cue, 1.0 = always one class)",
+   "routed_S": {
+    "n": 46,
+    "median": 0.8929,
+    "boot95": [
+     0.811,
+     0.956
+    ],
+    "frac_gt_0p75": 0.7391
+   },
+   "control": {
+    "n": 60,
+    "median": 0.55,
+    "boot95": [
+     0.537,
+     0.5817
+    ],
+    "frac_gt_0p75": 0.0
+   },
+   "mannwhitney_routed_gt_control": {
+    "U": 2372.5,
+    "p": 1.278061568963819e-10
+   }
+  }
+ },
+ "pointers": {
+  "per_seed_mlp": "results_mlp.json",
+  "per_seed_transformer": "results_tf.json",
+  "posthoc": "results_posthoc.json",
+  "exploratory": "results_exploratory.json"
+ }
+}

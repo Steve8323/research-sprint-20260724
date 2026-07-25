@@ -1,0 +1,211 @@
+{
+ "posthoc_success_by_orbit_member": {
+  "axis_ica": {
+   "true": {
+    "succ": 9,
+    "n": 11,
+    "rate": 0.818
+   },
+   "ent": {
+    "succ": 4,
+    "n": 19,
+    "rate": 0.211
+   },
+   "neither": {
+    "succ": 0,
+    "n": 0,
+    "rate": null
+   }
+  },
+  "rot_ica": {
+   "true": {
+    "succ": 11,
+    "n": 14,
+    "rate": 0.786
+   },
+   "ent": {
+    "succ": 5,
+    "n": 16,
+    "rate": 0.312
+   },
+   "neither": {
+    "succ": 0,
+    "n": 0,
+    "rate": null
+   }
+  },
+  "mix_ica": {
+   "true": {
+    "succ": 14,
+    "n": 14,
+    "rate": 1.0
+   },
+   "ent": {
+    "succ": 4,
+    "n": 15,
+    "rate": 0.267
+   },
+   "neither": {
+    "succ": 1,
+    "n": 1,
+    "rate": 1.0
+   }
+  },
+  "rot_dict": {
+   "true": {
+    "succ": 4,
+    "n": 5,
+    "rate": 0.8
+   },
+   "ent": {
+    "succ": 1,
+    "n": 4,
+    "rate": 0.25
+   },
+   "neither": {
+    "succ": 3,
+    "n": 21,
+    "rate": 0.143
+   }
+  },
+  "rot_pair": {
+   "true": {
+    "succ": 0,
+    "n": 0,
+    "rate": null
+   },
+   "ent": {
+    "succ": 0,
+    "n": 0,
+    "rate": null
+   },
+   "neither": {
+    "succ": 10,
+    "n": 30,
+    "rate": 0.333
+   }
+  },
+  "POOLED_ica_arms": {
+   "true": {
+    "succ": 34,
+    "n": 39,
+    "rate": 0.872,
+    "wilson95": [
+     0.7329,
+     0.944
+    ]
+   },
+   "ent": {
+    "succ": 13,
+    "n": 50,
+    "rate": 0.26,
+    "wilson95": [
+     0.1587,
+     0.3955
+    ]
+   },
+   "neither": {
+    "succ": 1,
+    "n": 1,
+    "rate": 1.0,
+    "wilson95": [
+     0.2065,
+     1.0
+    ]
+   }
+  },
+  "POOLED_fisher_true_vs_entangled": 8.38944719867247e-09
+ },
+ "posthoc_effective_floor_tests": {
+  "rot_ica_vs_rot_pair": {
+   "table": [
+    [
+     16,
+     14
+    ],
+    [
+     10,
+     20
+    ]
+   ],
+   "p": 0.19231688624363902
+  },
+  "rot_dict_vs_rot_pair": {
+   "table": [
+    [
+     8,
+     22
+    ],
+    [
+     10,
+     20
+    ]
+   ],
+   "p": 0.7787156770945833
+  },
+  "rot_pair_vs_round1_routing_no_occlusion": {
+   "table": [
+    [
+     10,
+     20
+    ],
+    [
+     6,
+     24
+    ]
+   ],
+   "p": 0.38165411884707007,
+   "note": "round-1 routing_no_occlusion = 6/30 (stored, read-only)"
+  }
+ },
+ "posthoc_anchor_axis_pair_vs_round2_learned_L1": {
+  "this_run": 25,
+  "round2": 23,
+  "p": 0.7480497930241055,
+  "note": "same localizer, but occlusion now runs through the learned-basis code path with a data-estimated replacement std (std(|s|)) instead of the hard-coded NOISE constant, and a different torch RNG consumption order; localization identical (30/30 exact oracle pairs)."
+ },
+ "prereg_equivariance_control": {
+  "max_abs_fid_diff_axis_vs_rot": 0.4976,
+  "n_same_orbit_member": 15,
+  "n": 30,
+  "note": "ICA is rotation-equivariant, so it should land on the SAME orbit member in the axis and rotated bases for the same seed; identical fidelity => the failure is not caused by the rotation but by the localizer being basis-agnostic."
+ },
+ "prereg_orbit_landing_rates": {
+  "axis_ica": {
+   "lands_true": 11,
+   "n": 30,
+   "wilson95": [
+    0.2187,
+    0.5449
+   ],
+   "binom_p_vs_0p5": 0.20048842206597334
+  },
+  "rot_ica": {
+   "lands_true": 14,
+   "n": 30,
+   "wilson95": [
+    0.3023,
+    0.6386
+   ],
+   "binom_p_vs_0p5": 0.8555355519056321
+  },
+  "mix_ica": {
+   "lands_true": 14,
+   "n": 30,
+   "wilson95": [
+    0.3023,
+    0.6386
+   ],
+   "binom_p_vs_0p5": 0.8555355519056321
+  },
+  "POOLED": {
+   "lands_true": 39,
+   "n": 90,
+   "wilson95": [
+    0.3358,
+    0.5364
+   ],
+   "binom_p_vs_0p5": 0.24610644971627832
+  }
+ }
+}

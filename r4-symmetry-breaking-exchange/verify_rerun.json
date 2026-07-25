@@ -1,0 +1,60 @@
+{
+ "rows": [
+  {
+   "m": 0,
+   "seed": 700,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "m": 0,
+   "seed": 701,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "m": 0,
+   "seed": 702,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "m": 4,
+   "seed": 700,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "m": 4,
+   "seed": 701,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "m": 4,
+   "seed": 702,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "m": 32,
+   "seed": 700,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "m": 32,
+   "seed": 701,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  },
+  {
+   "m": 32,
+   "seed": 702,
+   "max_abs_diff": 0.0,
+   "success_match": true
+  }
+ ],
+ "overall_max_abs_diff": 0.0,
+ "all_success_match": true
+}
